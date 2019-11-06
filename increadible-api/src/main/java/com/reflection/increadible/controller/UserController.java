@@ -21,10 +21,10 @@ public class UserController {
         return userService.listUsers();
     }
 
-    @GetMapping("/hello")
-    public String helloWorld() {
-        return "Hello World!!";
-    }
+//    @GetMapping("/hello")
+//    public String helloWorld() {
+//        return "Hello World!! - from User Controller";
+//    }
 
     @PostMapping("/signup")
     public ResponseEntity<?> createUser(@RequestBody User newUser) {
