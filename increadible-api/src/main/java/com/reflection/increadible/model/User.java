@@ -32,13 +32,19 @@ public class User {
 
     public void setUsername(String username) {this.username = username;}
 
-    public void setPassword(String password) {this.password = password;}
-
-//    public String getGoal() {return goal;}
-//
-//    public void setGoal(String goal) {this.goal = goal;}
-
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     public String getPassword() {return password;}
+
+    public void setPassword(String password) {this.password = password;}
+
+/*
+TODO: create, update goal for user
+
+    public String getGoal() {return goal;}
+
+    public void setGoal(String goal) {this.goal = goal;}
+*/
+
+
 
 }
