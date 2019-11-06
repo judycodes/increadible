@@ -19,7 +19,7 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
     @Autowired
     JwtUtil jwtUtil;
@@ -29,59 +29,49 @@ public class UserServiceImpl implements UserService {
     PasswordEncoder bCryptPasswordEncoder;
 
     @Override
+    public Iterable<User> listUsers() {return userRepository.findAll();}
+
+    @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = getUser(username);
 
         if(user==null)
             throw new UsernameNotFoundException("User null");
 
-        return new org.springframework.security.core.userdetails.User(user.getUsername(), bCryptPasswordEncoder.encode(user.getPassword()),
+        return new org.springframework.security.core.userdetails.User (user.getUsername(), bCryptPasswordEncoder.encode(user.getPassword()),
                 true, true, true, true, getGrantedAuthorities(user));
     }
 
+    @Override
+    public User getUser(String username){
+        return userRepository.findByUsername(username);
+    }
 
     private List<GrantedAuthority> getGrantedAuthorities(User user){
         List<GrantedAuthority> authorities = new ArrayList<>();
 
-        authorities.add(new SimpleGrantedAuthority("USER"));
+        authorities.add(new SimpleGrantedAuthority(user.getUsername()));
 
         return authorities;
     }
 
     @Override
-    public User getUser(String username) {
-
-        return userRepository.findByUsername(username);
-
+    public String login(User user){
+        User returningUser = userRepository.findByUsername(user.getUsername());
+        if(returningUser != null && bCryptPasswordEncoder.matches(user.getPassword(), returningUser.getPassword())){
+            UserDetails userDetails = loadUserByUsername(returningUser.getUsername());
+            return jwtUtil.generateToken(userDetails);
+        }
+        return null;
     }
 
     @Override
-    public String createUser(User newUser) throws Exception{
-
+    public String createUser(User newUser) {
         newUser.setPassword(bCryptPasswordEncoder.encode(newUser.getPassword()));
-
-        if(userRepository.findByUsername(newUser.getUsername()) == null){
-
-            userRepository.save(newUser);
-            UserDetails userDetails = loadUserByUsername(newUser.getUsername());
-
-            return jwtUtil.generateToken(userDetails);
-        }
-
-        throw new Exception();
-
-    }
-
-    @Override
-    public String login(User user) {
-
-        User newUser = userRepository.findByUsername(user.getUsername());
-
-        if(newUser != null && bCryptPasswordEncoder.matches(user.getPassword(), newUser.getPassword())){
+        if(userRepository.save(newUser) != null){
             UserDetails userDetails = loadUserByUsername(newUser.getUsername());
             return jwtUtil.generateToken(userDetails);
         }
-
         return null;
     }
 

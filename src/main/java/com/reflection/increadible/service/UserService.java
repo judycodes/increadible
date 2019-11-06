@@ -7,9 +7,11 @@ import org.springframework.stereotype.Service;
 @Service
 public interface UserService extends UserDetailsService {
 
+    public Iterable<User> listUsers();
+
     public User getUser(String username);
 
-    public String createUser(User newUser) throws Exception;
+    public String createUser(User newUser);
 
     public String login(User user);
 
