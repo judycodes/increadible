@@ -91,4 +91,17 @@ public class ReflectionController {
         }
     }
 
+    /**
+     * PUT REQUEST: Update reflection tidbit content
+     * @param updatedReflectionTidbit
+     * @return updated reflection tidbit content if user created that reflection
+     */
+    @PutMapping("/updateTidbit-{reflection_id}")
+    public ResponseEntity updateReflectionTidbit(@RequestBody Reflection updatedReflectionTidbit, @PathVariable long reflection_id) {
+        try {
+            return reflectionService.updateReflectionTidbit(updatedReflectionTidbit, reflection_id);
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.valueOf(405), "Error when updating reflection tidbit content.", e);
+        }
+    }
 }

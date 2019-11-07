@@ -19,4 +19,6 @@ public interface ReflectionService {
 
     public ResponseEntity updateReflectionSubject(Reflection updatedReflectionSubject, long reflection_id) throws Exception;
 
+    public ResponseEntity updateReflectionTidbit(Reflection updatedReflectionTidbit, long reflection_id) throws Exception;
+
 }

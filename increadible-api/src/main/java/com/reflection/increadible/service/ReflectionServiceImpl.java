@@ -45,10 +45,10 @@ public class ReflectionServiceImpl implements ReflectionService {
 
         String currentUsername = securityController.getCurrentUserName();
 
-        if(reflectionRepository.findReflectionById(reflection_id).getUser().getUsername().equals(currentUsername)){
+        if (reflectionRepository.findReflectionById(reflection_id).getUser().getUsername().equals(currentUsername)) {
             reflectionRepository.deleteById(reflection_id);
             return new ResponseEntity(HttpStatus.valueOf(200));
-        }else{
+        } else {
             return new ResponseEntity(HttpStatus.valueOf(405));
         }
     }
@@ -62,7 +62,8 @@ public class ReflectionServiceImpl implements ReflectionService {
     public List<Reflection> listUserReflections() {
         String username = securityController.getCurrentUserName();
         User user = userRepository.findUserByUsername(username);
-        return reflectionRepository.findReflectionsByUser(user); }
+        return reflectionRepository.findReflectionsByUser(user);
+    }
 
     @Override
     public ResponseEntity updateReflectionSubject(Reflection updatedReflectionSubject, long reflection_id) throws Exception {
@@ -72,29 +73,27 @@ public class ReflectionServiceImpl implements ReflectionService {
         if (reflectionRepository.findReflectionById(reflection_id).getUser().getUsername().equals(currentUsername)) {
             Reflection reflection = reflectionRepository.findById(reflection_id).get();
 
-//            if(!updatedReflection.getSubject().isEmpty() && !updatedReflection.getTidbit().isEmpty()){
-//                reflection.setSubject(updatedReflection.getSubject());
-//                reflection.setTidbit(updatedReflection.getTidbit());
-//                final Reflection updatedReflectionVersion = reflectionRepository.save(reflection);
-//
-//            }
-//
-//            else if(!updatedReflection.getSubject().isEmpty()) {
-
-
-                reflection.setSubject(updatedReflectionSubject.getSubject());
-                final Reflection updatedReflectionSubjectVersion = reflectionRepository.save(reflection);
-//            }
-//
-//            else {
-//                reflection.setTidbit(updatedReflection.getTidbit());
-//                final Reflection updatedReflectionVersion = reflectionRepository.save(reflection);
-//            }
-//
-
+            reflection.setSubject(updatedReflectionSubject.getSubject());
+            final Reflection updatedReflectionSubjectVersion = reflectionRepository.save(reflection);
 
             return new ResponseEntity(updatedReflectionSubjectVersion, HttpStatus.valueOf(200));
         }
         throw new Exception();
     }
+
+    @Override
+    public ResponseEntity updateReflectionTidbit(Reflection updatedReflectionTidbit, long reflection_id) throws Exception {
+
+        String currentUsername = securityController.getCurrentUserName();
+
+        if (reflectionRepository.findReflectionById(reflection_id).getUser().getUsername().equals(currentUsername)) {
+            Reflection reflection = reflectionRepository.findById(reflection_id).get();
+            reflection.setTidbit(updatedReflectionTidbit.getTidbit());
+
+            final Reflection updatedReflectionTidbitVersion = reflectionRepository.save(reflection);
+            return new ResponseEntity(updatedReflectionTidbitVersion, HttpStatus.valueOf(200));
+        }
+        throw new Exception();
+    }
 }
+
