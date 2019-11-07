@@ -65,29 +65,35 @@ public class ReflectionServiceImpl implements ReflectionService {
         return reflectionRepository.findReflectionsByUser(user); }
 
     @Override
-    public ResponseEntity updateReflection(Reflection updatedReflection, long reflection_id) throws Exception {
+    public ResponseEntity updateReflectionSubject(Reflection updatedReflectionSubject, long reflection_id) throws Exception {
 
         String currentUsername = securityController.getCurrentUserName();
 
         if (reflectionRepository.findReflectionById(reflection_id).getUser().getUsername().equals(currentUsername)) {
             Reflection reflection = reflectionRepository.findById(reflection_id).get();
 
-            if(!updatedReflection.getSubject().isEmpty()) {
-                reflection.setSubject(updatedReflection.getSubject());
-            }
+//            if(!updatedReflection.getSubject().isEmpty() && !updatedReflection.getTidbit().isEmpty()){
+//                reflection.setSubject(updatedReflection.getSubject());
+//                reflection.setTidbit(updatedReflection.getTidbit());
+//                final Reflection updatedReflectionVersion = reflectionRepository.save(reflection);
+//
+//            }
+//
+//            else if(!updatedReflection.getSubject().isEmpty()) {
 
-            if(!updatedReflection.getTidbit().isEmpty()){
-                reflection.setTidbit(updatedReflection.getTidbit());
-            }
 
-            if(!updatedReflection.getSubject().isEmpty() && !updatedReflection.getTidbit().isEmpty()){
-                reflection.setSubject(updatedReflection.getSubject());
-                reflection.setTidbit(updatedReflection.getTidbit());
-            }
+                reflection.setSubject(updatedReflectionSubject.getSubject());
+                final Reflection updatedReflectionSubjectVersion = reflectionRepository.save(reflection);
+//            }
+//
+//            else {
+//                reflection.setTidbit(updatedReflection.getTidbit());
+//                final Reflection updatedReflectionVersion = reflectionRepository.save(reflection);
+//            }
+//
 
-            final Reflection updatedReflectionVersion = reflectionRepository.save(reflection);
 
-            return new ResponseEntity(updatedReflectionVersion, HttpStatus.valueOf(200));
+            return new ResponseEntity(updatedReflectionSubjectVersion, HttpStatus.valueOf(200));
         }
         throw new Exception();
     }

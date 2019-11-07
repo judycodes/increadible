@@ -78,17 +78,16 @@ public class ReflectionController {
     public List<Reflection> listUserReflections() { return reflectionService.listUserReflections();}
 
     /**
-     * PATCH REQUEST: Update reflection content
-     * @param updatedReflection
-     * @return updated reflection if user created that reflection
+     * PUT REQUEST: Update reflection subject
+     * @param updatedReflectionSubject
+     * @return updated reflection subject if user created that reflection
      */
-    @PatchMapping("/update-{reflection_id}")
-//    @PutMapping("/update-{reflection_id}")
-    public ResponseEntity updateReflection(@RequestBody Reflection updatedReflection, @PathVariable long reflection_id) {
+    @PutMapping("/updateSubject-{reflection_id}")
+    public ResponseEntity updateReflectionSubject(@RequestBody Reflection updatedReflectionSubject, @PathVariable long reflection_id) {
         try {
-            return reflectionService.updateReflection(updatedReflection, reflection_id);
+            return reflectionService.updateReflectionSubject(updatedReflectionSubject, reflection_id);
         } catch (Exception e) {
-            throw new ResponseStatusException(HttpStatus.valueOf(405), "Error when updating reflection.", e);
+            throw new ResponseStatusException(HttpStatus.valueOf(405), "Error when updating reflection subject.", e);
         }
     }
 
