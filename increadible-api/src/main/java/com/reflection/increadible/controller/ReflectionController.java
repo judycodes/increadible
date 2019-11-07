@@ -82,7 +82,8 @@ public class ReflectionController {
      * @param updatedReflection
      * @return updated reflection if user created that reflection
      */
-    @PatchMapping("/update-{reflection_id}")
+//    @PatchMapping("/update-{reflection_id}")
+    @PutMapping("/update-{reflection_id}")
     public ResponseEntity updateReflection(@RequestBody Reflection updatedReflection, @PathVariable long reflection_id) {
         try {
             return reflectionService.updateReflection(updatedReflection, reflection_id);

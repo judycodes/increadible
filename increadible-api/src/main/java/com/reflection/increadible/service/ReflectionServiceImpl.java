@@ -71,9 +71,20 @@ public class ReflectionServiceImpl implements ReflectionService {
 
         if (reflectionRepository.findReflectionById(reflection_id).getUser().getUsername().equals(currentUsername)) {
             Reflection reflection = reflectionRepository.findById(reflection_id).get();
-            reflection.setSubject(updatedReflection.getSubject());
-            reflection.setTidbit(updatedReflection.getTidbit());
-            
+
+            if(!updatedReflection.getSubject().isEmpty()) {
+                reflection.setSubject(updatedReflection.getSubject());
+            }
+
+            if(!updatedReflection.getTidbit().isEmpty()){
+                reflection.setTidbit(updatedReflection.getTidbit());
+            }
+
+            if(!updatedReflection.getSubject().isEmpty() && !updatedReflection.getTidbit().isEmpty()){
+                reflection.setSubject(updatedReflection.getSubject());
+                reflection.setTidbit(updatedReflection.getTidbit());
+            }
+
             final Reflection updatedReflectionVersion = reflectionRepository.save(reflection);
 
             return new ResponseEntity(updatedReflectionVersion, HttpStatus.valueOf(200));
