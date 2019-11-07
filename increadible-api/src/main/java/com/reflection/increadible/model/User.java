@@ -39,11 +39,11 @@ public class User {
 
 /*
 TODO: create, update goal for user
-
+*/
     public String getGoal() {return goal;}
 
     public void setGoal(String goal) {this.goal = goal;}
-*/
+
 
 
 

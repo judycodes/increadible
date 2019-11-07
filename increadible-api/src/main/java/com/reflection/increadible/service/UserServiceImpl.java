@@ -1,6 +1,7 @@
 package com.reflection.increadible.service;
 
 import com.reflection.increadible.config.JwtUtil;
+import com.reflection.increadible.controller.SecurityController;
 import com.reflection.increadible.model.User;
 import com.reflection.increadible.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,9 @@ public class UserServiceImpl implements UserService {
     @Autowired
     @Qualifier("encoder")
     PasswordEncoder bCryptPasswordEncoder;
+
+    @Autowired
+    SecurityController securityController;
 
     @Override
     public Iterable<User> listUsers() {return userRepository.findAll();}
@@ -73,6 +77,21 @@ public class UserServiceImpl implements UserService {
             return jwtUtil.generateToken(userDetails);
         }
         return null;
+    }
+
+    @Override
+    public User addUserGoal(User userGoal) {
+        String username = securityController.getCurrentUserName();
+        User user = userRepository.findByUsername(username);
+        user.setGoal(userGoal.getGoal());
+        return userRepository.save(user);
+    }
+
+    @Override
+    public User getUserGoal() {
+        String username = securityController.getCurrentUserName();
+        return userRepository.findByUsername(username);
+
     }
 
 }

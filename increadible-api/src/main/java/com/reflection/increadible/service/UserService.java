@@ -15,4 +15,8 @@ public interface UserService extends UserDetailsService {
 
     public String login(User user);
 
+    public User addUserGoal(User userGoal);
+
+    public User getUserGoal();
+
 }
