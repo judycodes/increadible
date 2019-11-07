@@ -17,4 +17,6 @@ public interface ReflectionService {
 
     public List<Reflection> listUserReflections();
 
+    public ResponseEntity updateReflection(Reflection updatedReflection, long reflection_id) throws Exception;
+
 }

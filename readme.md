@@ -144,9 +144,9 @@ _About Page Design_ <br/>
 #### User Stories
 
 #### Day to Day Development
-|                          Day 1                          |        Day 2        |              Day 3              | Day 4 | Day 5 | Day 6 | Day 7 | Day 8 |
-|:-------------------------------------------------------:|:-------------------:|:-------------------------------:|:-----:|:-----:|:-----:|:-----:|:-----:|
-| User & Reflection - Model/Service/Repository/Controller | ERD Design          | Microservices Debugging         |       |       |       |       |       |
-| Checked User & Reflection Endpoints (with Postman)      | README.md Created   | Restarting Spring Boot Monolith |       |       |       |       |       |
-| Spring Boot, Microservices, Github Setup                | Wireframing         |                                 |       |       |       |       |       |
-| Research & Application Brainstorming                    | Microservices Error |                                 |       |       |       |       |       |
+|                          Day 1                          |        Day 2        |                     Day 3                     | Day 4 | Day 5 | Day 6 | Day 7 | Day 8 |
+|:-------------------------------------------------------:|:-------------------:|:---------------------------------------------:|:-----:|:-----:|:-----:|:-----:|:-----:|
+| User & Reflection - Model/Service/Repository/Controller | ERD Design          | Microservices Debugging                       |       |       |       |       |       |
+| Checked User & Reflection Endpoints (with Postman)      | README.md Created   | Restarting Spring Boot Monolith               |       |       |       |       |       |
+| Spring Boot, Microservices, Github Setup                | Wireframing         | Add goal, update goal, and get goal from User |       |       |       |       |       |
+| Research & Application Brainstorming                    | Microservices Error |                                               |       |       |       |       |       |

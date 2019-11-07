@@ -63,4 +63,21 @@ public class ReflectionServiceImpl implements ReflectionService {
         String username = securityController.getCurrentUserName();
         User user = userRepository.findUserByUsername(username);
         return reflectionRepository.findReflectionsByUser(user); }
+
+    @Override
+    public ResponseEntity updateReflection(Reflection updatedReflection, long reflection_id) throws Exception {
+
+        String currentUsername = securityController.getCurrentUserName();
+
+        if (reflectionRepository.findReflectionById(reflection_id).getUser().getUsername().equals(currentUsername)) {
+            Reflection reflection = reflectionRepository.findById(reflection_id).get();
+            reflection.setSubject(updatedReflection.getSubject());
+            reflection.setTidbit(updatedReflection.getTidbit());
+            
+            final Reflection updatedReflectionVersion = reflectionRepository.save(reflection);
+
+            return new ResponseEntity(updatedReflectionVersion, HttpStatus.valueOf(200));
+        }
+        throw new Exception();
+    }
 }

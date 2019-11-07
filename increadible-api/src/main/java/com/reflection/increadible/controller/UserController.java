@@ -42,7 +42,7 @@ public class UserController {
     }
 
     /**
-     *
+     * POST REQUEST: Log in existing user
      * @param existingUser
      * @return user-associated token if user exists in db
      */
@@ -51,11 +51,20 @@ public class UserController {
         return ResponseEntity.ok(new JwtResponse(userService.login(existingUser)));
     }
 
+    /**
+     * PATCH REQUEST: Create and update user goal
+     * @param userGoal
+     * @return User with goal added
+     */
     @PatchMapping("/goal")
     public User addUserGoal(@RequestBody User userGoal) {
         return userService.addUserGoal(userGoal);
     }
 
+    /**
+     * GET REQUEST: Show user with goal
+     * @return User with goal
+     */
     @GetMapping("/goal")
     public User getUserGoal(){
         return userService.getUserGoal();
