@@ -9,6 +9,10 @@ font-family: 'Muli', sans-serif;
   padding: 0;
 }
 
+body {
+  background-color: #000;
+}
+
 h1, h2, h3 {
   font-family: 'Muli', sans-serif;
   font-variant: small-caps;
@@ -60,6 +64,7 @@ button {
   padding: 5px 10px;
   border-radius: 5px;
   font-variant: small-caps;
+  background-color: transparent;
 }
 
 button:focus, button:active, button:hover {
@@ -96,4 +101,71 @@ button:focus, button:active, button:hover {
 .nav-link {
   margin: 10px 5px;
   padding: 5px;
+}
+
+/* LANDING */
+/* #landing-quote {
+  border-top: 3px solid #fff;
+  padding-top: 5px;
+} */
+
+#landing-container {
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.8)), url("./assets/landing-bg.jpg");
+  background-image: -o-linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.8)), url("./assets/landing-bg.jpg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.8)), url("./assets/landing-bg.jpg");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.quotation{
+  font-family: 'Muli', sans-serif;
+  font-size: 50px;
+  quotes: "\201C""\201D""\2018""\2019";
+  padding: 50px;
+  margin-bottom: 20px;
+  line-height: 1.4;
+  width: 780px;
+  text-align: center;
+}
+
+.quotation:before {
+  content: open-quote;
+  display: inline;
+  height: 0;
+  line-height: 0;
+  left: -40px;
+  position: relative;
+  top: 30px;
+  color: #ccc;
+  font-size: 3em;
+}
+
+.quotation::after {
+  content: close-quote;
+  display: inline;
+  height: 0;
+  line-height: 0;
+  left: 40px;
+  position: relative;
+  top: 50px;
+  color: #ccc;
+  font-size: 3em;
+}
+#landing-quote-author, blockquote{
+  font-family: 'Muli', sans-serif;
+  color: #fff;
+  margin:0;
+  font-style: italic;
+}
+
+#landing-quote-author {
+  font-size: 16px;
+  text-align: right;
 }
