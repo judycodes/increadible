@@ -113,15 +113,33 @@ button:focus, button:active, button:hover {
   display:flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
   height: 100vh;
   width: 100vw;
-  background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.8)), url("./assets/landing-bg.jpg");
-  background-image: -o-linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.8)), url("./assets/landing-bg.jpg");
-  background-image: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.8)), url("./assets/landing-bg.jpg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 1)), url("./assets/landing-bg.jpg");
   background-size: contain;
-  background-position: center;
+  background-position: left;
   background-repeat: no-repeat;
+  padding: 0 100px;
+}
+
+#landing-title {
+  font-family: 'Muli', sans-serif;
+  font-size: 70px;
+  font-weight: lighter;
+  color: #fff;
+  font-variant: small-caps;
+  text-shadow: 1px 1px 5px rgb(199,170,27);
+}
+
+#landing-content {
+  width: 50%;
+}
+
+#landing-tagline {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .quotation{
@@ -168,4 +186,16 @@ button:focus, button:active, button:hover {
 #landing-quote-author {
   font-size: 16px;
   text-align: right;
+}
+
+#get_started_btn {
+  margin-top: 10px;
+  padding: 10px 25px;
+  color: rgb(199,170,27);
+  font-size: 20px;
+}
+
+#get_started_btn:hover {
+  border: 1px solid rgb(199,170,27);
+  box-shadow: 1px 1px 5px rgb(199,170,27);
 }
