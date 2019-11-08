@@ -4,6 +4,7 @@ font-family: 'Muli', sans-serif;
 */
 
 * {
+  font-family: 'Muli', sans-serif;
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -14,41 +15,23 @@ body {
 }
 
 h1, h2, h3 {
-  font-family: 'Muli', sans-serif;
   font-variant: small-caps;
 }
 
-h1 {
-
-}
-
-#brand {
-  font-size: 30px;
-}
-
-h2 {
-
-}
-
-h3 {
-
-}
-
 p, a, label, ::placeholder {
-  font-family: 'Muli', sans-serif;
   margin: 3px;
   padding: 3px;
   font-size: 25px;
 }
 
-/* GLOBAL IMAGES */
+/* -GLOBAL IMAGES- */
 .logo {
   width: 100px;
   border-radius: 2px;
   margin-right: 0;
 }
 
-/* LINKS & LISTTS */
+/* -LINKS & LISTTS- */
 a {
   text-decoration: none;
   font-variant: small-caps;
@@ -58,9 +41,8 @@ li {
   list-style: none;
 }
 
-/* BUTTONS */
+/* -BUTTONS- */
 button {
-  font-family: 'Muli', sans-serif;
   padding: 5px 10px;
   border-radius: 5px;
   font-variant: small-caps;
@@ -72,7 +54,11 @@ button:focus, button:active, button:hover {
   outline: none;
 }
 
-/* NAV */
+/* -NAV- */
+#brand {
+  font-size: 30px;
+}
+
 #brand_div {
   display: flex;
   justify-content: flex--start;
@@ -103,12 +89,7 @@ button:focus, button:active, button:hover {
   padding: 5px;
 }
 
-/* LANDING */
-/* #landing-quote {
-  border-top: 3px solid #fff;
-  padding-top: 5px;
-} */
-
+/* =====LANDING===== */
 #landing-container {
   display:flex;
   flex-direction: column;
@@ -124,25 +105,46 @@ button:focus, button:active, button:hover {
 }
 
 #landing-title {
-  font-family: 'Muli', sans-serif;
   font-size: 70px;
-  font-weight: lighter;
+  font-weight: 100;
   color: #fff;
   font-variant: small-caps;
-  text-shadow: 1px 1px 5px rgb(199,170,27);
+  text-shadow: 2px 2px 5px rgb(199,170,27);
 }
 
 #landing-content {
   width: 50%;
-}
 
-#landing-tagline {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.quotation{
+#get_started_btn, #sign_in_btn {
+  margin-top: 10px;
+  padding: 10px 25px;
+  color: rgb(199,170,27);
+  border: none;
+  font-size: 20px;
+}
+
+#get_started_btn {
+  border: 1px solid rgb(199,170,27);
+}
+
+#sign_in_btn {
+  position: absolute;
+  top: 20px;
+  right: 50px;
+}
+
+#get_started_btn:hover, #sign_in_btn:hover {
+  border: 1px solid rgb(199,170,27);
+  box-shadow: 2px 2px 5px rgb(199,170,27);
+}
+
+/* -QUOTE STYLING- */
+/* .quotation{
   font-family: 'Muli', sans-serif;
   font-size: 50px;
   quotes: "\201C""\201D""\2018""\2019";
@@ -176,26 +178,15 @@ button:focus, button:active, button:hover {
   color: #ccc;
   font-size: 3em;
 }
-#landing-quote-author, blockquote{
+
+#quote-author, blockquote{
   font-family: 'Muli', sans-serif;
   color: #fff;
   margin:0;
   font-style: italic;
 }
 
-#landing-quote-author {
+#quote-author {
   font-size: 16px;
   text-align: right;
-}
-
-#get_started_btn {
-  margin-top: 10px;
-  padding: 10px 25px;
-  color: rgb(199,170,27);
-  font-size: 20px;
-}
-
-#get_started_btn:hover {
-  border: 1px solid rgb(199,170,27);
-  box-shadow: 1px 1px 5px rgb(199,170,27);
-}
+} */

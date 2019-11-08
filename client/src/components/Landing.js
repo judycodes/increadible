@@ -3,18 +3,17 @@ import React from 'react';
 const Landing = () => {
     return (
         <div id= "landing-container">
-            <div id="landing-content">
-              <div id="landing-nav">
+          <div id="landing-nav">
+            <button id="sign_in_btn">Sign In</button>
+          </div>
+          <div id="landing-content">
 
-              <button>sign in</button>
-              </div>
 
-              <div id="landing-tagline">
-              <h1 id="landing-title">INCREADIBLE</h1>
-              <button id="get_started_btn">Get Started</button>
-              </div>
+            <h1 id="landing-title">INCREADIBLE</h1>
+            <button id="get_started_btn">Get Started</button>
 
-            </div>
+
+          </div>
         </div>
     )
 }
@@ -26,5 +25,5 @@ export default Landing;
 // <blockquote>
 // <h1 className="quotation">we do not learn from experience ... we learn from reflecting on experience.
 // </h1>
-// <p id="landing-quote-author">John Dewey</p>
+// <p id="quote-author">John Dewey</p>
 // </blockquote>
