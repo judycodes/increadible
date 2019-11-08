@@ -1,0 +1,99 @@
+/* TEXT */
+/*
+font-family: 'Muli', sans-serif;
+*/
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3 {
+  font-family: 'Muli', sans-serif;
+  font-variant: small-caps;
+}
+
+h1 {
+
+}
+
+#brand {
+  font-size: 30px;
+}
+
+h2 {
+
+}
+
+h3 {
+
+}
+
+p, a, label, ::placeholder {
+  font-family: 'Muli', sans-serif;
+  margin: 3px;
+  padding: 3px;
+  font-size: 25px;
+}
+
+/* GLOBAL IMAGES */
+.logo {
+  width: 100px;
+  border-radius: 2px;
+  margin-right: 0;
+}
+
+/* LINKS & LISTTS */
+a {
+  text-decoration: none;
+  font-variant: small-caps;
+}
+
+li {
+  list-style: none;
+}
+
+/* BUTTONS */
+button {
+  font-family: 'Muli', sans-serif;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-variant: small-caps;
+}
+
+button:focus, button:active, button:hover {
+  border: 1px solid blue;
+  outline: none;
+}
+
+/* NAV */
+#brand_div {
+  display: flex;
+  justify-content: flex--start;
+  align-items: center;
+}
+
+#navbar {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+  height: 100vh;
+  width: 30%;
+  border: 1px solid #000;
+}
+
+#nav_links {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  height:80%;
+}
+
+.nav-link {
+  margin: 10px 5px;
+  padding: 5px;
+}
