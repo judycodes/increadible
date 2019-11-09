@@ -1,6 +1,27 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-const Landing = () => {
+class Landing extends Component {
+
+  constructor(){
+    super();
+    this.state = {
+        signup: false,
+        signup_form_error: false,
+        signin: false,
+        signin_form_error: false
+    }
+  }
+
+  handleSignUpClick = () => {
+    this.setState({
+      signup: !this.state.signup
+    })
+  }
+
+  render(){
+
+
+
     return (
         <div id= "landing-container">
           <div id="landing-nav">
@@ -10,12 +31,14 @@ const Landing = () => {
 
 
             <h1 id="landing-title">INCREADIBLE</h1>
-            <button id="get_started_btn">Get Started</button>
+            <button id="get_started_btn" onClick={this.handleSignUpClick}>Get Started</button>
 
 
           </div>
         </div>
     )
+  }
+
 }
 
 
