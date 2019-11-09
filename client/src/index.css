@@ -11,7 +11,8 @@ font-family: 'Muli', sans-serif;
 }
 
 body {
-  background-color: #000;
+  /* background-color: #000; */
+  background-color: #fff;
 }
 
 h1, h2, h3 {
@@ -21,7 +22,7 @@ h1, h2, h3 {
 p, a, label, ::placeholder {
   margin: 3px;
   padding: 3px;
-  font-size: 25px;
+  font-size: 20px;
 }
 
 /* -GLOBAL IMAGES- */
@@ -94,13 +95,14 @@ button:focus, button:active, button:hover {
   display:flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-end;
+  align-items: center;
   height: 100vh;
   width: 100vw;
   background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.1)), url("./assets/landing-bg.jpg");
   background-size: contain;
   background-position: left;
   background-repeat: no-repeat;
+  background-attachment: fixed;
   padding: 0 100px;
 }
 
@@ -113,8 +115,7 @@ button:focus, button:active, button:hover {
 }
 
 #landing-content {
-  width: 50%;
-
+  width: 600px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -142,6 +143,19 @@ button:focus, button:active, button:hover {
   border: 1px solid rgb(199,170,27);
   box-shadow: 2px 2px 5px rgb(199,170,27);
 }
+
+/* =====SEARCH===== */
+#search-input {
+  padding: 10px 5px 5px;
+  border-radius: 2px;
+  width: 200px;
+  margin-right: 10px;
+  font-size: 20px;
+}
+
+
+
+
 
 /* -QUOTE STYLING- */
 /* .quotation{
