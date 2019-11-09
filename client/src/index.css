@@ -51,7 +51,7 @@ button {
 }
 
 button:focus, button:active, button:hover {
-  border: 1px solid blue;
+  border: 1px solid rgb(199,170,27);
   outline: none;
 }
 
@@ -146,13 +146,22 @@ button:focus, button:active, button:hover {
 
 /* =====SEARCH===== */
 #search-input {
-  padding: 10px 5px 5px;
+  padding: 6px 5px 5px;
   border-radius: 2px;
   width: 200px;
   margin-right: 10px;
   font-size: 20px;
 }
 
+#random-search:hover, #random-search:visited {
+  color: rgb(199,170,27);
+}
+
+:focus {
+  outline: none;
+  box-shadow: 1px 1px 2px rgb(199,170,27);
+  border-radius: 3px;
+}
 
 
 
