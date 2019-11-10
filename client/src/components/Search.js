@@ -52,7 +52,8 @@ handleSearchInput = (e) => {
   e.preventDefault();
 
   //matches all whitespaces in input from onchange and replaces them with '%20'
- let noWhiteSpaceInput = e.target.value.replace(/\s/g,'%20');
+ let noWhiteSpaceInput = e.target.value.trim().replace(/\s/g,'%20');
+
 
   this.setState({
     searchInput : noWhiteSpaceInput
