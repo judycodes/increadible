@@ -48,18 +48,9 @@ handleSearchSubmit = (e) => {
       //grabs specific pieces of res data for each result
       .then( res => {
 
-        // for(let foundResult in res.query.search) {
-        //   this.state.searchResponses.push({
-        //     pageUrl: 'no link',
-        //     pageId: res.query.search[foundResult].pageid, //page of specific result in wiki
-        //     pageTitle: res.query.search[foundResult].tile, //title of specific result page
-        //     pageSnippet: res.query.search[foundResult].snippet //summary of specific result page
-        //   })
-        // }
-
         res.query.search.map( foundResult => {
           return this.state.searchResponses.push({
-            pageUrl: 'no-link',
+            pageUrl: this.handleUrlFetch(foundResult.pageid),
             pageId: foundResult.pageid,
             pageTitle: foundResult.title,
             pageSnippet: foundResult.snippet
@@ -74,6 +65,24 @@ handleSearchSubmit = (e) => {
       // this.setState({
       //   searchInput: ""
       // })
+
+}
+
+handleUrlFetch = (pageId) => {
+  console.log(pageId, "pageId");
+
+  // resultsPageIdArray.map( result => {
+      let pathToRetrieveFullUrl = `https://en.wikipedia.org/w/api.php?origin=*&action=query&prop=info&pageids=${pageId}&inprop=url&format=json`;
+
+      fetch(pathToRetrieveFullUrl)
+      .then(res => {
+        return res.json();
+      })
+
+      .then( res => {
+        console.log(res.query.pages[pageId], "res.query.pages[pageId]");
+        console.log(res.query.pages[pageId].fullurl, "full url"); //gives full url path for each result page
+      })
 
 }
 
