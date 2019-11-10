@@ -5,7 +5,6 @@ font-family: 'Muli', sans-serif;
 */
 
 * {
-
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -21,7 +20,7 @@ h1, h2, h3 {
   font-variant: small-caps;
 }
 
-p, a, label, ::placeholder {
+p, a, label, ::placeholder, input {
   font-family: 'Muli', sans-serif;
   margin: 3px;
   padding: 3px;
@@ -47,6 +46,7 @@ li {
 
 /* -BUTTONS- */
 button {
+  font-family: 'Muli', sans-serif;
   padding: 5px 10px;
   border-radius: 5px;
   font-variant: small-caps;
@@ -92,7 +92,6 @@ button:focus, button:active, button:hover {
 
 .nav-link {
   margin: 10px 5px;
-
   padding: 0 1rem;
   transition: opacity 0.2s;
 }
@@ -119,7 +118,7 @@ button:focus, button:active, button:hover {
 
 #landing-title {
   font-size: 70px;
-  font-weight: 100;
+  /* font-weight: 100; */
   color: #fff;
   font-variant: small-caps;
   text-shadow: 2px 2px 5px rgb(199,170,27);
@@ -150,7 +149,7 @@ button:focus, button:active, button:hover {
   right: 50px;
 }
 
-#get_started_btn:hover, #sign_in_btn:hover {
+#get_started_btn:hover, #sign_in_btn:hover, #search_btn:hover {
   border: 1px solid rgb(199,170,27);
   box-shadow: 2px 2px 5px rgb(199,170,27);
 }
@@ -163,6 +162,25 @@ button:focus, button:active, button:hover {
 }
 
 /* =====SEARCH===== */
+#search-container {
+  height: 100vh;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+#search-content{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#search-title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
 #search-input {
   padding: 6px 5px 5px;
   border-radius: 2px;
@@ -173,6 +191,11 @@ button:focus, button:active, button:hover {
 
 #random-search:hover, #random-search:visited {
   color: rgb(199,170,27);
+}
+
+#search_btn {
+  font-size: 18px;
+  margin-right: 5px;
 }
 
 :focus {
