@@ -21,10 +21,12 @@ handleSearchSubmit = (e) => {
 
   let wikiUrl = 'https://en.wikipedia.org/w/api.php';
 
+  if(!this.state.searchInput) alert("Please provide valid input.");
+
   let params = {
     action: 'query',
     list: 'search',
-    srsearch: this.state.searchInput,
+    srsearch: this.state.searchInput, //must not be blank or null
     format: 'json'
   }
 
@@ -33,7 +35,6 @@ handleSearchSubmit = (e) => {
     wikiUrl += "&" + key + "=" + params[key];
   });
 
-  console.log(wikiUrl, 'wikiUrl before fetch');
 
   fetch(wikiUrl)
       .then(res => {
@@ -56,9 +57,6 @@ handleSearchInput = (e) => {
   this.setState({
     searchInput : noWhiteSpaceInput
   })
-
-  console.log(this.state.searchInput, 'searchInput state after onChange and setState');
-
 
 }
 
