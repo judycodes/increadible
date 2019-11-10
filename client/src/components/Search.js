@@ -39,7 +39,7 @@ handleSearchSubmit = (e) => {
       .then( res => {
           return res.json();
         })
-      //causes uncaught promise for below
+      //the following when uncommented causes uncaught promise for below
       // .then(res => {
       //   console.log(res, "res from wiki api call");
       //   console.log(res.query.search, "res.query.search");
@@ -50,7 +50,7 @@ handleSearchSubmit = (e) => {
 
         res.query.search.map( foundResult => {
           return this.state.searchResponses.push({
-            pageUrl: this.handleUrlFetch(foundResult.pageid),
+            pageUrl: 'no-link',
             pageId: foundResult.pageid,
             pageTitle: foundResult.title,
             pageSnippet: foundResult.snippet
@@ -58,7 +58,7 @@ handleSearchSubmit = (e) => {
         })
 
         console.log(this.state.searchResponses, "searchResponses");
-
+        this.handleUrlFetch();
       })
 
       //TODO - clear search input
@@ -68,21 +68,27 @@ handleSearchSubmit = (e) => {
 
 }
 
-handleUrlFetch = (pageId) => {
-  console.log(pageId, "pageId");
+handleUrlFetch = () => {
 
-  // resultsPageIdArray.map( result => {
-      let pathToRetrieveFullUrl = `https://en.wikipedia.org/w/api.php?origin=*&action=query&prop=info&pageids=${pageId}&inprop=url&format=json`;
+  this.state.searchResponses.map( specificPage => {
 
-      fetch(pathToRetrieveFullUrl)
-      .then(res => {
-        return res.json();
-      })
+    let pathToRetrieveFullUrl = `https://en.wikipedia.org/w/api.php?origin=*&action=query&prop=info&pageids=${specificPage.pageId}&inprop=url&format=json`;
 
-      .then( res => {
-        console.log(res.query.pages[pageId], "res.query.pages[pageId]");
-        console.log(res.query.pages[pageId].fullurl, "full url"); //gives full url path for each result page
-      })
+    fetch(pathToRetrieveFullUrl)
+
+    .then(res => {
+      return res.json();
+    })
+
+    .then( res => {
+
+        return specificPage.pageUrl = res.query.pages[specificPage.pageId].fullurl;
+
+    })
+
+  })
+
+  console.log(this.state.searchResponses, "searchResponses with url");
 
 }
 
