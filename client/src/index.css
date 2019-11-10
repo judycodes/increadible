@@ -195,7 +195,7 @@ button:focus, button:active, button:hover {
 
 #search_btn {
   font-size: 18px;
-  margin-right: 5px;
+  /* margin-right: 5px; */
 }
 
 :focus {

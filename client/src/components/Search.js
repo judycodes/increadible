@@ -45,8 +45,9 @@ handleSearchSubmit = (e) => {
 
 try {
 
-  if(!this.state.searchInput || this.state.searchInput.length === null) {alert("Please provide valid input.");}
-  else {
+  if(!this.state.searchInput || this.state.searchInput.length === null) {
+    alert("Please provide valid input.");
+  } else {
   fetch(wikiUrl)
 
       .then( res => {
@@ -55,8 +56,12 @@ try {
 
       //grabs specific pieces of res data for each result
       .then( res => {
+        // console.log(res.query.search, "res.query.search");
 
-        if(res.query.search) { //if api call yields results, save results contentt in state
+        if(res.query.search.length === 0) {
+          return alert("No results found. Try another search.");
+        } else { //as long as api call yields results, save results contentt in state
+
           res.query.search.map( foundResult => {
             return this.state.searchResponses.push({
               pageUrl: 'no link',
@@ -64,22 +69,17 @@ try {
               pageTitle: foundResult.title,
               pageSnippet: foundResult.snippet
             })
+
           })
+
           this.handleUrlFetch();
-
-
 
           this.setState({
             searchResFetchSuccess: true
           })
-
-        } else {
-          //todo: change to paragraph display
-          return alert("No results found. Try another search.");
-
         }
       })
-    }
+  }
 } catch(error) {
   console.log(`Error from search responses fetch: ${error}`);
 
@@ -111,6 +111,7 @@ handleUrlFetch = () => {
       this.setState({
         searchResponses: this.state.searchResponses
       })
+
     })
 
   })
