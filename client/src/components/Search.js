@@ -5,7 +5,7 @@ class Search extends Component{
     super(props);
 
     this.state = {
-      searchInput : '',
+      searchInput : ' ',
       searchResponses : []
     }
   }
@@ -26,7 +26,7 @@ handleSearchSubmit = (e) => {
   let params = {
     action: 'query',
     list: 'search',
-    srsearch: this.state.searchInput, //must not be blank or null
+    srsearch: this.state.searchInput, //must not be null
     format: 'json'
   }
 
@@ -35,23 +35,53 @@ handleSearchSubmit = (e) => {
     wikiUrl += "&" + key + "=" + params[key];
   });
 
-
   fetch(wikiUrl)
-      .then(res => {
+      .then( res => {
           return res.json();
         })
-      .then(res => {
-        console.log(res, "res from wiki api call");
+      //causes uncaught promise for below
+      // .then(res => {
+      //   console.log(res, "res from wiki api call");
+      //   console.log(res.query.search, "res.query.search");
+      // })
+
+      //grabs specific pieces of res data for each result
+      .then( res => {
+
+        // for(let foundResult in res.query.search) {
+        //   this.state.searchResponses.push({
+        //     pageUrl: 'no link',
+        //     pageId: res.query.search[foundResult].pageid, //page of specific result in wiki
+        //     pageTitle: res.query.search[foundResult].tile, //title of specific result page
+        //     pageSnippet: res.query.search[foundResult].snippet //summary of specific result page
+        //   })
+        // }
+
+        res.query.search.map( foundResult => {
+          return this.state.searchResponses.push({
+            pageUrl: 'no-link',
+            pageId: foundResult.pageid,
+            pageTitle: foundResult.title,
+            pageSnippet: foundResult.snippet
+          })
+        })
+
+        console.log(this.state.searchResponses, "searchResponses");
+
       })
 
-}
+      //TODO - clear search input
+      // this.setState({
+      //   searchInput: ""
+      // })
 
+}
 
 //captures user search input for later api call for search results related to input
 handleSearchInput = (e) => {
   e.preventDefault();
 
-  //matches all whitespaces in input from onchange and replaces them with '%20'
+  //trims leading and/or trailing whitespaces and then matches all whitespaces between words in input and replaces them with '%20'
  let noWhiteSpaceInput = e.target.value.trim().replace(/\s/g,'%20');
 
 
