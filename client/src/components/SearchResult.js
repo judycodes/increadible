@@ -10,7 +10,7 @@ const SearchResult = (props) => {
       rel="noopener noreferrer">
 
     <h3>{props.title}</h3>
-    <p dangerouslySetInnerHTML={{__html: props.snippet}}></p>
+    <p className="ellipses" dangerouslySetInnerHTML={{__html: props.snippet}}></p>
 
 
     <button>read more</button>

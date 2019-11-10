@@ -18,6 +18,7 @@ body {
 h1, h2, h3 {
   font-family: 'Quicksand', sans-serif;
   font-variant: small-caps;
+  color: rgb(1,110,207);
 }
 
 p, a, label, ::placeholder, input {
@@ -38,6 +39,11 @@ p, a, label, ::placeholder, input {
 a {
   text-decoration: none;
   font-variant: small-caps;
+  color: rgb(1,110,207);
+}
+
+a:visited,#random-search:visited {
+  color: rgb(31,149,254);
 }
 
 li {
@@ -51,10 +57,12 @@ button {
   border-radius: 5px;
   font-variant: small-caps;
   background-color: transparent;
+  color: rgb(1,110,207);
 }
 
 button:focus, button:active, button:hover {
   border: 1px solid rgb(199,170,27);
+  color: rgb(199,170,27);
   outline: none;
 }
 
@@ -73,12 +81,9 @@ button:focus, button:active, button:hover {
   padding: 20px;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  align-items: flex-start;
-  height: 100vh;
+  align-items: center;
+  height: 100%;
   width: 20%;
-  border: 1px solid #000;
-
 }
 
 #nav_links {
@@ -86,14 +91,15 @@ button:focus, button:active, button:hover {
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  height:80%;
+  height:100%;
 
 }
 
 .nav-link {
-  margin: 10px 5px;
+  font-size: 30px;
   padding: 0 1rem;
   transition: opacity 0.2s;
+
 }
 
 .fade:hover .nav-link:not(:hover) {
@@ -174,6 +180,8 @@ button:focus, button:active, button:hover {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 80%;
+  height: 100%;
 }
 
 #search-title {
@@ -189,7 +197,7 @@ button:focus, button:active, button:hover {
   font-size: 20px;
 }
 
-#random-search:hover, #random-search:visited {
+#random-search:hover {
   color: rgb(199,170,27);
 }
 
@@ -204,8 +212,28 @@ button:focus, button:active, button:hover {
   border-radius: 3px;
 }
 
+#searchResults-container {
+  padding: 20px 50px;
+  border: 1px solid #000;
+}
 
+.ellipses {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  font-variant: normal;
+  width: 200px;
+}
 
+@keyframes wiki-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+#wiki-logo {
+  animation: wiki-spin infinite 20s linear;
+  height: 80px;
+}
 
 /* -QUOTE STYLING- */
 /* .quotation{

@@ -12,9 +12,9 @@ const Navbar = () => {
 
         <ul id="nav_links" className="fade">
 
-          <li className="nav-link"><Link to="/search">search</Link></li>
-          <li className="nav-link"><Link to="/home">reflections</Link></li>
-          <li className="nav-link"><Link to="/about">about</Link></li>
+          <li><Link className="nav-link" to="/search">search</Link></li>
+          <li><Link className="nav-link" to="/home">reflections</Link></li>
+          <li><Link className="nav-link" to="/about">about</Link></li>
 
         </ul>
       </div>

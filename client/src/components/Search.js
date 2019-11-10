@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import wiki from '../assets/Wikipedia.png';
 
 //import custom Component
 import Navbar from './Navbar';
@@ -58,7 +59,7 @@ try {
       .then( res => {
         // console.log(res.query.search, "res.query.search");
 
-        if(res.query.search.length === 0) {
+        if(res.query.search.length === 0) { //error handling for no results found
           return alert("No results found. Try another search.");
         } else { //as long as api call yields results, save results contentt in state
 
@@ -151,7 +152,7 @@ handleSearchInput = (e) => {
       <div id="search-container">
       <Navbar />
       <div id="search-content">
-
+        <img id="wiki-logo" src={wiki} alt="wikipedia logo"/>
         <h1 id="search-title">Search For Knowledge</h1>
 
       <form>
@@ -174,8 +175,9 @@ handleSearchInput = (e) => {
           rel="noopener noreferrer">random</a>
 
       </form>
-
-      {searchResultsContent}
+      <div id="searchResults-container">
+        {searchResultsContent}
+      </div>
 
       </div>
       </div>
