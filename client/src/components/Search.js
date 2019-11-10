@@ -19,10 +19,29 @@ handleSearchSubmit = (e) => {
     searchResponses : []
   })
 
-  // const wikiUrl = `https://en.wikipedia.org/w/api.php?action=opensearch&search=${this.state.searchInput}&format=json&origin=\\*`;
-  // console.log(wikiUrl, "wikiurl for fetch");
+  let wikiUrl = 'https://en.wikipedia.org/w/api.php';
 
-  const wikiUrl = 'https://en.wikipedia.org/w/api.php';
+  let params = {
+    action: 'query',
+    list: 'search',
+    srsearch: this.state.searchInput,
+    format: 'json'
+  }
+
+  wikiUrl += '?origin=*';
+  Object.keys(params).forEach((key) => {
+    wikiUrl += "&" + key + "=" + params[key];
+  });
+
+  console.log(wikiUrl, 'wikiUrl before fetch');
+
+  fetch(wikiUrl)
+      .then(res => {
+          return res.json();
+        })
+      .then(res => {
+        console.log(res, "res from wiki api call");
+      })
 
 }
 
@@ -31,9 +50,15 @@ handleSearchSubmit = (e) => {
 handleSearchInput = (e) => {
   e.preventDefault();
 
+  //matches all whitespaces in input from onchange and replaces them with '%20'
+ let noWhiteSpaceInput = e.target.value.replace(/\s/g,'%20');
+
   this.setState({
-    searchInput : e.target.value
+    searchInput : noWhiteSpaceInput
   })
+
+  console.log(this.state.searchInput, 'searchInput state after onChange and setState');
+
 
 }
 
@@ -52,7 +77,6 @@ handleSearchInput = (e) => {
         <input
           id="search-input"
           type="text"
-          value={this.state.searchInput || ''}
           onChange={this.handleSearchInput}
           placeholder='Curious about ...' />
 
