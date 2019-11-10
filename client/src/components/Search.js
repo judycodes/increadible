@@ -9,7 +9,7 @@ class Search extends Component{
     super(props);
 
     this.state = {
-      searchInput : ' ',
+      searchInput : '',
       searchResponses : [],
 
       //error handling
@@ -29,8 +29,6 @@ handleSearchSubmit = (e) => {
 
   let wikiUrl = 'https://en.wikipedia.org/w/api.php';
 
-  if(!this.state.searchInput) alert("Please provide valid input.");
-
   //search params needed by api
   let params = {
     action: 'query',
@@ -46,6 +44,9 @@ handleSearchSubmit = (e) => {
   });
 
 try {
+
+  if(!this.state.searchInput || this.state.searchInput.length === null) {alert("Please provide valid input.");}
+  else {
   fetch(wikiUrl)
 
       .then( res => {
@@ -58,26 +59,27 @@ try {
         if(res.query.search) { //if api call yields results, save results contentt in state
           res.query.search.map( foundResult => {
             return this.state.searchResponses.push({
-              pageUrl: 'no-link',
+              pageUrl: 'no link',
               pageId: foundResult.pageid,
               pageTitle: foundResult.title,
               pageSnippet: foundResult.snippet
             })
           })
-
-          console.log(this.state.searchResponses, "searchResponses");
           this.handleUrlFetch();
+
+
 
           this.setState({
             searchResFetchSuccess: true
           })
+
         } else {
           //todo: change to paragraph display
           return alert("No results found. Try another search.");
 
         }
       })
-
+    }
 } catch(error) {
   console.log(`Error from search responses fetch: ${error}`);
 
@@ -102,7 +104,13 @@ handleUrlFetch = () => {
     })
 
     .then( res => {
-      return specificPage.pageUrl = res.query.pages[specificPage.pageId].fullurl;
+
+      specificPage.pageUrl = res.query.pages[specificPage.pageId].fullurl;
+
+      //saves the url to the result object in state
+      this.setState({
+        searchResponses: this.state.searchResponses
+      })
     })
 
   })
@@ -125,10 +133,7 @@ handleSearchInput = (e) => {
   render(){
 
     //stores search results - api response
-    let searchResultsContent = [];
-    // console.log(searchResultsContent, "searchResultsContent");
-
-    searchResultsContent.push(this.state.searchResponses.map((specificResult, index) => {
+    let searchResultsContent = this.state.searchResponses.map( (specificResult, index) => {
 
       return <SearchResult
               key={index}
@@ -138,9 +143,10 @@ handleSearchInput = (e) => {
               snippet={specificResult.pageSnippet}
               />;
 
-    }));
+    });
 
     return(
+
       <div id="search-container">
       <Navbar />
       <div id="search-content">
