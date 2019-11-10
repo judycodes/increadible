@@ -1,6 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom';
-import logo from '../assets/increadible_logo.png';
+import logo from '../assets/increadible_logo_black.png';
 
 const Navbar = () => {
     return (
@@ -10,7 +10,7 @@ const Navbar = () => {
           <Link id="brand" to="/home">incREADible</Link>
         </div>
 
-        <ul id="nav_links">
+        <ul id="nav_links" className="fade">
 
           <li className="nav-link"><Link to="/search">search</Link></li>
           <li className="nav-link"><Link to="/home">reflections</Link></li>

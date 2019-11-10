@@ -44,23 +44,30 @@ handleSearchInput = (e) => {
 
     return(
       <div>
+
         <h1 id="search-title">The Unending Search For Knowledge</h1>
+
       <form>
+
         <input
           id="search-input"
           type="text"
           value={this.state.searchInput || ''}
           onChange={this.handleSearchInput}
           placeholder='Curious about ...' />
+
         <button
           type='submit'
           onClick={this.handleSearchSubmit}>Enlighten Me</button>
+
         <a
           href="https://en.wikipedia.org/wiki/Special:Random"
           id="random-search"
           target="_blank"
           rel="noopener noreferrer">random</a>
+
       </form>
+
       {searchResultsContent}
 
       </div>

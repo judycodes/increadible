@@ -20,8 +20,6 @@ class Landing extends Component {
 
   render(){
 
-
-
     return (
         <div id= "landing-container">
           <div id="landing-nav">
