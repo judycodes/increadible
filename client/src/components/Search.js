@@ -1,4 +1,9 @@
 import React, {Component} from 'react';
+import wiki from '../assets/Wikipedia.png';
+
+//import custom Component
+import Navbar from './Navbar';
+import SearchResult from './SearchResult';
 
 class Search extends Component{
   constructor(props){
@@ -6,7 +11,11 @@ class Search extends Component{
 
     this.state = {
       searchInput : '',
-      searchResponses : []
+      searchResponses : [],
+
+      //error handling
+      searchResFetchSuccess: false,
+      searchResFetchError: false
     }
   }
 
@@ -19,20 +28,106 @@ handleSearchSubmit = (e) => {
     searchResponses : []
   })
 
-  // const wikiUrl = `https://en.wikipedia.org/w/api.php?action=opensearch&search=${this.state.searchInput}&format=json&origin=\\*`;
-  // console.log(wikiUrl, "wikiurl for fetch");
+  let wikiUrl = 'https://en.wikipedia.org/w/api.php';
 
-  const wikiUrl = 'https://en.wikipedia.org/w/api.php';
+  //search params needed by api
+  let params = {
+    action: 'query',
+    list: 'search',
+    srsearch: this.state.searchInput, //must not be null
+    format: 'json'
+  }
+
+  //formats the wikiUrl for api call with input given
+  wikiUrl += '?origin=*';
+  Object.keys(params).forEach((key) => {
+    wikiUrl += "&" + key + "=" + params[key];
+  });
+
+try {
+
+  if(!this.state.searchInput || this.state.searchInput.length === null) {
+    alert("Please provide valid input.");
+  } else {
+  fetch(wikiUrl)
+
+      .then( res => {
+          return res.json();
+        })
+
+      //grabs specific pieces of res data for each result
+      .then( res => {
+        // console.log(res.query.search, "res.query.search");
+
+        if(res.query.search.length === 0) { //error handling for no results found
+          return alert("No results found. Try another search.");
+        } else { //as long as api call yields results, save results contentt in state
+
+          res.query.search.map( foundResult => {
+            return this.state.searchResponses.push({
+              pageUrl: 'no link',
+              pageId: foundResult.pageid,
+              pageTitle: foundResult.title,
+              pageSnippet: foundResult.snippet
+            })
+
+          })
+
+          this.handleUrlFetch();
+
+          this.setState({
+            searchResFetchSuccess: true
+          })
+        }
+      })
+  }
+} catch(error) {
+  console.log(`Error from search responses fetch: ${error}`);
+
+    this.setState({
+      searchResFetchError: true
+    })
+  }
 
 }
 
+//finds and sets full url path for each result in the result object of the searchResponses array
+handleUrlFetch = () => {
+
+  this.state.searchResponses.map( specificPage => {
+
+    let pathToRetrieveFullUrl = `https://en.wikipedia.org/w/api.php?origin=*&action=query&prop=info&pageids=${specificPage.pageId}&inprop=url&format=json`;
+
+    return fetch(pathToRetrieveFullUrl)
+
+    .then(res => {
+      return res.json();
+    })
+
+    .then( res => {
+
+      specificPage.pageUrl = res.query.pages[specificPage.pageId].fullurl;
+
+      //saves the url to the result object in state
+      this.setState({
+        searchResponses: this.state.searchResponses
+      })
+
+    })
+
+  })
+
+}
 
 //captures user search input for later api call for search results related to input
 handleSearchInput = (e) => {
   e.preventDefault();
 
+  //trims leading and/or trailing whitespaces and then matches all whitespaces between words in input and replaces them with '%20'
+ let noWhiteSpaceInput = e.target.value.trim().replace(/\s/g,'%20');
+
   this.setState({
-    searchInput : e.target.value
+    searchInput : noWhiteSpaceInput
   })
 
 }
@@ -40,29 +135,53 @@ handleSearchInput = (e) => {
   render(){
 
     //stores search results - api response
-    let searchResultsContent = [];
+    let searchResultsContent = this.state.searchResponses.map( (specificResult, index) => {
+
+      return <SearchResult
+              key={index}
+              url={specificResult.pageUrl}
+              resultId={specificResult.pageId}
+              title={specificResult.pageTitle}
+              snippet={specificResult.pageSnippet}
+              />;
+
+    });
 
     return(
-      <div>
-        <h1 id="search-title">The Unending Search For Knowledge</h1>
-      <form>
+
+      <div id="search_container">
+      <Navbar />
+      <div id="search_content">
+        <img id="wiki_logo" src={wiki} alt="wikipedia logo"/>
+        <h1 id="search_title">Search For Knowledge</h1>
+
+        <div id="search_random">
+      <form id="search_form">
+
         <input
-          id="search-input"
+          id="search_input"
           type="text"
-          value={this.state.searchInput || ''}
           onChange={this.handleSearchInput}
           placeholder='Curious about ...' />
-        <button
-          type='submit'
-          onClick={this.handleSearchSubmit}>Enlighten Me</button>
-        <a
-          href="https://en.wikipedia.org/wiki/Special:Random"
-          id="random-search"
-          target="_blank"
-          rel="noopener noreferrer">random</a>
-      </form>
-      {searchResultsContent}
 
+        <button
+          id="search_btn"
+          type='submit'
+          onClick={this.handleSearchSubmit}>enlighten me</button>
+
+      </form>
+
+      <a
+        href="https://en.wikipedia.org/wiki/Special:Random"
+        id="random_search"
+        target="_blank"
+        rel="noopener noreferrer">random</a>
+        </div>
+      <div id="searchResults_container">
+        {searchResultsContent}
+      </div>
+
+      </div>
       </div>
     )
   }

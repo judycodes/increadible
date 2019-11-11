@@ -20,17 +20,15 @@ class Landing extends Component {
 
   render(){
 
-
-
     return (
-        <div id= "landing-container">
-          <div id="landing-nav">
+        <div id= "landing_container">
+          <div id="landing_nav">
             <button id="sign_in_btn">Sign In</button>
           </div>
-          <div id="landing-content">
+          <div id="landing_content">
 
 
-            <h1 id="landing-title">INCREADIBLE</h1>
+            <h1 id="landing_title">INCREADIBLE</h1>
             <button id="get_started_btn" onClick={this.handleSignUpClick}>Get Started</button>
 
 

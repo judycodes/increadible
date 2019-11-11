@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 
+//custom components
+import Navbar from './Navbar';
+
+
 class Home extends Component {
   constructor(props){
     super(props);
@@ -16,11 +20,15 @@ class Home extends Component {
   render(){
     return(
 
-      <div id="home-container">
+      <div id="home_container">
 
-        
+      <Navbar />
+
+
 
       </div>
     )
   }
 }
+
+export default Home;

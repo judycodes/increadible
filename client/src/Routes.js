@@ -1,24 +1,31 @@
 import React from 'react';
 import {Route, Switch} from 'react-router-dom';
-// import Landing from './components/Landing';
 
+
+
+//custom components
+import Landing from './components/Landing';
+import Home from './components/Home';
 import Search from './components/Search';
+
 
 const Routes = () => {
 
-        return (
-            <Switch>
+  return (
+      <Switch>
 
-            <Route exact path="/" component={Search} />
+      <Route exact path="/" component={Landing} />
+      <Route path="/home" component={Home} />
+      <Route path="/search" component={Search} />
 
-            </Switch>
-        )
+      </Switch>
+  )
 
 };
 
 export default Routes;
-// <Route exact path="/" component={Landing} />
-// <Route path="/home" component={Home} />
+
+
 // <Route path="/about" component={About} />
 //
 // <Route path="/*" component={NotFound} />
