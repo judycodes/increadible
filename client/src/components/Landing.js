@@ -25,11 +25,9 @@ class Landing extends Component {
 //create account methods
   handleSignupClick = () => {
 
-      console.log('signup btn clicked!');
       this.setState({
       signupFormActive: !this.state.signupFormActive
       })
-      console.log(this.state.signupFormActive, 'signup form status');
 
   }
 
@@ -38,23 +36,28 @@ class Landing extends Component {
 
   }
 
-  //create account methods
+  //log in existing user methods
     handleLoginClick = () => {
 
-        console.log('login btn clicked!');
         this.setState({
         loginFormActive: !this.state.loginFormActive
         })
-        console.log(this.state.loginFormActive, 'login form status');
 
     }
+
+  login = () => {
+
+  }
 
   render(){
 
     return (
         <div id= "landing_container">
           <div id="landing_nav">
-            <button id="sign_in_btn" onClick={this.handleLoginClick}>
+            <button
+              id="sign_in_btn"
+              onClick={this.handleLoginClick}
+              style={{ display: this.state.signupFormActive ? 'none' : 'block'}}>
               {this.state.loginFormActive ?
                 <p className="cancel_btn" onClick={this.handleLoginClick}>Cancel</p> :
                 'Sign In'}
@@ -64,7 +67,11 @@ class Landing extends Component {
 
 
             <h1 id="landing_title">INCREADIBLE</h1>
-            <button id="get_started_btn" onClick={this.handleSignupClick}>
+            <button
+              id="get_started_btn"
+              onClick={this.handleSignupClick}
+              style={{ display: this.state.loginFormActive ? 'none' : 'block'}}>
+              >
               {this.state.signupFormActive ?
                 <p className="cancel_btn" onClick={this.handleSignupClick}>Cancel</p> :
                 'Get Started'}
