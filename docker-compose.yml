@@ -1,0 +1,45 @@
+version: '3'
+
+services:
+  eureka:
+    image: maven:3.6.1-jdk-8
+    ports:
+      - '8761:8761'
+    working_dir: /app
+    volumes:
+      - ./eureka-server:/app
+    command: 'mvn spring-boot:run'
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+  zuul-gateway:
+    image: maven:3.6.1-jdk-8
+    ports:
+      - '8080:8080'
+    working_dir: /app
+    volumes:
+      - ./zuul-gateway:/app
+    depends_on:
+      - eureka
+    command: 'mvn spring-boot:run'
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+  postgres:
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=reflectiondb
+  increadible-api:
+    image: maven:3.6.1-jdk-8
+    ports:
+      - '8081:8081'
+    working_dir: /app
+    volumes:
+      - ./increadible-api:/app
+    depends_on:
+      - eureka
+    command: 'mvn spring-boot:run'
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
