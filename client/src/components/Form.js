@@ -17,25 +17,20 @@ class Form extends Component {
           [e.target.name] : e.target.value.trim()
         })
 
-      console.log(e.target.name, "e.target.name");
-      console.log(e.target.value, "e.target.value");
     }
 
     handleSubmit = (e) => {
       e.preventDefault();
 
-      if(!this.state.username && !this.state.password) {
+      if(this.state.username === '' || this.state.password === '') {
         alert("Please provide valid inputs.");
+        console.log(this.state.username, "username input");
+        console.log(this.state.password, "password input");
+
       } else {
 
         this.props.submitType(this.state);
 
-        console.log(this.state, "this.state");
-
-        this.setState({
-          username: '',
-          password: ''
-        })
       }
 
     }

@@ -14,7 +14,9 @@ class Landing extends Component {
 
         loginFormActive: false,
 
-        userActive: false,
+        userActiveSuccess: false,
+        userActiveError: false,
+
         userInfo: {
           username: '',
           password: '',
@@ -37,11 +39,7 @@ class Landing extends Component {
 
 
   signup = (user) => {
-
-    if(user.username !== "" && user.password !== "") {
-      console.log(user, "user object passed");
-      console.log(user.username, "username");
-      console.log(user.password, "password");
+try{
 
       this.setState({
         userInfo: {
@@ -50,40 +48,42 @@ class Landing extends Component {
         }
       })
 
-      console.log(this.state.userInfo, "userInfo");
-
       fetch('http://localhost:8081/signup', {
       method: 'POST',
       headers: {
         'Content-Type' : 'application/json'
       },
       body: JSON.stringify({
-        username: this.state.userInfo.username,
-        password: this.state.userInfo.password
+        username: user.username,
+        password: user.password
       })
     })
+
     .then((res) => {
       return res.json();
     })
+
     .then((res) => {
-      this.setState({
-        userInfo: { ...this.state.userInfo, res},
-        signupSuccess: !this.state.signupSuccess
-        })
-      this.handleActiveUser();
+
+        this.setState({
+          userInfo: { ...this.state.userInfo, res},
+          signupSuccess: !this.state.signupSuccess
+          })
+
+        this.handleActiveUser();
+
     })
-    .catch((error) => {
+} catch(error) {
+
       console.log(`Error in signup: ${error}`);
+
       this.setState({
         signupError: !this.state.signupError
       })
-    })
 
-  } else {
-    alert("Username and password invalid. Try again!");
-  }
 
   }
+}
 
   //log in existing user methods
     handleLoginClick = () => {
@@ -99,7 +99,23 @@ class Landing extends Component {
   }
 
  handleActiveUser = () => {
-   console.log(this.state.userInfo, "user info after sign up fetch");
+
+   if((this.state.userInfo.res.token === null ||this.state.userInfo.res.token) && this.state.userInfo.res.error !== "IM Used") {
+     console.log(this.state.userInfo, "user info after sign up fetch");
+
+     console.log(this.state.userInfo.res.token, "token");
+
+     this.setState({
+       userActiveSuccess : !this.state.userActiveSuccess
+     })
+   } else {
+     this.setState({
+       userActiveError : !this.state.userActiveError
+     })
+     console.log("error");
+   }
+
+
  }
 
 
