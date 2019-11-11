@@ -102,7 +102,10 @@ button:focus, button:active, button:hover {
   font-size: 30px;
   padding: 0 1rem;
   transition: opacity 0.2s;
+}
 
+#nav_links > li {
+  margin-bottom: 20px;
 }
 
 .fade:hover .nav_link:not(:hover) {
@@ -216,7 +219,7 @@ button:focus, button:active, button:hover {
 }
 
 #search_btn {
-  font-size: 18px;
+  font-size: 20px;
   line-height: 40px;
   border: none;
   background-color: #f6f6f6;
@@ -227,6 +230,7 @@ button:focus, button:active, button:hover {
 
 #search_random {
   display:flex;
+  align-items: baseline;
 }
 
 :focus {
@@ -237,10 +241,15 @@ button:focus, button:active, button:hover {
 
 #searchResults_container {
   padding: 20px 50px;
+  overflow: scroll;
+  height: 70%;
+  margin-top: 50px;
 }
 
 .search_result_card {
-
+  margin-bottom: 5px;
+  padding: 0 30px 20px;
+  border-bottom: 1px dotted rgba(1,110,207, 0.35);
 }
 
 .ellipses {
@@ -264,6 +273,8 @@ button:focus, button:active, button:hover {
 
 .read_more_btn {
   font-size: 18px;
+  border: 1px solid rgb(1,110,207);
+  border-radius: 5px;
 }
 
 /* -QUOTE STYLING- */
