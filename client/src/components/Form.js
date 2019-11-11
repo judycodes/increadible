@@ -5,43 +5,48 @@ class Form extends Component {
     super(props);
 
     this.state = {
-      formType: '', //signup or login
-      submitType: '', //create account or log in method triggered
-      formGreeting: '', //welcome back for log in & registration for sign in
+      formType: this.props.formType, //signup or login
+      submitType: this.props.submitType, //create account or log in method triggered
+      formGreeting: this.props.formGreeting, //welcome back for log in & registration for sign in
       username: '',
       password: '',
-      handleUsernameInput: '',
-      handlePasswordInput: ''
+      handleUsernameInput: this.props.handleUsernameInput,
+      handlePasswordInput: this.props.handlePasswordInput
     }
   }
 
   render(){
     return (
-      <form id={this.state.formType} method="post" onSubmit={this.state.submitType}>
+      <form
+        id={this.state.formType}
+        method="post"
+        onSubmit={(e) =>
+          {e.preventDefault();
+          this.state.submitType();
+          console.log(`${this.state.submitType} submitted`)}}>
 
             <h1>{this.state.formGreeting}</h1>
 
-            <label for={this.state.formType + '-username'}>
-              <i class="fa fa-user"></i>
+            <label htmlFor={this.state.formType + '-username'}>
+              <i className="fa fa-user"></i>
               <input type="text"
                      name="username"
                      placeholder="username"
-                     value={this.state.username || ''}
                      onChange={this.state.handleUsernameInput}
                      />
             </label>
 
-            <label for="logIn-pw">
-               <i class="fa fa-key"></i>
+            <label htmlFor={this.state.formType + '-password'}>
+               <i className="fa fa-key"></i>
                <input type="password"
                       name="password"
                       placeholder="password"
-                      value={this.state.password || ''}
                       onChange={this.state.handlePasswordInput}
                       />
             </label>
 
-             <button type="submit">submit</button>
+             <button type="submit" >submit</button>
+
         </form>
     )
   }

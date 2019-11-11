@@ -166,6 +166,10 @@ button:focus, button:active, button:hover {
   box-shadow: 2px 2px 5px rgb(199,170,27);
 }
 
+#signup, #login {
+  margin-top: 50px;
+}
+
 /* =====HOME===== */
 #home_container {
   display: flex;
