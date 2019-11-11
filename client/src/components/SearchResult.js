@@ -2,18 +2,18 @@ import React from 'react';
 
 const SearchResult = (props) => {
   return (
-    <div id={props.resultId}>
+    <div id={props.resultId} className="search_result_card">
 
     <a
       href={props.url}
       target="_blank"
       rel="noopener noreferrer">
 
-    <h3>{props.title}</h3>
+    <h2>{props.title}</h2>
     <p className="ellipses" dangerouslySetInnerHTML={{__html: props.snippet}}></p>
 
 
-    <button>read more</button>
+    <button className="read_more_btn">read more</button>
     </a>
 
     </div>

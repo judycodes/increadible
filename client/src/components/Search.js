@@ -149,16 +149,17 @@ handleSearchInput = (e) => {
 
     return(
 
-      <div id="search-container">
+      <div id="search_container">
       <Navbar />
-      <div id="search-content">
-        <img id="wiki-logo" src={wiki} alt="wikipedia logo"/>
-        <h1 id="search-title">Search For Knowledge</h1>
+      <div id="search_content">
+        <img id="wiki_logo" src={wiki} alt="wikipedia logo"/>
+        <h1 id="search_title">Search For Knowledge</h1>
 
-      <form>
+        <div id="search_random">
+      <form id="search_form">
 
         <input
-          id="search-input"
+          id="search_input"
           type="text"
           onChange={this.handleSearchInput}
           placeholder='Curious about ...' />
@@ -168,14 +169,15 @@ handleSearchInput = (e) => {
           type='submit'
           onClick={this.handleSearchSubmit}>enlighten me</button>
 
-        <a
-          href="https://en.wikipedia.org/wiki/Special:Random"
-          id="random-search"
-          target="_blank"
-          rel="noopener noreferrer">random</a>
-
       </form>
-      <div id="searchResults-container">
+
+      <a
+        href="https://en.wikipedia.org/wiki/Special:Random"
+        id="random_search"
+        target="_blank"
+        rel="noopener noreferrer">random</a>
+        </div>
+      <div id="searchResults_container">
         {searchResultsContent}
       </div>
 

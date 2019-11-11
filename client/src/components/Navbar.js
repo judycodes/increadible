@@ -7,14 +7,14 @@ const Navbar = () => {
       <div id="navbar">
         <div id="brand_div">
           <img src={logo} className = "logo" alt="increadible logo"/>
-          <Link id="brand" to="/home">incREADible</Link>
+          <Link id="brand" to="/home">INCREADIBLE</Link>
         </div>
 
         <ul id="nav_links" className="fade">
 
-          <li><Link className="nav-link" to="/search">search</Link></li>
-          <li><Link className="nav-link" to="/home">reflections</Link></li>
-          <li><Link className="nav-link" to="/about">about</Link></li>
+          <li><Link className="nav_link" to="/search">search</Link></li>
+          <li><Link className="nav_link" to="/home">reflections</Link></li>
+          <li><Link className="nav_link" to="/about">about</Link></li>
 
         </ul>
       </div>

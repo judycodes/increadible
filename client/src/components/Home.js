@@ -20,7 +20,7 @@ class Home extends Component {
   render(){
     return(
 
-      <div id="home-container">
+      <div id="home_container">
 
       <Navbar />
 
