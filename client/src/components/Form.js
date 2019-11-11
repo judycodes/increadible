@@ -12,9 +12,10 @@ class Form extends Component {
 
 
     handleInputChange = (e) => {
-      this.setState({
-        [e.target.name] : e.target.value
-      })
+
+        this.setState({
+          [e.target.name] : e.target.value.trim()
+        })
 
       console.log(e.target.name, "e.target.name");
       console.log(e.target.value, "e.target.value");
@@ -23,14 +24,20 @@ class Form extends Component {
     handleSubmit = (e) => {
       e.preventDefault();
 
-      this.props.submitType(this.state);
+      if(!this.state.username && !this.state.password) {
+        alert("Please provide valid inputs.");
+      } else {
 
-      console.log(this.state, "this.state");
+        this.props.submitType(this.state);
 
-      this.setState({
-        username: '',
-        password: ''
-      })
+        console.log(this.state, "this.state");
+
+        this.setState({
+          username: '',
+          password: ''
+        })
+      }
+
     }
 
   render(){

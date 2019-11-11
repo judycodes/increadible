@@ -32,7 +32,13 @@ class Landing extends Component {
   }
 
 
-  signup = () => {
+  signup = (user) => {
+
+    if(user.username !== "" && user.password !== "") {
+      console.log(user, "user object passed");
+      console.log(user.username, "username");
+      console.log(user.password, "password");
+    }
 
   }
 
@@ -45,7 +51,7 @@ class Landing extends Component {
 
     }
 
-  login = () => {
+  login = (user) => {
 
   }
 
