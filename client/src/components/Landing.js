@@ -9,14 +9,18 @@ class Landing extends Component {
     super();
     this.state = {
         signupFormActive: false,
+        signupSuccess: false,
+        signupError: false,
 
         loginFormActive: false,
 
         userActive: false,
         userInfo: {
           username: '',
+          password: '',
           goal: ''
         },
+
         reflectionsFetchSuccess: false,
         reflectionsFetchError: false
     }
@@ -38,7 +42,46 @@ class Landing extends Component {
       console.log(user, "user object passed");
       console.log(user.username, "username");
       console.log(user.password, "password");
-    }
+
+      this.setState({
+        userInfo: {
+          username: user.username,
+          password: user.password
+        }
+      })
+
+      console.log(this.state.userInfo, "userInfo");
+
+      fetch('http://localhost:8081/signup', {
+      method: 'POST',
+      headers: {
+        'Content-Type' : 'application/json'
+      },
+      body: JSON.stringify({
+        username: this.state.userInfo.username,
+        password: this.state.userInfo.password
+      })
+    })
+    .then((res) => {
+      return res.json();
+    })
+    .then((res) => {
+      this.setState({
+        userInfo: { ...this.state.userInfo, res},
+        signupSuccess: !this.state.signupSuccess
+        })
+      this.handleActiveUser();
+    })
+    .catch((error) => {
+      console.log(`Error in signup: ${error}`);
+      this.setState({
+        signupError: !this.state.signupError
+      })
+    })
+
+  } else {
+    alert("Username and password invalid. Try again!");
+  }
 
   }
 
@@ -55,6 +98,9 @@ class Landing extends Component {
 
   }
 
+ handleActiveUser = () => {
+   console.log(this.state.userInfo, "user info after sign up fetch");
+ }
 
 
   render(){

@@ -14,6 +14,15 @@ public class UserController {
     UserService userService;
 
     /**
+     * GET REQUEST: Endpoint connection check
+     * @return Hello World!!
+     */
+    @GetMapping("/hello")
+    public String helloWorld() {
+        return "Hello World!! - from User Controller";
+    }
+
+    /**
      * GET REQUEST: List users
      * @return all users in db
      */
@@ -21,15 +30,6 @@ public class UserController {
     public Iterable<User> listUsers() {
         return userService.listUsers();
     }
-
-//    /**
-//     * GET REQUEST: Endpoint connection check
-//     * @return Hello World!!
-//     */
-//    @GetMapping("/hello")
-//    public String helloWorld() {
-//        return "Hello World!! - from User Controller";
-//    }
 
     /**
      * POST REQUEST: Create new user
