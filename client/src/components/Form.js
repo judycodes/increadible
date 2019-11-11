@@ -5,47 +5,62 @@ class Form extends Component {
     super(props);
 
     this.state = {
-      formType: this.props.formType, //signup or login
-      submitType: this.props.submitType, //create account or log in method triggered
-      formGreeting: this.props.formGreeting, //welcome back for log in & registration for sign in
       username: '',
-      password: '',
-      handleUsernameInput: this.props.handleUsernameInput,
-      handlePasswordInput: this.props.handlePasswordInput
+      password: ''
     }
   }
+
+
+    handleInputChange = (e) => {
+      this.setState({
+        [e.target.name] : e.target.value
+      })
+
+      console.log(e.target.name, "e.target.name");
+      console.log(e.target.value, "e.target.value");
+    }
+
+    handleSubmit = (e) => {
+      e.preventDefault();
+
+      this.props.submitType(this.state);
+
+      console.log(this.state, "this.state");
+
+      this.setState({
+        username: '',
+        password: ''
+      })
+    }
 
   render(){
     return (
       <form
-        id={this.state.formType}
+        id={this.props.formType}
         method="post"
-        onSubmit={(e) =>
-          {e.preventDefault();
-          this.state.submitType();
-          console.log(`${this.state.submitType} submitted`)}}>
+        onSubmit={this.handleSubmit}>
 
-            <h1>{this.state.formGreeting}</h1>
+            <h1>{this.props.formGreeting}</h1>
 
-            <label htmlFor={this.state.formType + '-username'}>
+            <label htmlFor={this.props.formType + '-username'}>
               <i className="fa fa-user"></i>
               <input type="text"
                      name="username"
                      placeholder="username"
-                     onChange={this.state.handleUsernameInput}
+                     onChange={this.handleInputChange}
                      />
             </label>
 
-            <label htmlFor={this.state.formType + '-password'}>
+            <label htmlFor={this.props.formType + '-password'}>
                <i className="fa fa-key"></i>
                <input type="password"
                       name="password"
                       placeholder="password"
-                      onChange={this.state.handlePasswordInput}
+                      onChange={this.handleInputChange}
                       />
             </label>
 
-             <button type="submit" >submit</button>
+             <button type="submit">submit</button>
 
         </form>
     )
