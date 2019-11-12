@@ -153,8 +153,22 @@ handleReflectionsListFetch = (e) => {
 
 renderAllReflections() {
   return this.state.reflectionsDisplay.map((reflection, index) => {
-    return <Reflection subject={reflection.subject} tidbit={reflection.tidbit} id={reflection.reflection_id} key={index} />
+    return <Reflection
+      subject={reflection.subject}
+      tidbit={reflection.tidbit}
+      edit={this.handleEdit}
+      delete={() => this.handleDelete(reflection, index)}
+      id={reflection.reflection_id}
+      key={index} />
   })
+}
+
+handleEdit = (reflection, reflection_id) => {
+
+}
+
+handleDelete = (reflection, reflection_id) => {
+
 }
 
   render(){

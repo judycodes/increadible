@@ -171,7 +171,7 @@ button:focus, button:active, button:hover {
 }
 
 /* =====HOME===== */
-#new_reflection_form {
+#new_reflection_form, #edit_reflection_form {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -204,7 +204,7 @@ button:focus, button:active, button:hover {
   flex-direction: column-reverse;
   align-items: center;
   justify-content: flex-end;
-  overflow: scroll;
+  overflow-y: scroll;
   height: 500px;
   width: 800px;
   padding: 20px;
@@ -276,7 +276,7 @@ button:focus, button:active, button:hover {
 
 #searchResults_container {
   padding: 20px 50px;
-  overflow: scroll;
+  overflow-y: scroll;
   height: 70%;
   margin-top: 50px;
 }
