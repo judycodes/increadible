@@ -66,6 +66,22 @@ button:focus, button:active, button:hover {
   outline: none;
 }
 
+.btns_sidebyside, .btns_stacked {
+  display: flex;
+}
+
+.btns_sidebyside > button:first-child {
+  margin-right: 10px;
+}
+
+.btns_stacked {
+  flex-direction: column;
+}
+
+.btns_stacked > button:first-child {
+  margin-bottom: 10px;
+}
+
 /* -NAV- */
 #brand {
   font-size: 30px;

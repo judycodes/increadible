@@ -67,8 +67,12 @@ class Reflection extends Component {
                 placeholder = {this.props.tidbit}
                 value = {this.state.courseCode}
                 onChange = {this.handleInputChange}/>
-            <button type="submit">Save</button>
-            <button>Cancel</button>
+
+            <div className="btns_sidebyside">
+              <button type="submit">Save</button>
+              <button onClick={this.editModeActivated}>Cancel</button>
+            </div>
+
         </form>
       </div>)
     } else {
@@ -84,7 +88,7 @@ class Reflection extends Component {
           </div>
 
 
-          <div className="reflection_btns">
+          <div className="btns_stacked">
 
             <button onClick={this.editModeActivated}>edit</button>
             <button onClick={this.handleDelete}>delete</button>

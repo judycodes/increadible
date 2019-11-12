@@ -216,7 +216,7 @@ handleDelete = (reflection, reflection_id) => {
                  />
           </label>
 
-          <div id="list_and_submit_btns">
+          <div className="btns_sidebyside">
             <button onClick={this.handleReflectionsListFetch}>saved reflections</button>
             <button type="submit" onClick={this.handleNewReflectionSubmit} >submit</button>
           </div>
