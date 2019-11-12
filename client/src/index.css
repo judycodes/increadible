@@ -21,7 +21,7 @@ h1, h2, h3 {
   color: rgb(1,110,207);
 }
 
-p, a, label, ::placeholder, input {
+p, a, label, ::placeholder, input, textarea {
   font-family: 'Muli', sans-serif;
   margin: 3px;
   padding: 3px;

@@ -10,7 +10,6 @@ class Form extends Component {
     }
   }
 
-
     handleInputChange = (e) => {
 
         this.setState({
