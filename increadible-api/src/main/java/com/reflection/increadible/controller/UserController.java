@@ -4,14 +4,28 @@ import com.reflection.increadible.model.JwtResponse;
 import com.reflection.increadible.model.User;
 import com.reflection.increadible.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @RestController
 public class UserController {
 
     @Autowired
     UserService userService;
+
+    /**
+     * GET REQUEST: Endpoint connection check
+     * @return Hello World!!
+     */
+    @GetMapping("/hello")
+    public String helloWorld() {
+        return "Hello World!! - from User Controller";
+    }
 
     /**
      * GET REQUEST: List users
@@ -22,15 +36,6 @@ public class UserController {
         return userService.listUsers();
     }
 
-//    /**
-//     * GET REQUEST: Endpoint connection check
-//     * @return Hello World!!
-//     */
-//    @GetMapping("/hello")
-//    public String helloWorld() {
-//        return "Hello World!! - from User Controller";
-//    }
-
     /**
      * POST REQUEST: Create new user
      * @param newUser
@@ -38,17 +43,32 @@ public class UserController {
      */
     @PostMapping("/signup")
     public ResponseEntity<?> createUser(@RequestBody User newUser) {
-        return ResponseEntity.ok(new JwtResponse(userService.createUser(newUser)));
+        try{
+            return ResponseEntity.ok(new JwtResponse(userService.createUser(newUser)));
+        }
+        catch (Exception e){
+            throw new ResponseStatusException(
+                    HttpStatus.valueOf(226), "This username already exists. Try again!", e);
+        }
     }
 
     /**
      * POST REQUEST: Log in existing user
-     * @param existingUser
-     * @return user-associated token if user exists in db
+     * @param returningUser
+     * @param request
+     * @param session
+     * @return logs in existing user and responds with a user-associated token
      */
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody User existingUser) {
-        return ResponseEntity.ok(new JwtResponse(userService.login(existingUser)));
+    public ResponseEntity<?> login(@RequestBody User returningUser, HttpServletRequest request, HttpSession session) {
+        try {
+            return ResponseEntity.ok(new JwtResponse(userService.login(returningUser, request, session)));
+        }
+        catch (Exception e){
+            throw new ResponseStatusException(
+                    HttpStatus.valueOf(401), "Username/Password Incorrect.", e);
+        }
+
     }
 
     /**
