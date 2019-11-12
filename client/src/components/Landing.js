@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import { Redirect } from 'react-router-dom';
+
 //custom components
 import Form from './Form';
 
@@ -39,7 +41,6 @@ class Landing extends Component {
 
   }
 
-
   signup = (user) => {
 try{
 
@@ -74,8 +75,6 @@ try{
 
         this.handleActiveUser();
 
-        console.log(this.state.userInfo.res, "signup res");
-
     })
 } catch(error) {
 
@@ -84,7 +83,6 @@ try{
       this.setState({
         signupError: !this.state.signupError
       })
-
 
   }
 }
@@ -130,11 +128,8 @@ try{
               userInfo: { ...this.state.userInfo, res},
               loginSuccess: !this.state.loginSuccess
               })
-              console.log(this.state.loginSuccess, "log in success");
 
             this.handleActiveUser();
-
-            console.log(this.state.userInfo.res, "login res");
 
         })
     } catch(error) {
@@ -150,14 +145,24 @@ try{
 
  handleActiveUser = () => {
 
-   if(this.state.userInfo.res.token === null && (this.state.userInfo.res.error !== "IM Used" || this.state.userInfo.res.status !== "500")) {
-     console.log(this.state.userInfo, "user info after fetch call");
+
+   if(this.state.userInfo.res.token !== null && (this.state.userInfo.res.error !== 'IM Used' || this.state.userInfo.res.status !== '500')) {
+      console.log("handleActiveUser accessed");
+
+      console.log(this.state, "state of landing after fetch call");
 
      console.log(this.state.userInfo.res.token, "token");
 
      this.setState({
        userActiveSuccess : !this.state.userActiveSuccess
      })
+
+     const token = this.state.userInfo.res.token;
+     localStorage.setItem('user', token);
+
+     //redirects existing user to home component
+     this.props.history.push('/home');
+
    } else {
      this.setState({
        userActiveError : !this.state.userActiveError
@@ -165,9 +170,7 @@ try{
      console.log("handle active user error");
    }
 
-
  }
-
 
   render(){
 
