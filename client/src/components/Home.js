@@ -59,39 +59,47 @@ handleInputChange = (e) => {
 handleReflectionSubmit = (e) => {
   e.preventDefault();
 
-  try{
+  if(this.state.reflectionSubject !== '' && this.state.reflectionTidbit !== '') {
 
-      fetch('http://localhost:8081/reflection/create', {
-      method: 'POST',
-      headers: {
-        "Authorization": "Bearer " + localStorage.getItem('user'),
-        'Content-Type' : 'application/json'
-      },
-      body: JSON.stringify({
-        subject: this.state.reflectionSubject,
-        tidbit: this.state.reflectionTidbit
-      })
-    })
+    try{
 
-      .then(res => {
-        return res.json();
-      })
-
-      .then( res => {
-        console.log(res, "create reflection res");
-
-        this.setState({
-          reflectionSubmitSuccess: !this.state.reflectionSubmitSuccess
+        fetch('http://localhost:8081/reflection/create', {
+        method: 'POST',
+        headers: {
+          "Authorization": "Bearer " + localStorage.getItem('user'),
+          'Content-Type' : 'application/json'
+        },
+        body: JSON.stringify({
+          subject: this.state.reflectionSubject,
+          tidbit: this.state.reflectionTidbit
         })
       })
 
-  } catch(error) {
-    console.log(`Reflection Submission Error: ${error}`);
+        .then(res => {
+          return res.json();
+        })
 
-    this.setState({
-      reflectionSubmitError: !this.state.reflectionSubmitError
-    })
+        .then( res => {
+          console.log(res, "create reflection res");
+
+          this.setState({
+            reflectionSubmitSuccess: !this.state.reflectionSubmitSuccess
+          })
+        })
+
+    } catch(error) {
+      console.log(`Reflection Submission Error: ${error}`);
+
+      this.setState({
+        reflectionSubmitError: !this.state.reflectionSubmitError
+      })
+    }
+
+  } else {
+    alert("Have something to reflect on? Write it down, before you forget!");
   }
+
+
 
 }
 
