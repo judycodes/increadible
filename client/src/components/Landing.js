@@ -13,6 +13,8 @@ class Landing extends Component {
         signupError: false,
 
         loginFormActive: false,
+        loginSuccess: false,
+        loginError: false,
 
         userActiveSuccess: false,
         userActiveError: false,
@@ -95,13 +97,56 @@ try{
     }
 
   login = (user) => {
+    try{
 
+          this.setState({
+            userInfo: {
+              username: user.username,
+              password: user.password
+            }
+          })
+
+          fetch('http://localhost:8081/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type' : 'application/json'
+          },
+          body: JSON.stringify({
+            username: user.username,
+            password: user.password
+          })
+        })
+
+        .then((res) => {
+          return res.json();
+        })
+
+        .then((res) => {
+
+            this.setState({
+              userInfo: { ...this.state.userInfo, res},
+              loginSuccess: !this.state.loginSuccess
+              })
+              console.log(this.state.loginSuccess, "log in success");
+            this.handleActiveUser();
+
+        })
+    } catch(error) {
+
+          console.log(`Error in login: ${error}`);
+
+          this.setState({
+            loginError: !this.state.loginError
+          })
+
+
+      }
   }
 
  handleActiveUser = () => {
 
    if((this.state.userInfo.res.token === null ||this.state.userInfo.res.token) && this.state.userInfo.res.error !== "IM Used") {
-     console.log(this.state.userInfo, "user info after sign up fetch");
+     console.log(this.state.userInfo, "user info after fetch call");
 
      console.log(this.state.userInfo.res.token, "token");
 
@@ -112,7 +157,7 @@ try{
      this.setState({
        userActiveError : !this.state.userActiveError
      })
-     console.log("error");
+     console.log("handle active user error");
    }
 
 
@@ -139,7 +184,7 @@ try{
 
 
             <h1 id="landing_title">INCREADIBLE</h1>
-            <h3 id="landing-tagline">the place to remember those useful tidbits or discover some of your own</h3>
+            <h3 id="landing-tagline">the place to remember those useful tidbits and discover some of your own</h3>
 
             <button
               id="get_started_btn"

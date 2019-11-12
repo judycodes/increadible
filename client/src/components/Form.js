@@ -30,7 +30,7 @@ class Form extends Component {
       } else {
 
         this.props.submitType(this.state);
-
+        console.log(this.state, "state object passed");
       }
 
     }
