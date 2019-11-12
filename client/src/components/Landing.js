@@ -39,7 +39,6 @@ class Landing extends Component {
 
   //CREATE USER API CALL TO BACKEND
   signup = (user) => {
-
     try{
 
           this.setState({

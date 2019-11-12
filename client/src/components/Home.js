@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 //custom components
 import Navbar from './Navbar';
 import RandomFact from './RandomFact';
-import Reflections from './Reflections';
+import Reflection from './Reflection';
 
 class Home extends Component {
   constructor(props){
@@ -15,10 +15,12 @@ class Home extends Component {
       randomFactFetchError: false,
       randomFact: 'Perhaps the most famous comic cat is the Cheshire Cat in Lewis Carroll’s Alice in Wonderland. With the ability to disappear, this mysterious character embodies the magic and sorcery historically associated with cats.',
 
-      reflectionSubject: '',
-      reflectionTidbit: '',
-      reflectionSubmitSuccess: false,
-      reflectionSubmitError: false,
+      newReflectionSubject: '',
+      newReflectionTidbit: '',
+      newReflectionSubmitSuccess: false,
+      newReflectionSubmitError: false,
+      updatedReflectionsDisplay: false,
+
 
       reflectionsDisplay: [],
       reflectionsFetchSuccess: false,
@@ -33,6 +35,7 @@ generateRandomFact = () => {
      return res.json();
    })
    .then(res => {
+     console.log(res, "entire fact res");
      console.log(res.fact);
 
      if(res.fact !== ''){
@@ -44,7 +47,7 @@ generateRandomFact = () => {
    })
 
   } catch(error) {
-  console.log(`Random fact fetch error: ${error}`);
+  console.log(`Random Fact Fetch error: ${error}`);
 
   this.setState({
     randomFactFetchError: !this.state.randomFactFetchError
@@ -60,10 +63,10 @@ handleInputChange = (e) => {
 
 }
 
-handleReflectionSubmit = (e) => {
+handleNewReflectionSubmit = (e) => {
   e.preventDefault();
 
-  if(this.state.reflectionSubject.trim() !== '' && this.state.reflectionTidbit.trim() !== '') {
+  if(this.state.newReflectionSubject.trim() !== '' && this.state.newReflectionTidbit.trim() !== '') {
 
     try{
 
@@ -74,8 +77,8 @@ handleReflectionSubmit = (e) => {
           'Content-Type' : 'application/json'
         },
         body: JSON.stringify({
-          subject: this.state.reflectionSubject,
-          tidbit: this.state.reflectionTidbit
+          subject: this.state.newReflectionSubject,
+          tidbit: this.state.newReflectionTidbit
         })
       })
 
@@ -86,16 +89,23 @@ handleReflectionSubmit = (e) => {
         .then(res => {
           console.log(res, "create reflection res");
 
+          let updatedReflectionsDisplayList = [...this.state.reflectionsDisplay];
+
+          updatedReflectionsDisplayList.push(res);
+
           this.setState({
-            reflectionSubmitSuccess: !this.state.reflectionSubmitSuccess,
-          })
+            reflectionsDisplay: updatedReflectionsDisplayList,
+            newReflectionSubmitSuccess: !this.state.newReflectionSubmitSuccess,
+            updatedReflectionsDisplay: true
+        })
+
         })
 
     } catch(error) {
-      console.log(`Reflection Submission Error: ${error}`);
+      console.log(`Create Reflection Submission Error: ${error}`);
 
       this.setState({
-        reflectionSubmitError: !this.state.reflectionSubmitError
+        newReflectionSubmitError: !this.state.newReflectionSubmitError
       })
     }
 
@@ -106,28 +116,49 @@ handleReflectionSubmit = (e) => {
   }
 }
 
-handleReflectionsRender = (e) => {
+handleReflectionsListFetch = (e) => {
   e.preventDefault();
-  
-  console.log("reflectionsRender accessed!");
-  fetch('http://localhost:8081/reflection/listAllReflections', {
-  headers: {
-    "Authorization": "Bearer " + localStorage.getItem('user'),
-    'Content-Type' : 'application/json'
+
+  try{
+    fetch('http://localhost:8081/reflection/listAllReflections', {
+    headers: {
+      "Authorization": "Bearer " + localStorage.getItem('user'),
+      'Content-Type' : 'application/json'
+    }
+  })
+
+    .then(res => {
+      return res.json();
+    })
+
+    .then(res => {
+
+      this.setState({
+        reflectionsDisplay: res,
+        reflectionsFetchSuccess: !this.state.reflectionsFetchSuccess
+      })
+
+      console.log(this.state.reflectionsDisplay, "reflectionsDisplay");
+
+    })
+  } catch(error) {
+    console.log(`Rendering All User Reflections Error: ${error}`);
+
+    this.setState({
+      reflectionsFetchError: !this.state.reflectionsFetchError
+    })
   }
-})
-
-  .then(res => {
-    return res.json();
-  })
-
-  .then(res => {
-    console.log(res, "reflections render");
-  })
 
 }
 
+renderAllReflections() {
+  return this.state.reflectionsDisplay.map((reflection, index) => {
+    return <Reflection subject={reflection.subject} tidbit={reflection.tidbit} id={reflection.reflection_id} key={index} />
+  })
+}
+
   render(){
+
     return(
 
       <div id="home_container">
@@ -142,45 +173,52 @@ handleReflectionsRender = (e) => {
             'Random Fact Loading...Why don\'t you reflect in the meantime?'}
         </div>
 
-        <div id="user_reflections_display">
+        <div id="reflections_display">
 
-        <form id="reflection_form">
+        <form id="new_reflection_form">
 
-          <label htmlFor='reflectionSubject'>
+          <label htmlFor='newReflectionSubject'>
 
             <input
-              id="reflection_subject"
+              id="new_reflection_subject"
               type="text"
-              name="reflectionSubject"
-              value= {this.state.reflectionSubject || ''}
+              name="newReflectionSubject"
+              value= {this.state.newReflectionSubject || ''}
               placeholder="Today I Learned..."
               onChange={this.handleInputChange}
                    />
 
           </label>
 
-          <label htmlFor='reflectionTidbit'>
+          <label htmlFor='newReflectionTidbit'>
             <textarea
-                id="reflection_tidbit"
+                id="new_reflection_tidbit"
                 rows="5" cols="30"
                 type="text"
-                name="reflectionTidbit"
-                value= {this.state.reflectionTidbit || ''}
+                name="newReflectionTidbit"
+                value= {this.state.newReflectionTidbit || ''}
                 placeholder=""
                 onChange={this.handleInputChange}
                  />
           </label>
 
-          <div id="reflections_btns">
-            <button onClick={this.handleReflectionsRender}>saved reflections</button>
-            <button type="submit" onClick={this.handleReflectionSubmit} >submit</button>
+          <div id="list_and_submit_btns">
+            <button onClick={this.handleReflectionsListFetch}>saved reflections</button>
+            <button type="submit" onClick={this.handleNewReflectionSubmit} >submit</button>
           </div>
 
         </form>
 
 
-        <h2>Saved Reflections</h2>
-        {!this.state.reflectionsDisplay ? <Reflections reflections={this.state.reflectionsDisplay} /> : <p>No reflections yet? Start writing one now!</p>}
+        <div id="reflections_container">
+        <h2>Your Growth</h2>
+        <div id="reflections_content">
+          {this.state.reflectionsFetchSuccess ? this.renderAllReflections() : <p>No reflections yet? Start writing one now!</p>}
+        </div>
+        </div>
+
+
+
         </div>
 
         </div>
