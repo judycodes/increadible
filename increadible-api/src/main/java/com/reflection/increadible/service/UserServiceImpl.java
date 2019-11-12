@@ -13,8 +13,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -61,17 +59,14 @@ public class UserServiceImpl implements UserService {
         return authorities;
     }
 
-
     @Override
-    public String login(User user, HttpServletRequest request, HttpSession session) throws Exception {
-        User returningUser = userRepository.findUserByUsername(user.getUsername());
-        if(returningUser != null && bCryptPasswordEncoder.matches(user.getPassword(), returningUser.getPassword())){
-            UserDetails userDetails = loadUserByUsername(returningUser.getUsername());
-            session.invalidate();
-            HttpSession newSession = request.getSession();
+    public String login(User user) {
+        User newUser = userRepository.findByUsername(user.getUsername());
+        if (newUser != null && bCryptPasswordEncoder.matches(user.getPassword(), newUser.getPassword())) {
+            UserDetails userDetails = loadUserByUsername(newUser.getUsername());
             return jwtUtil.generateToken(userDetails);
         }
-        throw new Exception();
+        return null;
     }
 
     @Override

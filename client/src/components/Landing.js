@@ -74,6 +74,8 @@ try{
 
         this.handleActiveUser();
 
+        console.log(this.state.userInfo.res, "signup res");
+
     })
 } catch(error) {
 
@@ -122,13 +124,17 @@ try{
         })
 
         .then((res) => {
+            console.log(res, "res from login");
 
             this.setState({
               userInfo: { ...this.state.userInfo, res},
               loginSuccess: !this.state.loginSuccess
               })
               console.log(this.state.loginSuccess, "log in success");
+
             this.handleActiveUser();
+
+            console.log(this.state.userInfo.res, "login res");
 
         })
     } catch(error) {
@@ -139,13 +145,12 @@ try{
             loginError: !this.state.loginError
           })
 
-
       }
   }
 
  handleActiveUser = () => {
 
-   if((this.state.userInfo.res.token === null ||this.state.userInfo.res.token) && this.state.userInfo.res.error !== "IM Used") {
+   if(this.state.userInfo.res.token === null && (this.state.userInfo.res.error !== "IM Used" || this.state.userInfo.res.status !== "500")) {
      console.log(this.state.userInfo, "user info after fetch call");
 
      console.log(this.state.userInfo.res.token, "token");

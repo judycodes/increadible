@@ -14,9 +14,9 @@ public interface UserService extends UserDetailsService {
 
     public User getUser(String username);
 
-    public String createUser(User newUser);
+    public String createUser(User newUser) throws Exception;
 
-    public String login(User returningUser, HttpServletRequest request, HttpSession session) throws Exception;
+    public String login(User user);
 
     public User addUserGoal(User userGoal);
 

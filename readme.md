@@ -43,7 +43,7 @@ _Backend_
 - PostgreSQL
 
 #### incREADible Entity Relationship Diagram
-<img alt = "increadible ERD" src = "./increadible_ERD.png" />
+<img alt = "increadible ERD" src = "increadible_ERD.png" />
 
 #### incREADible Database Structure
 - Increadible's database has two data models: User & Reflection
@@ -93,9 +93,9 @@ Karen is curious about everything. As a user, Karen wants to use Increadible to 
 ---
 
 #### Day to Day Development
-|                          Day 1                          |        Day 2        |                     Day 3                     |                          Day 4                          |                  Day 5                 |                     Day 6                     | Day 7 | Day 8 |
-|:-------------------------------------------------------:|:-------------------:|:---------------------------------------------:|:-------------------------------------------------------:|:--------------------------------------:|:---------------------------------------------:|:-----:|:-----:|
-| User & Reflection - Model/Service/Repository/Controller | ERD Design          | Microservices Debugging                       | Update reflection subject and tidbit methods functional | Navbar minor styling                   | Microservices and Docker basic setup          |       |       |
-| Checked User & Reflection Endpoints (with Postman)      | README.md Created   | Restarting Spring Boot Monolith               | React Routing basic setup                               | Icon and logo added                    | Search and Result Components created          |       |       |
-| Spring Boot, Microservices, Github Setup                | Wireframing         | Add goal, update goal, and get goal from User | User stories created                                    | Setup AWS EC2 instance and S3 storage  | Wikipedia Random Search and Search Form Setup |       |       |
-| Research & Application Brainstorming                    | Microservices Error | Create React basic template                   | Research Microservices and Docker                       | Landing page setup                     |                                               |       |       |
+|                          Day 1                          |        Day 2        |                     Day 3                     |                          Day 4                          |                  Day 5                 |                     Day 6                     |                Day 7                | Day 8 |
+|:-------------------------------------------------------:|:-------------------:|:---------------------------------------------:|:-------------------------------------------------------:|:--------------------------------------:|:---------------------------------------------:|:-----------------------------------:|:-----:|
+| User & Reflection - Model/Service/Repository/Controller | ERD Design          | Microservices Debugging                       | Update reflection subject and tidbit methods functional | Navbar minor styling                   | Microservices and Docker basic setup          | Wikipedia Search Functional         |       |
+| Checked User & Reflection Endpoints (with Postman)      | README.md Created   | Restarting Spring Boot Monolith               | React Routing basic setup                               | Icon and logo added                    | Search and Result Components created          | Microservices Configured and Tested |       |
+| Spring Boot, Microservices, Github Setup                | Wireframing         | Add goal, update goal, and get goal from User | User stories created                                    | Setup AWS EC2 instance and S3 storage  | Wikipedia Random Search and Search Form Setup | Login and Signup components toggle  |       |
+| Research & Application Brainstorming                    | Microservices Error | Create React basic template                   | Research Microservices and Docker                       | Landing page setup                     |                                               | Signup functional                   |       |

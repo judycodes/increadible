@@ -55,28 +55,19 @@ public class UserController {
     /**
      * POST REQUEST: Log in existing user
      * @param returningUser
-     * @param request
-     * @param session
      * @return logs in existing user and responds with a user-associated token
      */
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody User returningUser, HttpServletRequest request, HttpSession session) {
-        try {
-            return ResponseEntity.ok(new JwtResponse(userService.login(returningUser, request, session)));
-        }
-        catch (Exception e){
-            throw new ResponseStatusException(
-                    HttpStatus.valueOf(401), "Username/Password Incorrect.", e);
-        }
-
+    public ResponseEntity<?> login(@RequestBody User returningUser) {
+        return ResponseEntity.ok(new JwtResponse(userService.login(returningUser)));
     }
 
     /**
-     * PATCH REQUEST: Create and update user goal
+     * PUT REQUEST: Create and update user goal
      * @param userGoal
      * @return User with goal added
      */
-    @PatchMapping("/goal")
+    @PutMapping("/goal")
     public User addUserGoal(@RequestBody User userGoal) {
         return userService.addUserGoal(userGoal);
     }
