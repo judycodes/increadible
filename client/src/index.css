@@ -21,7 +21,7 @@ h1, h2, h3 {
   color: rgb(1,110,207);
 }
 
-p, a, label, ::placeholder, input {
+p, a, label, ::placeholder, input, textarea {
   font-family: 'Muli', sans-serif;
   margin: 3px;
   padding: 3px;
@@ -171,20 +171,51 @@ button:focus, button:active, button:hover {
 }
 
 /* =====HOME===== */
-#home_container {
+#new_reflection_form {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  height: 100vh;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
+#home_content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+  height: 100%;
+  border: 1px solid #000;
+}
+
+#reflections_display {
+  display: flex;
+  border: 1px solid red;
+}
+
+#reflections_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+#reflections_content {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  justify-content: flex-end;
+  overflow: scroll;
+  height: 500px;
+  width: 800px;
+  padding: 20px;
+}
 /* =====SEARCH===== */
-#search_container {
+#search_container, #home_container {
   height: 100vh;
   display: flex;
 }
 
-#search_content{
+#search_content {
   display: flex;
   flex-direction: column;
   align-items: center;
