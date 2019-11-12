@@ -31,6 +31,7 @@ class Form extends Component {
 
         this.props.submitType(this.state);
         console.log(this.state, "state object passed");
+        console.log(this.props.submitType, "submitType");
       }
 
     }

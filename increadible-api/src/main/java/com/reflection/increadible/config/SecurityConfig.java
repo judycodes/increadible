@@ -42,29 +42,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
+        http.cors();
+
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/signup", "/login")
+                .antMatchers("/signup/**", "/login/**")
                 .permitAll()
-                .antMatchers(HttpMethod.POST).authenticated()
-                .antMatchers(HttpMethod.DELETE).authenticated()
-                .antMatchers(HttpMethod.PUT).authenticated()
-                .anyRequest().permitAll()
+                .antMatchers("/user/**", "/profile/**", "/post/**", "/comment/**")
+                .authenticated()
                 .and()
-                .httpBasic()
-                .and()
-                .logout()
-                .logoutUrl("/logout")
-                .logoutSuccessUrl("/index.html")
-                .invalidateHttpSession(true)
-                .deleteCookies("JSESSIONID");
-
+                .httpBasic();
         http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
-    }
-
-    @Override
-    public void configure(AuthenticationManagerBuilder auth) throws Exception{
-        PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
     }
 
     @Bean
