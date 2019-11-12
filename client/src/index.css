@@ -171,20 +171,34 @@ button:focus, button:active, button:hover {
 }
 
 /* =====HOME===== */
-#home_container {
+#reflection_form {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  height: 100vh;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#home_content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+  height: 100%;
+  border: 1px solid #000;
+}
+
+#user_reflections_display {
+  display: flex;
+  border: 1px solid red;
 }
 
 /* =====SEARCH===== */
-#search_container {
+#search_container, #home_container {
   height: 100vh;
   display: flex;
 }
 
-#search_content{
+#search_content {
   display: flex;
   flex-direction: column;
   align-items: center;

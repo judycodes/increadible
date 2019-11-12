@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 //custom components
 import Navbar from './Navbar';
 import RandomFact from './RandomFact';
+import Reflections from './Reflections';
 
 class Home extends Component {
   constructor(props){
@@ -17,8 +18,11 @@ class Home extends Component {
       reflectionSubject: '',
       reflectionTidbit: '',
       reflectionSubmitSuccess: false,
-      reflectionSubmitError: false
+      reflectionSubmitError: false,
 
+      reflectionsDisplay: [],
+      reflectionsFetchSuccess: false,
+      reflectionsFetchError: false
     }
   }
 
@@ -51,7 +55,7 @@ generateRandomFact = () => {
 handleInputChange = (e) => {
 
     this.setState({
-      [e.target.name] : e.target.value.trim()
+      [e.target.name] : e.target.value
     })
 
 }
@@ -59,7 +63,7 @@ handleInputChange = (e) => {
 handleReflectionSubmit = (e) => {
   e.preventDefault();
 
-  if(this.state.reflectionSubject !== '' && this.state.reflectionTidbit !== '') {
+  if(this.state.reflectionSubject.trim() !== '' && this.state.reflectionTidbit.trim() !== '') {
 
     try{
 
@@ -79,11 +83,11 @@ handleReflectionSubmit = (e) => {
           return res.json();
         })
 
-        .then( res => {
+        .then(res => {
           console.log(res, "create reflection res");
 
           this.setState({
-            reflectionSubmitSuccess: !this.state.reflectionSubmitSuccess
+            reflectionSubmitSuccess: !this.state.reflectionSubmitSuccess,
           })
         })
 
@@ -96,10 +100,30 @@ handleReflectionSubmit = (e) => {
     }
 
   } else {
+
     alert("Have something to reflect on? Write it down, before you forget!");
+
   }
+}
 
+handleReflectionsRender = (e) => {
+  e.preventDefault();
+  
+  console.log("reflectionsRender accessed!");
+  fetch('http://localhost:8081/reflection/listAllReflections', {
+  headers: {
+    "Authorization": "Bearer " + localStorage.getItem('user'),
+    'Content-Type' : 'application/json'
+  }
+})
 
+  .then(res => {
+    return res.json();
+  })
+
+  .then(res => {
+    console.log(res, "reflections render");
+  })
 
 }
 
@@ -110,38 +134,57 @@ handleReflectionSubmit = (e) => {
 
       <Navbar />
 
-      {this.state.randomFact ?
-        <RandomFact fact={this.state.randomFact} generateRandomFact={this.generateRandomFact}/> :
-        'Random Fact Loading...Why don\'t you reflect in the meantime?'}
+      <div id="home_content">
 
-      <form onSubmit={this.handleReflectionSubmit} id="reflection_form">
+        <div id="random_fact_section">
+          {this.state.randomFact ?
+            <RandomFact fact={this.state.randomFact} generateRandomFact={this.generateRandomFact}/> :
+            'Random Fact Loading...Why don\'t you reflect in the meantime?'}
+        </div>
 
-        <label htmlFor='reflectionSubject'>
+        <div id="user_reflections_display">
 
-          <input
-            id="reflection_subject"
-            type="text"
-            name="reflectionSubject"
-            placeholder="Today I Learned..."
-            onChange={this.handleInputChange}
-                 />
+        <form id="reflection_form">
 
-        </label>
+          <label htmlFor='reflectionSubject'>
 
-        <label htmlFor='reflectionTidbit'>
-          <textarea
-              id="reflection_tidbit"
-              rows="5" cols="30"
+            <input
+              id="reflection_subject"
               type="text"
-              name="reflectionTidbit"
-              placeholder=""
+              name="reflectionSubject"
+              value= {this.state.reflectionSubject || ''}
+              placeholder="Today I Learned..."
               onChange={this.handleInputChange}
-               />
-        </label>
+                   />
 
-        <button type="submit">submit</button>
+          </label>
 
-      </form>
+          <label htmlFor='reflectionTidbit'>
+            <textarea
+                id="reflection_tidbit"
+                rows="5" cols="30"
+                type="text"
+                name="reflectionTidbit"
+                value= {this.state.reflectionTidbit || ''}
+                placeholder=""
+                onChange={this.handleInputChange}
+                 />
+          </label>
+
+          <div id="reflections_btns">
+            <button onClick={this.handleReflectionsRender}>saved reflections</button>
+            <button type="submit" onClick={this.handleReflectionSubmit} >submit</button>
+          </div>
+
+        </form>
+
+
+        <h2>Saved Reflections</h2>
+        {!this.state.reflectionsDisplay ? <Reflections reflections={this.state.reflectionsDisplay} /> : <p>No reflections yet? Start writing one now!</p>}
+        </div>
+
+        </div>
+
 
       </div>
     )
