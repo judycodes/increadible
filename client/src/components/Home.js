@@ -59,6 +59,39 @@ handleInputChange = (e) => {
 handleReflectionSubmit = (e) => {
   e.preventDefault();
 
+  try{
+
+      fetch('http://localhost:8081/reflection/create', {
+      method: 'POST',
+      headers: {
+        "Authorization": "Bearer " + localStorage.getItem('user'),
+        'Content-Type' : 'application/json'
+      },
+      body: JSON.stringify({
+        subject: this.state.reflectionSubject,
+        tidbit: this.state.reflectionTidbit
+      })
+    })
+
+      .then(res => {
+        return res.json();
+      })
+
+      .then( res => {
+        console.log(res, "create reflection res");
+
+        this.setState({
+          reflectionSubmitSuccess: !this.state.reflectionSubmitSuccess
+        })
+      })
+
+  } catch(error) {
+    console.log(`Reflection Submission Error: ${error}`);
+
+    this.setState({
+      reflectionSubmitError: !this.state.reflectionSubmitError
+    })
+  }
 
 }
 
@@ -69,7 +102,9 @@ handleReflectionSubmit = (e) => {
 
       <Navbar />
 
-      {this.state.randomFact ? <RandomFact fact={this.state.randomFact} generateRandomFact={this.generateRandomFact}/> : 'Random Fact Loading...'}
+      {this.state.randomFact ?
+        <RandomFact fact={this.state.randomFact} generateRandomFact={this.generateRandomFact}/> :
+        'Random Fact Loading...Why don\'t you reflect in the meantime?'}
 
       <form onSubmit={this.handleReflectionSubmit} id="reflection_form">
 

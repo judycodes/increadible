@@ -25,7 +25,6 @@ const Routes = () => {
 
 export default Routes;
 
-//<Route path="/home" component={Home} />
 // <Route path="/about" component={About} />
 //
 // <Route path="/*" component={NotFound} />

@@ -2,9 +2,9 @@ import React from 'react';
 
 const RandomFact = (props) => {
   return (
-    <div>
-      <h3>{props.fact}</h3>
-      <button onClick={props.generateRandomFact}>Next New Fact</button>
+    <div id="random_fact_container">
+      <h3 id="random_fact_content">{props.fact}</h3>
+      <button onClick={props.generateRandomFact} id="random_fact_btn">Learn Another New Fact</button>
     </div>
   )
 }
