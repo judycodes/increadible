@@ -120,7 +120,7 @@ handleReflectionsListFetch = (e) => {
   e.preventDefault();
 
   try{
-    fetch('http://localhost:8081/reflection/listAllReflections', {
+    fetch('http://localhost:8081/reflection/listUserReflections', {
     headers: {
       "Authorization": "Bearer " + localStorage.getItem('user'),
       'Content-Type' : 'application/json'
@@ -193,7 +193,7 @@ renderAllReflections() {
           <label htmlFor='newReflectionTidbit'>
             <textarea
                 id="new_reflection_tidbit"
-                rows="5" cols="30"
+                rows="10" cols="20"
                 type="text"
                 name="newReflectionTidbit"
                 value= {this.state.newReflectionTidbit || ''}
