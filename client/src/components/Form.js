@@ -38,11 +38,12 @@ class Form extends Component {
   render(){
     return (
       <form
+        className="landing_form"
         id={this.props.formType}
         method="post"
         onSubmit={this.handleSubmit}>
 
-            <h1>{this.props.formGreeting}</h1>
+            <h1 className="form_greeting">{this.props.formGreeting}</h1>
 
             <label htmlFor={this.props.formType + '-username'}>
               <i className="fa fa-user"></i>
@@ -62,7 +63,7 @@ class Form extends Component {
                       />
             </label>
 
-             <button type="submit">submit</button>
+             <button className="submit_btn" type="submit">submit</button>
 
         </form>
     )

@@ -19,8 +19,6 @@ class Reflection extends Component {
     if(this.state.updatedReflection.subject !== '' || this.state.updatedReflection.tidbit !== '') {
     this.props.edit(this.state.updatedReflection, this.props.id);
 
-    console.log(this.state.updatedReflection, "updatedReflection submitted");
-
     this.setState({
       editMode : false
     })
@@ -37,7 +35,6 @@ class Reflection extends Component {
       editMode: !this.state.editMode
     })
 
-    // console.log(this.state.editMode, "edit Mode changed");
   }
 
   handleSubjectInputChange = (e) => {
@@ -89,8 +86,8 @@ class Reflection extends Component {
                 onChange = {this.handleTidbitInputChange}/>
 
             <div className="btns_sidebyside">
-              <button type="submit">Save</button>
-              <button onClick={this.editModeActivated}>Cancel</button>
+              <button className="submit_btn" type="submit">Save</button>
+              <button className="back_btn" onClick={this.editModeActivated}>Cancel</button>
             </div>
 
         </form>
@@ -111,8 +108,8 @@ class Reflection extends Component {
 
           <div className="btns_stacked">
 
-            <button onClick={this.editModeActivated}>edit</button>
-            <button onClick={this.handleDelete}>delete</button>
+            <button className="edit_btn" onClick={this.editModeActivated}>edit</button>
+            <button className="delete_btn" onClick={this.handleDelete}>delete</button>
 
           </div>
 

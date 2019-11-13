@@ -185,24 +185,25 @@ class Landing extends Component {
             onClick={this.handleLoginClick}
             style={{ display: this.state.signupFormActive ? 'none' : 'block'}}>
             {this.state.loginFormActive ?
-              <p className="cancel_btn" onClick={this.handleLoginClick}>Back</p> :
+              'Back' :
               'Sign In'}
           </button>
         </div>
 
         <div id="landing_content">
-
+          <div id="landing_center">
           <h1 id="landing_title">INCREADIBLE</h1>
-          <h3 id="landing-tagline">the place to remember those useful tidbits and discover some of your own</h3>
+          <h2 id="landing_tagline">the place to remember those useful tidbits and discover some of your own</h2>
 
           <button
             id="get_started_btn"
             onClick={this.handleSignupClick}
             style={{ display: this.state.loginFormActive ? 'none' : 'block'}}>
             {this.state.signupFormActive ?
-              <p className="cancel_btn" onClick={this.handleSignupClick}>Back</p> :
+              'Back' :
               'Get Started'}
           </button>
+          </div>
 
           {this.state.signupFormActive ?
             <Form

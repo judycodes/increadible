@@ -195,13 +195,11 @@ handleEdit = (reflection, reflection_id) => {
 
           index = this.state.reflectionsDisplay.indexOf(reflection);
 
-
-
           updatedReflectionsDisplayList[index].subject = res.subject;
           updatedReflectionsDisplayList[index].tidbit = res.tidbit;
 
           return this.state.reflectionsDisplay[index];
-          
+
         } else {
           return reflection;
          }
@@ -278,8 +276,8 @@ handleDelete = (reflection, reflection_id) => {
           </label>
 
           <div className="btns_sidebyside">
-            <button onClick={this.handleReflectionsListFetch}>{this.state.reflectionsFetchSuccess ? 'hide reflections' : 'saved progress'}</button>
-            <button type="submit" onClick={this.handleNewReflectionSubmit} >submit</button>
+            <button className="create_btn" onClick={this.handleReflectionsListFetch}>{this.state.reflectionsFetchSuccess ? 'hide reflections' : 'saved progress'}</button>
+            <button className="submit_btn" type="submit" onClick={this.handleNewReflectionSubmit} >submit</button>
           </div>
 
         </form>
@@ -291,8 +289,6 @@ handleDelete = (reflection, reflection_id) => {
           {this.state.reflectionsFetchSuccess ? this.renderAllReflections() : <p>No reflections yet? Start writing one now!</p>}
         </div>
         </div>
-
-
 
         </div>
 

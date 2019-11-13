@@ -53,11 +53,12 @@ li {
 /* -BUTTONS- */
 button {
   font-family: 'Muli', sans-serif;
-  padding: 5px 10px;
+  padding: 5px 8px;
   border-radius: 5px;
   font-variant: small-caps;
   background-color: transparent;
   color: rgb(1,110,207);
+  font-size: 17px;
 }
 
 button:focus, button:active, button:hover {
@@ -71,7 +72,7 @@ button:focus, button:active, button:hover {
 }
 
 .btns_sidebyside > button:first-child {
-  margin-right: 10px;
+  margin-right: 20px;
 }
 
 .btns_stacked {
@@ -80,6 +81,30 @@ button:focus, button:active, button:hover {
 
 .btns_stacked > button:first-child {
   margin-bottom: 10px;
+}
+
+.create_btn, .back_btn, .edit_btn, .delete_btn {
+  padding: 10px 25px;
+}
+
+.submit_btn {
+  border: 1px solid rgb(1,110,207);
+  font-weight: bold;
+}
+
+.create_btn, .edit_btn, .back_btn {
+  color: rgb(140,178,217);
+  border: 1px solid rgb(140,178,217);
+}
+
+.delete_btn {
+  border: 1px solid rgb(255,0,0);
+  color: rgb(255,0,0);
+}
+
+.delete_btn:hover, .delete_btn:focus {
+  background-color: rgba(255,0,0, 0.8);
+  color: #fff;
 }
 
 /* -NAV- */
@@ -157,6 +182,7 @@ button:focus, button:active, button:hover {
   display: flex;
   flex-direction: column;
   align-items: center;
+
 }
 
 #get_started_btn, #sign_in_btn {
@@ -185,6 +211,28 @@ button:focus, button:active, button:hover {
 #signup, #login {
   margin-top: 50px;
 }
+
+#landing_center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  position: absolute;
+  text-align: center;
+  top:210px;
+}
+
+.landing_form {
+  position:relative;
+  top: 100px;
+
+  text-align: center;
+}
+
+.form_greeting, #landing_tagline {
+  color: rgb(199,170,27);
+}
+
 
 /* =====HOME===== */
 #new_reflection_form, #edit_reflection_form {
