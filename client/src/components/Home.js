@@ -26,7 +26,10 @@ class Home extends Component {
       reflectionsFetchError: false,
 
       editedReflectionSubmitSuccess: false,
-      editedReflectionSubmitError: false
+      editedReflectionSubmitError: false,
+
+      deleteReflectionSuccess: false,
+      deleteReflectionError: false
     }
   }
 
@@ -153,18 +156,6 @@ handleReflectionsListFetch = (e) => {
 
 }
 
-renderAllReflections() {
-  return this.state.reflectionsDisplay.map((reflection, index) => {
-    return <Reflection
-      subject={reflection.subject}
-      tidbit={reflection.tidbit}
-      edit={this.handleEdit}
-      delete={() => this.handleDelete(reflection, index)}
-      id={reflection.id}
-      key={index} />
-  })
-}
-
 handleEdit = (reflection, reflection_id) => {
   fetch(`http://localhost:8081/reflection/update-${reflection_id}`, {
       method: 'PUT',
@@ -226,9 +217,55 @@ handleEdit = (reflection, reflection_id) => {
 
 }
 
-handleDelete = (reflection, reflection_id) => {
+  handleDelete = (reflection, reflection_id) => {
+    try{
 
+      fetch(`http://localhost:8081/reflection/delete-${reflection_id}`, {
+          method: 'DELETE',
+          headers: {
+            "Authorization": "Bearer " + localStorage.getItem('user'),
+            'Content-Type' : 'application/json'
+          }
+        })
+
+      .then(res => {
+         console.log(res, "res from delete");
+
+        const updatedReflectionsDisplayList = this.state.reflectionsDisplay;
+
+        updatedReflectionsDisplayList.splice(reflection_id, 1);
+
+        this.setState({
+              reflectionsDisplay: updatedReflectionsDisplayList,
+              deleteReflectionSuccess: !this.state.deleteReflectionSuccess
+            })
+
+        console.log(this.state.reflectionsDisplay, "after setstate");
+
+      })
+
+    } catch(error) {
+      console.log(`Error In Deleting Reflection: ${error}`);
+
+      this.setState({
+        deleteReflectionError: !this.state.deleteReflectionError
+      })
+    }
+  }
+
+renderAllReflections() {
+  return this.state.reflectionsDisplay.map((reflection, index) => {
+    return <Reflection
+      subject={reflection.subject}
+      tidbit={reflection.tidbit}
+      edit={this.handleEdit}
+      delete={() => this.handleDelete(reflection, reflection.id)}
+      id={reflection.id}
+      key={index} />
+  })
 }
+
+
 
   render(){
 

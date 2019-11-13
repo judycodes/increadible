@@ -109,7 +109,7 @@ class Reflection extends Component {
           <div className="btns_stacked">
 
             <button className="edit_btn" onClick={this.editModeActivated}>edit</button>
-            <button className="delete_btn" onClick={this.handleDelete}>delete</button>
+            <button className="delete_btn" onClick={this.props.delete}>delete</button>
 
           </div>
 

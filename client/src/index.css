@@ -59,6 +59,7 @@ button {
   background-color: transparent;
   color: rgb(1,110,207);
   font-size: 17px;
+  text-align: center;
 }
 
 button:focus, button:active, button:hover {
@@ -83,7 +84,7 @@ button:focus, button:active, button:hover {
   margin-bottom: 10px;
 }
 
-.create_btn, .back_btn, .edit_btn, .delete_btn {
+.create_btn, .back_btn {
   padding: 10px 25px;
 }
 
@@ -107,6 +108,11 @@ button:focus, button:active, button:hover {
   color: #fff;
 }
 
+.edit_btn, .delete_btn {
+  min-width: 70px;
+  max-width: 70px;
+  padding: 10px;
+}
 /* -NAV- */
 #brand {
   font-size: 30px;
