@@ -18,11 +18,11 @@ class Goal extends Component{
     this.getUserGoal();
   }
 
-  // componentDidUpdate(prevState) {
-  //   if(prevState.currentGoal !== this.state.currentGoal){
-  //     this.getUserGoal();
-  //   }
-  // }
+  componentDidUpdate(prevState) {
+    if(prevState.currentGoal !== this.state.currentGoal){
+      this.getUserGoal();
+    }
+  }
 
 
   getUserGoal() {
@@ -44,7 +44,7 @@ class Goal extends Component{
       .then(res => {
 
         if(res.goal !== null) {
-          console.log("hi");
+
           this.setState({
             currentGoal: res.goal,
             goalFetchSuccess: !this.state.goalFetchSuccess

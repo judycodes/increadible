@@ -100,11 +100,11 @@ button:focus, button:active, button:hover {
 
 .delete_btn {
   border: 1px solid rgb(255,0,0);
-  color: rgb(255,0,0);
+  color: rgb(251,79,79);
 }
 
 .delete_btn:hover, .delete_btn:focus {
-  background-color: rgba(255,0,0, 0.8);
+  background-color: rgba(251,79,79, 0.8);
   color: #fff;
 }
 
@@ -279,7 +279,7 @@ button:focus, button:active, button:hover {
   display: flex;
   flex-direction: column;
   align-items: center;
-
+  overflow: scroll;
 
 }
 

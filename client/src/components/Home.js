@@ -356,7 +356,7 @@ generateRandomFact = () => {
 
         <div id="reflections_container" style={{ display: this.state.reflectionsFetchSuccess ? 'block' : 'none'}}>
         <h2 id="growth_title">Your Growth</h2>
-        <div id="reflections_content">
+        <div id="reflections_content" className="scrollbar">
           {this.state.reflectionsFetchSuccess ? this.renderAllReflections() : <p>No reflections yet? Start writing one now!</p>}
         </div>
         </div>
