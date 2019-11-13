@@ -227,15 +227,14 @@ showFact = () => {
 
     </div>
 
+    <div id="fact_card" style={{display: this.state.showFactStatus ? 'block' : 'none'}}>
+      <h2 id="fact_card_title">Random Fact:</h2>
+      {this.state.randomFact ?
+        <RandomFact fact={this.state.randomFact} generateRandomFact={this.generateRandomFact}/> :
+        'Random Fact Loading...Why don\'t you reflect in the meantime?'}
+    </div>
+
       <div id="searchResults_container">
-      <div id="fact_card" style={{display: this.state.showFactStatus ? 'block' : 'none'}}>
-        <h2 id="fact_card_title">Random Fact:</h2>
-        {this.state.randomFact ?
-          <RandomFact fact={this.state.randomFact} generateRandomFact={this.generateRandomFact}/> :
-          'Random Fact Loading...Why don\'t you reflect in the meantime?'}
-      </div>
-
-
         {searchResultsContent}
       </div>
 

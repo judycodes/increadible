@@ -445,13 +445,13 @@ button:focus, button:active, button:hover {
   padding: 20px 0px;
   overflow-y: scroll;
   height: 60%;
-  margin-top: 30px;
+  margin: 30px 0;
 }
 
 .search_result_card {
   margin-bottom: 5px;
   margin-right: 10px;
-  padding: 0 20px 20px;
+  padding: 0 10px 20px;
   border-bottom: 1px dotted rgba(255, 255, 255, 0.5);
 }
 
@@ -464,7 +464,7 @@ button:focus, button:active, button:hover {
   overflow: hidden;
   white-space: nowrap;
   font-variant: normal;
-  width: 500px;
+  width: 540px;
   color: rgba(255, 255, 255, 0.7);
 
 }
@@ -484,6 +484,7 @@ button:focus, button:active, button:hover {
   border: 1px solid #fff;
   border-radius: 5px;
   color: #fff;
+  margin-top: 10px;
 }
 
 #random_fact_container {
@@ -497,13 +498,14 @@ button:focus, button:active, button:hover {
   color: rgb(251,201,61);
   text-shadow: 1px 1px rgb(251,201,61);
   letter-spacing: 2px;
+  font-size: 27px;
 }
 
 #random_fact_content {
   max-width: 350px;
   text-align: center;
   color: #fff;
-
+  font-size: 23px;
 }
 
 #random_fact_btn {
@@ -516,6 +518,7 @@ button:focus, button:active, button:hover {
   border: 1px solid lightgrey;
   padding: 10px 15px;
   border-radius: 5px;
+  margin-top: 30px;
 }
 
 /* -QUOTE STYLING- */
