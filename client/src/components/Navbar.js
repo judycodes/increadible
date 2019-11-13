@@ -8,8 +8,9 @@ const Navbar = () => {
     return (
       <div id="navbar">
         <div id="brand_div">
-          <img src={logo} className = "logo" alt="increadible logo"/>
-          <Link id="brand" to="/home">INCREADIBLE</Link>
+          <Link id="brand" to="/home">
+            <img src={logo} className = "logo" alt="increadible logo"/>
+          </Link>
         </div>
 
         <ul id="nav_links" className="fade">
@@ -21,16 +22,11 @@ const Navbar = () => {
           <li>
             <Link className="nav_link" to="/home">
               <i className="fas fa-book"></i>
-              <i className="fas fa-home"></i>
             </Link></li>
           <li>
             <Link className="nav_link" to="/about">
               <i className="far fa-question-circle"></i>
             </Link></li>
-
-          <li>
-            <i className="fas fa-door-open nav_link"></i>
-          </li>
 
         </ul>
       </div>

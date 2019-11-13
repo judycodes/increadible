@@ -393,7 +393,7 @@ componentDidMount(){
           </label>
 
           <div className="btns_sidebyside">
-            <button className="create_btn" onClick={this.handleReflectionsListFetch}>{this.state.reflectionsFetchSuccess ? 'hide reflections' : 'saved progress'}</button>
+            <button className="create_btn" onClick={this.handleReflectionsListFetch}>{this.state.reflectionsFetchSuccess ? 'hide reflections' : 'show progress'}</button>
             <button className="submit_btn" type="submit" onClick={this.handleNewReflectionSubmit} >submit</button>
           </div>
 
