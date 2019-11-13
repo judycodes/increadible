@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 
 //custom components
 import Navbar from './Navbar';
-import RandomFact from './RandomFact';
 import Reflection from './Reflection';
 
 import Goal from './Goal';
@@ -12,10 +11,6 @@ class Home extends Component {
     super(props);
 
     this.state = {
-
-      randomFactFetchSuccess: false,
-      randomFactFetchError: false,
-      randomFact: 'Perhaps the most famous comic cat is the Cheshire Cat in Lewis Carroll’s Alice in Wonderland. With the ability to disappear, this mysterious character embodies the magic and sorcery historically associated with cats.',
 
       newReflectionSubject: '',
       newReflectionTidbit: '',
@@ -108,36 +103,6 @@ componentDidMount(){
 
     })
 
-  }
-
-//Cat Fact Generator/GET FACT API REQUEST
-  generateRandomFact = () => {
-
-    try{
-
-     fetch('https://catfact.ninja/fact?max_length=140')
-
-     .then(res => {
-       return res.json();
-     })
-
-     .then(res => {
-       if(res.fact !== ''){
-         this.setState({
-           randomFactFetchSuccess: !this.state.randomFactFetchSuccess,
-           randomFact: res.fact
-         })
-       }
-     })
-
-    } catch(error) {
-
-      console.log(`Random Fact Fetch error: ${error}`);
-
-      this.setState({
-        randomFactFetchError: !this.state.randomFactFetchError
-      })
-  }
   }
 
 //REFLECTION METHODS
@@ -357,11 +322,7 @@ componentDidMount(){
 
       <div id="home_content">
 
-        <div id="random_fact_section">
-          {this.state.randomFact ?
-            <RandomFact fact={this.state.randomFact} generateRandomFact={this.generateRandomFact}/> :
-            'Random Fact Loading...Why don\'t you reflect in the meantime?'}
-        </div>
+
 
         <div id="reflections_display">
 
