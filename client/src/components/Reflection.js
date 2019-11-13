@@ -90,8 +90,8 @@ class Reflection extends Component {
                 onChange = {this.handleTidbitInputChange}/>
 
             <div className="btns_sidebyside">
-              <button className="submit_btn" type="submit">Save</button>
-              <button className="back_btn" onClick={this.editModeActivated}>Cancel</button>
+              <button className="submit_btn" type="submit"><i className="far fa-save"></i></button>
+              <button className="back_btn" onClick={this.editModeActivated}><i className="far fa-window-close"></i></button>
             </div>
 
         </form>
@@ -110,8 +110,8 @@ class Reflection extends Component {
 
           <div className="btns_stacked">
 
-            <button className="edit_btn" onClick={this.editModeActivated}>edit</button>
-            <button className="delete_btn" onClick={this.props.delete}>delete</button>
+            <button className="edit_btn" onClick={this.editModeActivated}><i className="far fa-edit"></i></button>
+            <button className="delete_btn" onClick={this.props.delete}><i className="fas fa-trash-alt"></i></button>
 
           </div>
 

@@ -174,7 +174,7 @@ handleSearchInput = (e) => {
         href="https://en.wikipedia.org/wiki/Special:Random"
         id="random_search"
         target="_blank"
-        rel="noopener noreferrer">random</a>
+        rel="noopener noreferrer"><i className="fas fa-random"></i></a>
 
     </div>
 

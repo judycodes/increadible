@@ -149,6 +149,7 @@ button:focus, button:active, button:hover {
   font-size: 30px;
   padding: 0 1rem;
   transition: opacity 0.2s;
+  color: rgb(30,149,254);
 }
 
 #nav_links > li {

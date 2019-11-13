@@ -140,7 +140,7 @@ componentDidMount(){
   }
   }
 
-//CREATE REFLECTION METHODS
+//REFLECTION METHODS
   //INPUT ONCHANGE FROM CREATE REFLECTION FORM
   handleInputChange = (e) => {
 
@@ -348,7 +348,7 @@ componentDidMount(){
   }
 
   render(){
-    console.log(this.state.userGoal, "user goal");
+
     return(
 
       <div id="home_container">
