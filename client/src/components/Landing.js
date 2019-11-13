@@ -142,7 +142,7 @@ class Landing extends Component {
       }
   }
 
-//LOGGED IN USER REDIRECT AND SAVES TOKEN
+//LOGGED IN USER REDIRECT AND SAVES TOKEN, ERROR HANDLES IF USERNAME ALREADY EXISTS ON SIGNUP
  handleActiveUser = () => {
 
   if((this.state.userInfo.res.token !== null && this.state.userInfo.res.error !== 'IM Used') && this.state.userInfo.res.status !== '500') {
@@ -163,8 +163,14 @@ class Landing extends Component {
      this.setState({
        userActiveError : !this.state.userActiveError
      })
-     alert('Username is already taken. Please choose another.');
-     console.log("Error in handling active user");
+
+     if(this.state.userInfo.res.error === 'IM Used'){
+      alert('Username is already taken. Please choose another.');
+    } else {
+      alert('Check your credentials and try again.');
+    }
+
+
    }
  }
 
