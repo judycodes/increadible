@@ -21,10 +21,12 @@ class Home extends Component {
       newReflectionSubmitError: false,
       updatedReflectionsDisplay: false,
 
-
       reflectionsDisplay: [],
       reflectionsFetchSuccess: false,
-      reflectionsFetchError: false
+      reflectionsFetchError: false,
+
+      editedReflectionSubmitSuccess: false,
+      editedReflectionSubmitError: false
     }
   }
 
@@ -182,7 +184,41 @@ handleEdit = (reflection, reflection_id) => {
     })
 
     .then(res => {
-      console.log(res, "res from edit");
+
+      const updatedReflectionsDisplayList = this.state.reflectionsDisplay;
+
+      updatedReflectionsDisplayList.map((reflection) => {
+
+        let index;
+
+        if(reflection.id === reflection_id) {
+
+          index = this.state.reflectionsDisplay.indexOf(reflection);
+
+          [...this.state.reflectionsDisplay[index].subject] = res.subject;
+          [...this.state.reflectionsDisplay[index].tidbit] = res.tidbit;
+          return this.state.reflectionsDisplay[index];
+        } else {
+          return reflection;
+         }
+
+       })
+
+      this.setState({
+
+        editedReflectionSubmitSuccess: !this.state.editedReflectionSubmitSuccess,
+        reflectionsDisplay: updatedReflectionsDisplayList
+
+      })
+
+     })
+
+    .catch(error => {
+      console.log('Error In Edited Reflection Submission:', error);
+
+      this.setState({
+        editedReflectionSubmitError: !this.state.editedReflectionSubmitError
+      })
     })
 
 

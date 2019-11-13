@@ -51,10 +51,9 @@ class Reflection extends Component {
       }
     })
 
-    console.log(this.state.updatedReflection.subject, "subject updated, changed");
-}
+  }
 
-handleTidbitInputChange = (e) => {
+  handleTidbitInputChange = (e) => {
 
   e.preventDefault();
 
@@ -65,9 +64,7 @@ handleTidbitInputChange = (e) => {
       }
     })
 
-    console.log(this.state.updatedReflection.tidbit, "tidbit edited, changed");
-
-}
+  }
 
   render(){
     // console.log(this.props.id, "id of reflection");
