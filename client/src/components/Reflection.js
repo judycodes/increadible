@@ -7,8 +7,8 @@ class Reflection extends Component {
     this.state = {
       editMode: false,
       updatedReflection: {
-        subject: '',
-        tidbit: ''
+        subject: this.props.subject,
+        tidbit: this.props.tidbit
       }
     }
   }
@@ -67,7 +67,7 @@ class Reflection extends Component {
   }
 
   render(){
-    // console.log(this.props.id, "id of reflection");
+
     let reflection;
 
     if(this.state.editMode){

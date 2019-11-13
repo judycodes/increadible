@@ -195,9 +195,13 @@ handleEdit = (reflection, reflection_id) => {
 
           index = this.state.reflectionsDisplay.indexOf(reflection);
 
-          [...this.state.reflectionsDisplay[index].subject] = res.subject;
-          [...this.state.reflectionsDisplay[index].tidbit] = res.tidbit;
+
+
+          updatedReflectionsDisplayList[index].subject = res.subject;
+          updatedReflectionsDisplayList[index].tidbit = res.tidbit;
+
           return this.state.reflectionsDisplay[index];
+          
         } else {
           return reflection;
          }
