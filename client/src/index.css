@@ -4,14 +4,19 @@ font-family: 'Quicksand', sans-serif;
 font-family: 'Muli', sans-serif;
 */
 
+/* COLORS */
+/* yellow - #fbc93d	(251,201,61)
+blue - #6cc0e5	(108,192,229)
+red - #fb4f4f	(251,79,79) */
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  letter-spacing: 0.5px;
 }
 
 body {
-  /* background-color: #000; */
   background-color: #fff;
 }
 
@@ -34,7 +39,7 @@ textarea {
 
 /* -GLOBAL IMAGES- */
 .logo {
-  width: 80px;
+  width: 50px;
   border-radius: 2px;
   margin: 0;
   padding: 0;
@@ -45,12 +50,13 @@ textarea {
   color: rgb(1,110,207);
 }
 
-.far:visited, .fab:visited {
-  color: rgb(1,110,207);
+.fa-question-circle {
+  font-size: 30px;
 }
 
 #fact_display_toggle {
   margin-left: 15px;
+  color: #fff;
 }
 
 /* -LINKS & LISTTS- */
@@ -58,9 +64,14 @@ a {
   text-decoration: none;
   font-variant: small-caps;
   color: rgb(1,110,207);
+
 }
 
-a:visited,#random-search:visited {
+a:visited,#random-search:visited, #fact_display_toggle:visited, .far:visited, .fab:visited {
+  color: #fff;
+}
+
+a:hover {
   color: rgb(31,149,254);
 }
 
@@ -81,8 +92,8 @@ button {
 }
 
 button:focus, button:active, button:hover {
-  border: 1px solid rgb(199,170,27);
-  color: rgb(199,170,27);
+  border: 1px solid rgb(251,201,61);
+  color: rgb(251,201,61);
   outline: none;
 }
 
@@ -154,7 +165,6 @@ button:focus, button:active, button:hover {
   height: 100%;
   width: 75px;
   box-shadow: 0 2px 7px -1px rgba(0,0,0,0.25);
-
   position:fixed;
   top: 0px;
   left: 0px;
@@ -207,7 +217,7 @@ button:focus, button:active, button:hover {
   font-size: 70px;
   color: #fff;
   font-variant: small-caps;
-  text-shadow: 2px 2px 5px rgb(199,170,27);
+  text-shadow: 2px 2px 5px rgb(251,201,61);
 }
 
 #landing_content {
@@ -221,13 +231,13 @@ button:focus, button:active, button:hover {
 #get_started_btn, #sign_in_btn {
   margin-top: 10px;
   padding: 10px 25px;
-  color: rgb(199,170,27);
+  color: rgb(251,201,61);
   border: none;
   font-size: 20px;
 }
 
 #get_started_btn {
-  border: 1px solid rgb(199,170,27);
+  border: 1px solid rgb(251,201,61);
 }
 
 #sign_in_btn {
@@ -236,9 +246,17 @@ button:focus, button:active, button:hover {
   right: 50px;
 }
 
-#get_started_btn:hover, #sign_in_btn:hover, #search_btn:hover {
-  border: 1px solid rgb(199,170,27);
-  box-shadow: 2px 5px 2px rgb(199,170,27);
+#get_started_btn:hover, #sign_in_btn:hover, #random_fact_btn:hover {
+  border: 1px solid rgb(251,201,61);
+  box-shadow: 1px 1px 2px rgb(251,201,61);
+  color: rgb(251,201,61);
+}
+
+#search_btn:hover {
+  border: 1px solid rgb(251,201,61);
+  box-shadow: 1px 1px 2px rgb(251,201,61);
+  color: rgb(251,201,61);
+  background-color: rgba(0,0,0,0.5);
 }
 
 #signup, #login {
@@ -264,7 +282,7 @@ button:focus, button:active, button:hover {
 }
 
 .form_greeting, #landing_tagline {
-  color: rgb(199,170,27);
+  color: rgb(251,201,61);
 }
 
 
@@ -354,6 +372,15 @@ button:focus, button:active, button:hover {
   align-items: center;
 }
 
+#search_container {
+  padding-top: 50px;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("./assets/search_bg.jpg");
+  background-size: cover;
+  background-position: left;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
 #search_content {
   display: flex;
   flex-direction: column;
@@ -372,6 +399,7 @@ button:focus, button:active, button:hover {
 #search_title {
   text-align: center;
   margin-bottom: 20px;
+  color: #fff;
 }
 
 #search_input {
@@ -389,14 +417,14 @@ button:focus, button:active, button:hover {
 }
 
 #random_search:hover {
-  color: rgb(199,170,27);
+  color: rgb(251,201,61);
 }
 
 #search_btn {
   font-size: 20px;
   line-height: 40px;
   border: none;
-  background-color: #f6f6f6;
+  background-color: rgba(246,246,246, 0.8);
   padding: 0 20px;
   border-radius: 0 20px 20px 0;
   cursor: pointer;
@@ -409,21 +437,26 @@ button:focus, button:active, button:hover {
 
 :focus {
   outline: none;
-  box-shadow: 1px 1px 2px rgb(199,170,27);
+  box-shadow: 1px 1px 2px rgb(251,201,61);
   border-radius: 3px;
 }
 
 #searchResults_container {
   padding: 20px 0px;
   overflow-y: scroll;
-  height: 70%;
+  height: 60%;
   margin-top: 30px;
 }
 
 .search_result_card {
   margin-bottom: 5px;
-  padding: 0 0px 20px;
-  border-bottom: 1px dotted rgba(1,110,207, 0.35);
+  margin-right: 10px;
+  padding: 0 20px 20px;
+  border-bottom: 1px dotted rgba(255, 255, 255, 0.5);
+}
+
+.result_title {
+  color: #fff;
 }
 
 .ellipses {
@@ -432,6 +465,7 @@ button:focus, button:active, button:hover {
   white-space: nowrap;
   font-variant: normal;
   width: 500px;
+  color: rgba(255, 255, 255, 0.7);
 
 }
 
@@ -447,8 +481,9 @@ button:focus, button:active, button:hover {
 
 .read_more_btn {
   font-size: 18px;
-  border: 1px solid rgb(1,110,207);
+  border: 1px solid #fff;
   border-radius: 5px;
+  color: #fff;
 }
 
 #random_fact_container {
@@ -458,13 +493,23 @@ button:focus, button:active, button:hover {
   padding: 10px 20px;
 }
 
+#fact_card_title {
+  color: rgb(251,201,61);
+  text-shadow: 1px 1px rgb(251,201,61);
+  letter-spacing: 2px;
+}
+
 #random_fact_content {
   max-width: 350px;
   text-align: center;
+  color: #fff;
+
 }
+
 #random_fact_btn {
   min-width: 177px;
   margin-left: 10px;
+  color: #fff;
 }
 
 #fact_card {

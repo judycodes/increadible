@@ -2,7 +2,7 @@ import React from 'react'
 import {Link} from 'react-router-dom';
 
 //icons and images
-import logo from '../assets/increadible_logo_black.png';
+import logo from '../assets/increadible_logo_white.png';
 
 const Navbar = () => {
     return (
