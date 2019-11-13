@@ -163,7 +163,7 @@ class Landing extends Component {
      this.setState({
        userActiveError : !this.state.userActiveError
      })
-
+     alert('Username is already taken. Please choose another.');
      console.log("Error in handling active user");
    }
  }
