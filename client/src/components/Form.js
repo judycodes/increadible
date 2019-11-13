@@ -12,11 +12,9 @@ class Form extends Component {
 
   //INPUT ONCHANGE FRIM SIGNUP/LOGIN FORM
   handleInputChange = (e) => {
-
       this.setState({
         [e.target.name] : e.target.value.trim()
       })
-
   }
 
   //FORM SUBMISSION
@@ -28,7 +26,6 @@ class Form extends Component {
     } else {
       this.props.submitType(this.state);
     }
-
   }
 
   render(){

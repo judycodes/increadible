@@ -144,7 +144,6 @@ handleSearchInput = (e) => {
               title={specificResult.pageTitle}
               snippet={specificResult.pageSnippet}
               />;
-
     });
 
     return(
@@ -155,19 +154,19 @@ handleSearchInput = (e) => {
         <img id="wiki_logo" src={wiki} alt="wikipedia logo"/>
         <h1 id="search_title">Search For Knowledge</h1>
 
-        <div id="search_random">
-      <form id="search_form">
+      <div id="search_random">
+        <form id="search_form">
 
-        <input
-          id="search_input"
-          type="text"
-          onChange={this.handleSearchInput}
-          placeholder='Curious about ...' />
+          <input
+            id="search_input"
+            type="text"
+            onChange={this.handleSearchInput}
+            placeholder='Curious about ...' />
 
-        <button
-          id="search_btn"
-          type='submit'
-          onClick={this.handleSearchSubmit}>enlighten me</button>
+          <button
+            id="search_btn"
+            type='submit'
+            onClick={this.handleSearchSubmit}>enlighten me</button>
 
       </form>
 
@@ -176,7 +175,9 @@ handleSearchInput = (e) => {
         id="random_search"
         target="_blank"
         rel="noopener noreferrer">random</a>
-        </div>
+
+    </div>
+
       <div id="searchResults_container">
         {searchResultsContent}
       </div>

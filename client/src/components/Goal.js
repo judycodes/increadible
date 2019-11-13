@@ -5,69 +5,10 @@ class Goal extends Component{
     super(props);
 
     this.state = {
-      currentGoal: this.props.goal,
       updateGoalStatus: false,
-
-      goalInput: '',
-      goalFetchSuccess: false,
-      goalFetchError: false
+      goalInput: ''
     }
   }
-
-  componentDidMount(){
-    this.getUserGoal();
-  }
-
-  componentDidUpdate(prevState) {
-    if(prevState.currentGoal !== this.state.currentGoal){
-      this.getUserGoal();
-    }
-  }
-
-
-  getUserGoal() {
-
-    try{
-
-      fetch('http://localhost:8081/goal', {
-        method: 'GET',
-        headers: {
-          "Authorization": "Bearer " + localStorage.getItem('user'),
-          'Content-Type' : 'application/json'
-        }
-        })
-
-      .then(res => {
-        return res.json();
-      })
-
-      .then(res => {
-
-        if(res.goal !== null) {
-
-          this.setState({
-            currentGoal: res.goal,
-            goalFetchSuccess: !this.state.goalFetchSuccess
-          })
-
-        } else {
-
-          this.setState({
-            currentGoal: this.props.goal
-          })
-
-        }
-      })
-
-    } catch(error) {
-        console.log(`Error In User Goal Fetch: ${error}`);
-
-        this.setState({
-          goalFetchError: !this.state.goalFetchError
-        })
-    }
-  }
-
 
   handleGoal = (e) => {
     e.preventDefault();
@@ -83,7 +24,6 @@ class Goal extends Component{
   }
 
   handleInputChange= (e) => {
-
     e.preventDefault();
 
     if(e.target.value !== ''){
@@ -94,12 +34,9 @@ class Goal extends Component{
       alert('Identify what you want accomplish and begin accomplishing it!');
     }
 
-
   }
 
-
   updateGoalActive = () => {
-
     this.setState({
       updateGoalStatus: !this.state.updateGoalStatus
     })
@@ -109,12 +46,12 @@ class Goal extends Component{
 
     let goal;
 
-    if(this.state.currentGoal === '' || this.state.updateGoalStatus) {
+    if(this.props.goal === '' || this.state.updateGoalStatus) {
 
       goal = (
         <form id="goal_form" onSubmit={this.handleGoal}>
           <input
-            defaultValue={this.state.currentGoal}
+            defaultValue={this.props.goal}
             name="currentGoal"
             type="text"
             onChange={this.handleInputChange}
@@ -129,7 +66,7 @@ class Goal extends Component{
 
       goal = (
         <div>
-        <h3 id="user_goal">{`GOAL: ${this.state.currentGoal}`}</h3>
+        <h3 id="user_goal">{`GOAL: ${this.props.goal}`}</h3>
 
         <button className="submit_btn" onClick={this.updateGoalActive} type="submit">Update</button>
 

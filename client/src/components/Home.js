@@ -33,40 +33,112 @@ class Home extends Component {
       deleteReflectionSuccess: false,
       deleteReflectionError: false,
 
-      userGoal: ''
+      userGoal: '',
+      goalFetchSuccess: false,
+      goalFetchError: false
 
     }
   }
 
-//Cat Fact Generator/GET FACT API REQUEST
-generateRandomFact = () => {
-
+componentDidMount(){
+  //GET REQUEST FOR USER GOAL STORED IN STATE
   try{
 
-   fetch('https://catfact.ninja/fact?max_length=140')
+      fetch('http://localhost:8081/goal', {
+        method: 'GET',
+        headers: {
+          "Authorization": "Bearer " + localStorage.getItem('user'),
+          'Content-Type' : 'application/json'
+        }
+        })
 
-   .then(res => {
-     return res.json();
-   })
+      .then(res => {
+        return res.json();
+      })
 
-   .then(res => {
-     if(res.fact !== ''){
-       this.setState({
-         randomFactFetchSuccess: !this.state.randomFactFetchSuccess,
-         randomFact: res.fact
-       })
-     }
-   })
+      .then(res => {
 
-  } catch(error) {
+        if(res.goal !== null) {
 
-    console.log(`Random Fact Fetch error: ${error}`);
+          this.setState({
+            userGoal: res.goal,
+            goalFetchSuccess: !this.state.goalFetchSuccess
+          })
 
-    this.setState({
-      randomFactFetchError: !this.state.randomFactFetchError
+        } else {
+
+          this.setState({
+            userGoal: ''
+          })
+
+        }
+      })
+
+    } catch(error) {
+        console.log(`Error In User Goal Fetch: ${error}`);
+
+        this.setState({
+          goalFetchError: !this.state.goalFetchError
+        })
+    }
+}
+
+  //PUT REQUEST TO CREATE/UPDATE USER GOAL
+  handleGoal = goalInput => {
+
+    fetch('http://localhost:8081/goal', {
+        method: 'PUT',
+        headers: {
+          "Authorization": "Bearer " + localStorage.getItem('user'),
+          'Content-Type' : 'application/json'
+        },
+        body: JSON.stringify({
+          goal: goalInput
+        })
+      })
+
+    .then(res => {
+      return res.json();
     })
-}
-}
+
+    .then(res => {
+      this.setState({
+        userGoal: res.goal
+      })
+
+    })
+
+  }
+
+//Cat Fact Generator/GET FACT API REQUEST
+  generateRandomFact = () => {
+
+    try{
+
+     fetch('https://catfact.ninja/fact?max_length=140')
+
+     .then(res => {
+       return res.json();
+     })
+
+     .then(res => {
+       if(res.fact !== ''){
+         this.setState({
+           randomFactFetchSuccess: !this.state.randomFactFetchSuccess,
+           randomFact: res.fact
+         })
+       }
+     })
+
+    } catch(error) {
+
+      console.log(`Random Fact Fetch error: ${error}`);
+
+      this.setState({
+        randomFactFetchError: !this.state.randomFactFetchError
+      })
+  }
+  }
 
 //CREATE REFLECTION METHODS
   //INPUT ONCHANGE FROM CREATE REFLECTION FORM
@@ -262,32 +334,6 @@ generateRandomFact = () => {
     }
   }
 
-  //PUT REQUEST TO CREATE/UPDATE USER GOAL
-  handleGoal = goalInput => {
-
-    fetch('http://localhost:8081/goal', {
-        method: 'PUT',
-        headers: {
-          "Authorization": "Bearer " + localStorage.getItem('user'),
-          'Content-Type' : 'application/json'
-        },
-        body: JSON.stringify({
-          goal: goalInput
-        })
-      })
-
-    .then(res => {
-      return res.json();
-    })
-
-    .then(res => {
-      this.setState({
-        userGoal: res.goal
-      })
-    })
-
-  }
-
   //DISPLAY ALL USER REFLECTIONS
   renderAllReflections() {
     return this.state.reflectionsDisplay.map((reflection, index) => {
@@ -302,7 +348,7 @@ generateRandomFact = () => {
   }
 
   render(){
-
+    console.log(this.state.userGoal, "user goal");
     return(
 
       <div id="home_container">

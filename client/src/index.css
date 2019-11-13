@@ -225,12 +225,12 @@ button:focus, button:active, button:hover {
 
   position: absolute;
   text-align: center;
-  top:210px;
+  top:300px;
 }
 
 .landing_form {
   position:relative;
-  top: 100px;
+  top: 40px;
 
   text-align: center;
   width: 100vw;
@@ -387,7 +387,7 @@ button:focus, button:active, button:hover {
 }
 
 #searchResults_container {
-  padding: 20px 50px;
+  padding: 20px 0px;
   overflow-y: scroll;
   height: 70%;
   margin-top: 50px;
@@ -395,7 +395,7 @@ button:focus, button:active, button:hover {
 
 .search_result_card {
   margin-bottom: 5px;
-  padding: 0 30px 20px;
+  padding: 0 0px 20px;
   border-bottom: 1px dotted rgba(1,110,207, 0.35);
 }
 
