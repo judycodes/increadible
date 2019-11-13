@@ -5,7 +5,7 @@ class Goal extends Component{
     super(props);
 
     this.state = {
-      currentGoal: '',
+      currentGoal: this.props.goal,
       updateGoalStatus: false,
 
       goalInput: '',
@@ -14,36 +14,58 @@ class Goal extends Component{
     }
   }
 
-  getGoal() {
-    fetch('http://localhost:8081/goal', {
-      method: 'GET',
-      headers: {
-        "Authorization": "Bearer " + localStorage.getItem('user'),
-        'Content-Type' : 'application/json'
-      }
+  componentDidMount(){
+    this.getUserGoal();
+  }
+
+  // componentDidUpdate(prevState) {
+  //   if(prevState.currentGoal !== this.state.currentGoal){
+  //     this.getUserGoal();
+  //   }
+  // }
+
+
+  getUserGoal() {
+
+    try{
+
+      fetch('http://localhost:8081/goal', {
+        method: 'GET',
+        headers: {
+          "Authorization": "Bearer " + localStorage.getItem('user'),
+          'Content-Type' : 'application/json'
+        }
+        })
+
+      .then(res => {
+        return res.json();
       })
 
-    .then(res => {
-      return res.json();
-    })
+      .then(res => {
 
-    .then(res => {
-      console.log(res, "res from get user goal");
+        if(res.goal !== null) {
+          console.log("hi");
+          this.setState({
+            currentGoal: res.goal,
+            goalFetchSuccess: !this.state.goalFetchSuccess
+          })
 
-      // if(res.goal !== null) {
-      //
-      //   this.setState({
-      //     currentGoal: res.goal
-      //   })
-      //
-      // } else {
-      //
-      //   this.setState({
-      //     currentGoal: ''
-      //   })
-      //
-      // }
-    })
+        } else {
+
+          this.setState({
+            currentGoal: this.props.goal
+          })
+
+        }
+      })
+
+    } catch(error) {
+        console.log(`Error In User Goal Fetch: ${error}`);
+
+        this.setState({
+          goalFetchError: !this.state.goalFetchError
+        })
+    }
   }
 
 
@@ -52,25 +74,24 @@ class Goal extends Component{
 
     if(this.state.goalInput !== '') {
       this.props.handleGoal(this.state.goalInput);
-
-      console.log(this.state.goalInput, "goal input");
     }
 
     this.setState({
       updateGoalStatus: !this.state.updateGoalStatus
     })
+
   }
 
   handleInputChange= (e) => {
 
     e.preventDefault();
 
-    if(e.target.value.trim() !== ''){
+    if(e.target.value !== ''){
       this.setState({
         goalInput: e.target.value.trim()
       })
     } else {
-      alert('Identify what you want accomplish and take your first step in realizing it!');
+      alert('Identify what you want accomplish and begin accomplishing it!');
     }
 
 
@@ -78,6 +99,7 @@ class Goal extends Component{
 
 
   updateGoalActive = () => {
+
     this.setState({
       updateGoalStatus: !this.state.updateGoalStatus
     })
@@ -87,7 +109,8 @@ class Goal extends Component{
 
     let goal;
 
-    if(this.state.currentGoal === '') {
+    if(this.state.currentGoal === '' || this.state.updateGoalStatus) {
+
       goal = (
         <form id="goal_form" onSubmit={this.handleGoal}>
           <input
@@ -103,8 +126,14 @@ class Goal extends Component{
         </form>
       )
     } else {
+
       goal = (
-        <h3 id="user_goal">GOAL: {this.state.currentGoal}</h3>
+        <div>
+        <h3 id="user_goal">{`GOAL: ${this.state.currentGoal}`}</h3>
+
+        <button className="submit_btn" onClick={this.updateGoalActive} type="submit">Update</button>
+
+        </div>
       )
     }
 

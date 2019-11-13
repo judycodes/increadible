@@ -31,7 +31,9 @@ class Home extends Component {
       editedReflectionSubmitError: false,
 
       deleteReflectionSuccess: false,
-      deleteReflectionError: false
+      deleteReflectionError: false,
+
+      userGoal: ''
 
     }
   }
@@ -262,7 +264,6 @@ generateRandomFact = () => {
 
   //PUT REQUEST TO CREATE/UPDATE USER GOAL
   handleGoal = goalInput => {
-    console.log(goalInput, 'goal input from home');
 
     fetch('http://localhost:8081/goal', {
         method: 'PUT',
@@ -280,7 +281,9 @@ generateRandomFact = () => {
     })
 
     .then(res => {
-      console.log(res, "res from get user goal");
+      this.setState({
+        userGoal: res.goal
+      })
     })
 
   }
@@ -362,7 +365,9 @@ generateRandomFact = () => {
 
         </div>
 
-        <Goal handleGoal={this.handleGoal} />
+        <Goal
+          handleGoal={this.handleGoal}
+          goal={this.state.userGoal}/>
 
       </div>
     )
