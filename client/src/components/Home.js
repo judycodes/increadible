@@ -5,6 +5,8 @@ import Navbar from './Navbar';
 import RandomFact from './RandomFact';
 import Reflection from './Reflection';
 
+import Goal from './Goal';
+
 class Home extends Component {
   constructor(props){
     super(props);
@@ -30,19 +32,22 @@ class Home extends Component {
 
       deleteReflectionSuccess: false,
       deleteReflectionError: false
+
     }
   }
 
+//Cat Fact Generator/GET FACT API REQUEST
 generateRandomFact = () => {
+
   try{
+
    fetch('https://catfact.ninja/fact?max_length=140')
+
    .then(res => {
      return res.json();
    })
-   .then(res => {
-     console.log(res, "entire fact res");
-     console.log(res.fact);
 
+   .then(res => {
      if(res.fact !== ''){
        this.setState({
          randomFactFetchSuccess: !this.state.randomFactFetchSuccess,
@@ -52,28 +57,33 @@ generateRandomFact = () => {
    })
 
   } catch(error) {
-  console.log(`Random Fact Fetch error: ${error}`);
 
-  this.setState({
-    randomFactFetchError: !this.state.randomFactFetchError
-  })
-}
-}
-
-handleInputChange = (e) => {
+    console.log(`Random Fact Fetch error: ${error}`);
 
     this.setState({
-      [e.target.name] : e.target.value
+      randomFactFetchError: !this.state.randomFactFetchError
     })
-
+}
 }
 
-handleNewReflectionSubmit = (e) => {
-  e.preventDefault();
+//CREATE REFLECTION METHODS
+  //INPUT ONCHANGE FROM CREATE REFLECTION FORM
+  handleInputChange = (e) => {
 
-  if(this.state.newReflectionSubject.trim() !== '' && this.state.newReflectionTidbit.trim() !== '') {
+      this.setState({
+        [e.target.name] : e.target.value
+      })
 
-    try{
+  }
+
+  //POST NEW REFLECTION API REQUEST
+  handleNewReflectionSubmit = (e) => {
+
+    e.preventDefault();
+
+    if(this.state.newReflectionSubject.trim() !== '' && this.state.newReflectionTidbit.trim() !== '') {
+
+      try{
 
         fetch('http://localhost:8081/reflection/create', {
         method: 'POST',
@@ -85,14 +95,13 @@ handleNewReflectionSubmit = (e) => {
           subject: this.state.newReflectionSubject,
           tidbit: this.state.newReflectionTidbit
         })
-      })
+        })
 
         .then(res => {
           return res.json();
         })
 
         .then(res => {
-          console.log(res, "create reflection res");
 
           let updatedReflectionsDisplayList = [...this.state.reflectionsDisplay];
 
@@ -106,57 +115,60 @@ handleNewReflectionSubmit = (e) => {
 
         })
 
+      } catch(error) {
+
+        console.log(`Create Reflection Submission Error: ${error}`);
+
+        this.setState({
+          newReflectionSubmitError: !this.state.newReflectionSubmitError
+        })
+      }
+
+    } else {
+
+      alert("Have something to reflect on? Write it down, before you forget!");
+
+    }
+  }
+
+  //GET ALL USER REFLECTIONS API REQUEST TO STORE IN STATE
+  handleReflectionsListFetch = (e) => {
+    e.preventDefault();
+
+    try{
+      fetch('http://localhost:8081/reflection/listUserReflections', {
+      headers: {
+        "Authorization": "Bearer " + localStorage.getItem('user'),
+        'Content-Type' : 'application/json'
+      }
+    })
+
+      .then(res => {
+        return res.json();
+      })
+
+      .then(res => {
+
+        this.setState({
+          reflectionsDisplay: res,
+          reflectionsFetchSuccess: !this.state.reflectionsFetchSuccess
+        })
+
+      })
+
     } catch(error) {
-      console.log(`Create Reflection Submission Error: ${error}`);
+      console.log(`Rendering All User Reflections Error: ${error}`);
 
       this.setState({
-        newReflectionSubmitError: !this.state.newReflectionSubmitError
+        reflectionsFetchError: !this.state.reflectionsFetchError
       })
     }
 
-  } else {
-
-    alert("Have something to reflect on? Write it down, before you forget!");
-
-  }
-}
-
-handleReflectionsListFetch = (e) => {
-  e.preventDefault();
-
-  try{
-    fetch('http://localhost:8081/reflection/listUserReflections', {
-    headers: {
-      "Authorization": "Bearer " + localStorage.getItem('user'),
-      'Content-Type' : 'application/json'
-    }
-  })
-
-    .then(res => {
-      return res.json();
-    })
-
-    .then(res => {
-
-      this.setState({
-        reflectionsDisplay: res,
-        reflectionsFetchSuccess: !this.state.reflectionsFetchSuccess
-      })
-
-      console.log(this.state.reflectionsDisplay, "reflectionsDisplay");
-
-    })
-  } catch(error) {
-    console.log(`Rendering All User Reflections Error: ${error}`);
-
-    this.setState({
-      reflectionsFetchError: !this.state.reflectionsFetchError
-    })
   }
 
-}
+  //PUT REQUEST TO UPDATE REFLECTION
+  handleEdit = (reflection, reflection_id) => {
 
-handleEdit = (reflection, reflection_id) => {
   fetch(`http://localhost:8081/reflection/update-${reflection_id}`, {
       method: 'PUT',
       headers: {
@@ -203,7 +215,6 @@ handleEdit = (reflection, reflection_id) => {
         reflectionsDisplay: updatedReflectionsDisplayList
 
       })
-
      })
 
     .catch(error => {
@@ -213,10 +224,9 @@ handleEdit = (reflection, reflection_id) => {
         editedReflectionSubmitError: !this.state.editedReflectionSubmitError
       })
     })
-
-
 }
 
+  //DELETE REQUEST FOR SPECIFIED REFLECTION
   handleDelete = (reflection, index) => {
     try{
 
@@ -229,21 +239,15 @@ handleEdit = (reflection, reflection_id) => {
         })
 
       .then(res => {
-         console.log(res, "res from delete");
 
         const updatedReflectionsDisplayList = this.state.reflectionsDisplay;
 
         updatedReflectionsDisplayList.splice(index, 1);
 
-        console.log(updatedReflectionsDisplayList, "updatedReflectionsDisplay");
-        console.log(this.state.reflectionsDisplay, "after splice");
-
         this.setState({
               reflectionsDisplay: updatedReflectionsDisplayList,
               deleteReflectionSuccess: !this.state.deleteReflectionSuccess
             })
-
-        console.log(this.state.reflectionsDisplay, "after setstate");
 
       })
 
@@ -256,19 +260,43 @@ handleEdit = (reflection, reflection_id) => {
     }
   }
 
-renderAllReflections() {
-  return this.state.reflectionsDisplay.map((reflection, index) => {
-    return <Reflection
-      subject={reflection.subject}
-      tidbit={reflection.tidbit}
-      edit={this.handleEdit}
-      delete={() => this.handleDelete(reflection, index)}
-      id={reflection.id}
-      key={index} />
-  })
-}
+  //PUT REQUEST TO CREATE/UPDATE USER GOAL
+  handleGoal = goalInput => {
+    console.log(goalInput, 'goal input from home');
 
+    fetch('http://localhost:8081/goal', {
+        method: 'PUT',
+        headers: {
+          "Authorization": "Bearer " + localStorage.getItem('user'),
+          'Content-Type' : 'application/json'
+        },
+        body: JSON.stringify({
+          goal: goalInput
+        })
+      })
 
+    .then(res => {
+      return res.json();
+    })
+
+    .then(res => {
+      console.log(res, "res from get user goal");
+    })
+
+  }
+
+  //DISPLAY ALL USER REFLECTIONS
+  renderAllReflections() {
+    return this.state.reflectionsDisplay.map((reflection, index) => {
+      return <Reflection
+        subject={reflection.subject}
+        tidbit={reflection.tidbit}
+        edit={this.handleEdit}
+        delete={() => this.handleDelete(reflection, index)}
+        id={reflection.id}
+        key={index} />
+    })
+  }
 
   render(){
 
@@ -334,6 +362,7 @@ renderAllReflections() {
 
         </div>
 
+        <Goal handleGoal={this.handleGoal} />
 
       </div>
     )

@@ -10,30 +10,26 @@ class Form extends Component {
     }
   }
 
-    handleInputChange = (e) => {
+  //INPUT ONCHANGE FRIM SIGNUP/LOGIN FORM
+  handleInputChange = (e) => {
 
-        this.setState({
-          [e.target.name] : e.target.value.trim()
-        })
+      this.setState({
+        [e.target.name] : e.target.value.trim()
+      })
 
+  }
+
+  //FORM SUBMISSION
+  handleSubmit = (e) => {
+    e.preventDefault();
+
+    if(this.state.username === '' || this.state.password === '') {
+      alert("Please provide valid inputs.");
+    } else {
+      this.props.submitType(this.state);
     }
 
-    handleSubmit = (e) => {
-      e.preventDefault();
-
-      if(this.state.username === '' || this.state.password === '') {
-        alert("Please provide valid inputs.");
-        console.log(this.state.username, "username input");
-        console.log(this.state.password, "password input");
-
-      } else {
-
-        this.props.submitType(this.state);
-        console.log(this.state, "state object passed");
-        console.log(this.props.submitType, "submitType");
-      }
-
-    }
+  }
 
   render(){
     return (

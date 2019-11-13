@@ -233,6 +233,7 @@ button:focus, button:active, button:hover {
   top: 100px;
 
   text-align: center;
+  width: 100vw;
 }
 
 .form_greeting, #landing_tagline {

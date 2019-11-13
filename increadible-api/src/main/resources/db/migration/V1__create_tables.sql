@@ -1,3 +1,5 @@
+-- File & Flyway Dependency Can Be Deleted, Unnecessary with Spring Boot Running with Increadible-Api Models
+
 CREATE TABLE users (
     user_id SERIAL PRIMARY KEY,
     username VARCHAR(255) UNIQUE NOT NULL,

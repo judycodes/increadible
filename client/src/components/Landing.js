@@ -27,7 +27,6 @@ class Landing extends Component {
   }
 
 //SIGN UP METHODS
-
   //RENDERS SIGNUP FORM
   handleSignupClick = () => {
 
@@ -41,58 +40,57 @@ class Landing extends Component {
   signup = (user) => {
     try{
 
-          this.setState({
-            userInfo: {
-              username: user.username,
-              password: user.password
-            }
+      this.setState({
+        userInfo: {
+          username: user.username,
+          password: user.password
+        }
+      })
+
+      fetch('http://localhost:8081/signup', {
+      method: 'POST',
+      headers: {
+        'Content-Type' : 'application/json'
+      },
+      body: JSON.stringify({
+        username: user.username,
+        password: user.password
+      })
+    })
+
+    .then((res) => {
+      return res.json();
+    })
+
+    .then((res) => {
+
+        this.setState({
+          userInfo: { ...this.state.userInfo, res},
+          signupSuccess: !this.state.signupSuccess
           })
 
-          fetch('http://localhost:8081/signup', {
-          method: 'POST',
-          headers: {
-            'Content-Type' : 'application/json'
-          },
-          body: JSON.stringify({
-            username: user.username,
-            password: user.password
-          })
-        })
+        this.handleActiveUser();
 
-        .then((res) => {
-          return res.json();
-        })
-
-        .then((res) => {
-
-            this.setState({
-              userInfo: { ...this.state.userInfo, res},
-              signupSuccess: !this.state.signupSuccess
-              })
-
-            this.handleActiveUser();
-
-        })
+    })
 
     } catch(error) {
 
-          console.log(`Error in signup: ${error}`);
+        console.log(`Error in signup: ${error}`);
 
-          this.setState({
-            signupError: !this.state.signupError
-          })
+        this.setState({
+          signupError: !this.state.signupError
+        })
 
       }
 }
 
 //LOG IN METHODS
-
   //RENDERS LOG IN FORM
   handleLoginClick = () => {
 
-        this.setState({
-        loginFormActive: !this.state.loginFormActive
-        })
+    this.setState({
+    loginFormActive: !this.state.loginFormActive
+    })
 
   }
 
@@ -123,7 +121,6 @@ class Landing extends Component {
     })
 
     .then((res) => {
-        console.log(res, "res from login");
 
         this.setState({
           userInfo: { ...this.state.userInfo, res},
@@ -136,11 +133,11 @@ class Landing extends Component {
 
     } catch(error) {
 
-        console.log(`Error in login: ${error}`);
+      console.log(`Error in login: ${error}`);
 
-        this.setState({
-          loginError: !this.state.loginError
-        })
+      this.setState({
+        loginError: !this.state.loginError
+      })
 
       }
   }
@@ -148,10 +145,7 @@ class Landing extends Component {
 //LOGGED IN USER REDIRECT AND SAVES TOKEN
  handleActiveUser = () => {
 
-  if(this.state.userInfo.res.token !== null && (this.state.userInfo.res.error !== 'IM Used' || this.state.userInfo.res.status !== '500')) {
-    console.log("handleActiveUser accessed");
-
-    console.log(this.state, "state of landing after fetch call");
+  if((this.state.userInfo.res.token !== null && this.state.userInfo.res.error !== 'IM Used') && this.state.userInfo.res.status !== '500') {
 
     this.setState({
        userActiveSuccess : !this.state.userActiveSuccess
@@ -165,13 +159,13 @@ class Landing extends Component {
    this.props.history.push('/home');
 
    } else {
+
      this.setState({
        userActiveError : !this.state.userActiveError
      })
 
      console.log("Error in handling active user");
    }
-
  }
 
   render(){

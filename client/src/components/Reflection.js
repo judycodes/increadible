@@ -13,6 +13,7 @@ class Reflection extends Component {
     }
   }
 
+  //PASS STATE TO EDIT REFLECTION
   handleEdit = (e) => {
     e.preventDefault();
 
@@ -24,11 +25,12 @@ class Reflection extends Component {
     })
 
   } else {
-    alert("No edits made.");
+    alert("No changes were made.");
   }
 
   }
 
+  //TOGGLES EDIT FORM
   editModeActivated = () => {
 
     this.setState({
@@ -37,29 +39,31 @@ class Reflection extends Component {
 
   }
 
+  //INPUT ONCHANGE FROM REFLECTION FORM FOR SUBJECT
   handleSubjectInputChange = (e) => {
 
     e.preventDefault();
 
     this.setState({
       updatedReflection: {
-        subject: e.target.value,
+        subject: e.target.value.trim(),
         tidbit: this.state.updatedReflection.tidbit
       }
     })
 
   }
 
+  //INPUT ONCHANGE FROM REFLECTION FORM FOR TIDBIT
   handleTidbitInputChange = (e) => {
 
-  e.preventDefault();
+    e.preventDefault();
 
-    this.setState({
-      updatedReflection: {
-        subject: this.state.updatedReflection.subject,
-        tidbit: e.target.value
-      }
-    })
+      this.setState({
+        updatedReflection: {
+          subject: this.state.updatedReflection.subject,
+          tidbit: e.target.value.trim()
+        }
+      })
 
   }
 
