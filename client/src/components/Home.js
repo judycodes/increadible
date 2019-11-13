@@ -158,12 +158,33 @@ renderAllReflections() {
       tidbit={reflection.tidbit}
       edit={this.handleEdit}
       delete={() => this.handleDelete(reflection, index)}
-      id={reflection.reflection_id}
+      id={reflection.id}
       key={index} />
   })
 }
 
 handleEdit = (reflection, reflection_id) => {
+  fetch(`http://localhost:8081/reflection/update-${reflection_id}`, {
+      method: 'PUT',
+      headers: {
+        "Authorization": "Bearer " + localStorage.getItem('user'),
+        'Content-Type' : 'application/json'
+      },
+      body: JSON.stringify({
+        subject: reflection.subject,
+        tidbit: reflection.tidbit,
+        id: reflection_id
+      })
+    })
+
+    .then(res => {
+      return res.json();
+    })
+
+    .then(res => {
+      console.log(res, "res from edit");
+    })
+
 
 }
 
@@ -217,14 +238,14 @@ handleDelete = (reflection, reflection_id) => {
           </label>
 
           <div className="btns_sidebyside">
-            <button onClick={this.handleReflectionsListFetch}>saved reflections</button>
+            <button onClick={this.handleReflectionsListFetch}>{this.state.reflectionsFetchSuccess ? 'hide reflections' : 'saved progress'}</button>
             <button type="submit" onClick={this.handleNewReflectionSubmit} >submit</button>
           </div>
 
         </form>
 
 
-        <div id="reflections_container">
+        <div id="reflections_container" style={{ display: this.state.reflectionsFetchSuccess ? 'block' : 'none'}}>
         <h2>Your Growth</h2>
         <div id="reflections_content">
           {this.state.reflectionsFetchSuccess ? this.renderAllReflections() : <p>No reflections yet? Start writing one now!</p>}

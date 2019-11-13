@@ -7,23 +7,27 @@ class Reflection extends Component {
     this.state = {
       editMode: false,
       updatedReflection: {
-        subject: this.props.subject,
-        tidbit: this.props.tidbit
-      },
-      reflectionSubject: this.props.reflectionSubject,
-      reflectionTidbit: this.props.reflectionTidbit
-
+        subject: '',
+        tidbit: ''
+      }
     }
   }
 
   handleEdit = (e) => {
     e.preventDefault();
 
+    if(this.state.updatedReflection.subject !== '' || this.state.updatedReflection.tidbit !== '') {
     this.props.edit(this.state.updatedReflection, this.props.id);
+
+    console.log(this.state.updatedReflection, "updatedReflection submitted");
 
     this.setState({
       editMode : false
     })
+
+  } else {
+    alert("No edits made.");
+  }
 
   }
 
@@ -36,18 +40,37 @@ class Reflection extends Component {
     // console.log(this.state.editMode, "edit Mode changed");
   }
 
-  handleInputChange = (e) => {
+  handleSubjectInputChange = (e) => {
 
-      this.setState({
-        [e.target.name] : e.target.value
-      })
+    e.preventDefault();
 
-  }
+    this.setState({
+      updatedReflection: {
+        subject: e.target.value,
+        tidbit: this.state.updatedReflection.tidbit
+      }
+    })
+
+    console.log(this.state.updatedReflection.subject, "subject updated, changed");
+}
+
+handleTidbitInputChange = (e) => {
+
+  e.preventDefault();
+
+    this.setState({
+      updatedReflection: {
+        subject: this.state.updatedReflection.subject,
+        tidbit: e.target.value
+      }
+    })
+
+    console.log(this.state.updatedReflection.tidbit, "tidbit edited, changed");
+
+}
 
   render(){
-    console.log(this.props.subject, "subject");
-    console.log(this.props.tidbit, "tidbit");
-
+    // console.log(this.props.id, "id of reflection");
     let reflection;
 
     if(this.state.editMode){
@@ -55,18 +78,18 @@ class Reflection extends Component {
         <div>
         <form id="edit_reflection_form" onSubmit = {this.handleEdit}>
             <input
-                name = "updatedReflectionSubject"
+                name = "subject"
                 type = "text"
                 placeholder = {this.props.subject}
-                value = {this.state.updatedReflectionSubject || ''}
-                onChange = {this.handleInputChange}/>
+                defaultValue = {this.props.subject}
+                onChange = {this.handleSubjectInputChange}/>
             <textarea
                 rows="10" cols="20"
-                name = "updatedReflectionTidbit"
+                name = "tidbit"
                 type = "text"
                 placeholder = {this.props.tidbit}
-                value = {this.state.courseCode}
-                onChange = {this.handleInputChange}/>
+                defaultValue = {this.props.tidbit}
+                onChange = {this.handleTidbitInputChange}/>
 
             <div className="btns_sidebyside">
               <button type="submit">Save</button>
@@ -78,6 +101,7 @@ class Reflection extends Component {
     } else {
       reflection = (
         <div className="reflection_content">
+
 
           <div className="reflection_subject">
             <h3>{this.props.subject}</h3>
