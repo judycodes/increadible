@@ -84,7 +84,7 @@ button:focus, button:active, button:hover {
   margin-bottom: 10px;
 }
 
-.create_btn, .back_btn {
+.create_btn, .back_btn, .submit_btn {
   padding: 10px 25px;
 }
 
@@ -248,6 +248,14 @@ button:focus, button:active, button:hover {
   align-items: center;
 }
 
+#new_reflection_subject {
+  width: 285px;
+}
+
+#new_reflection_tidbit {
+  padding: 5px;
+}
+
 #home_content {
   display: flex;
   flex-direction: column;
@@ -255,6 +263,10 @@ button:focus, button:active, button:hover {
   width: 80%;
   height: 100%;
   border: 1px solid #000;
+}
+
+#growth_title {
+  text-align: center;
 }
 
 #reflections_display {
@@ -267,6 +279,7 @@ button:focus, button:active, button:hover {
   flex-direction: column;
   align-items: center;
 
+
 }
 
 #reflections_content {
@@ -274,11 +287,39 @@ button:focus, button:active, button:hover {
   flex-direction: column-reverse;
   align-items: center;
   justify-content: flex-end;
-  overflow-y: scroll;
+
   height: 500px;
   width: 800px;
   padding: 20px;
 }
+
+.reflection_content {
+  display:flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 50%;
+  margin-bottom: 15px;
+  padding: 10px;
+  border: 1px solid #000;
+  border-radius: 5px;
+
+}
+
+.reflection_subject, .reflection_tidbit {
+  padding: 0;
+  margin: 0;
+}
+
+.reflection_subject {
+  padding: 0 100px 0 5px;
+  margin-bottom: 5px;
+}
+
+.reflection_tidbit {
+  padding: 0 0 0 5px;
+}
+
 /* =====SEARCH===== */
 #search_container, #home_container {
   height: 100vh;

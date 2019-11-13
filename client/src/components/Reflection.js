@@ -97,12 +97,10 @@ class Reflection extends Component {
         <div className="reflection_content">
 
 
-          <div className="reflection_subject">
-            <h3>{this.props.subject}</h3>
-          </div>
+          <div className="reflection_text">
+            <h2 className="reflection_subject">{this.props.subject}</h2>
 
-          <div className="reflection_tidbit">
-            <p>{this.props.tidbit}</p>
+            <p className="reflection_tidbit">{this.props.tidbit}</p>
           </div>
 
 

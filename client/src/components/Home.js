@@ -217,10 +217,10 @@ handleEdit = (reflection, reflection_id) => {
 
 }
 
-  handleDelete = (reflection, reflection_id) => {
+  handleDelete = (reflection, index) => {
     try{
 
-      fetch(`http://localhost:8081/reflection/delete-${reflection_id}`, {
+      fetch(`http://localhost:8081/reflection/delete-${reflection.id}`, {
           method: 'DELETE',
           headers: {
             "Authorization": "Bearer " + localStorage.getItem('user'),
@@ -233,7 +233,10 @@ handleEdit = (reflection, reflection_id) => {
 
         const updatedReflectionsDisplayList = this.state.reflectionsDisplay;
 
-        updatedReflectionsDisplayList.splice(reflection_id, 1);
+        updatedReflectionsDisplayList.splice(index, 1);
+
+        console.log(updatedReflectionsDisplayList, "updatedReflectionsDisplay");
+        console.log(this.state.reflectionsDisplay, "after splice");
 
         this.setState({
               reflectionsDisplay: updatedReflectionsDisplayList,
@@ -259,7 +262,7 @@ renderAllReflections() {
       subject={reflection.subject}
       tidbit={reflection.tidbit}
       edit={this.handleEdit}
-      delete={() => this.handleDelete(reflection, reflection.id)}
+      delete={() => this.handleDelete(reflection, index)}
       id={reflection.id}
       key={index} />
   })
@@ -303,7 +306,7 @@ renderAllReflections() {
           <label htmlFor='newReflectionTidbit'>
             <textarea
                 id="new_reflection_tidbit"
-                rows="10" cols="20"
+                rows="10" cols="23"
                 type="text"
                 name="newReflectionTidbit"
                 value= {this.state.newReflectionTidbit || ''}
@@ -321,7 +324,7 @@ renderAllReflections() {
 
 
         <div id="reflections_container" style={{ display: this.state.reflectionsFetchSuccess ? 'block' : 'none'}}>
-        <h2>Your Growth</h2>
+        <h2 id="growth_title">Your Growth</h2>
         <div id="reflections_content">
           {this.state.reflectionsFetchSuccess ? this.renderAllReflections() : <p>No reflections yet? Start writing one now!</p>}
         </div>
