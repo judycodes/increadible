@@ -227,11 +227,3 @@ class Landing extends Component {
 }
 
 export default Landing;
-
-// <h2 id="landing-tagline">A Digital Reflection Journal & Learning Tool For A Growth Mindset</h2>
-//Move to about
-// <blockquote>
-// <h1 className="quotation">we do not learn from experience ... we learn from reflecting on experience.
-// </h1>
-// <p id="quote-author">John Dewey</p>
-// </blockquote>

@@ -29,7 +29,7 @@ const Navbar = () => {
             </Link></li>
 
           <li>
-            <a href="/" id="log_out_btn"><i class="fas fa-door-open"></i></a>
+            <a href="/" id="log_out_btn"><i className="fas fa-door-open"></i></a>
           </li>
 
         </ul>

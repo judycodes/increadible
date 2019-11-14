@@ -73,26 +73,10 @@ _About Page Design_ <br/>
    <img alt = "Increadible About Page" src=""/>
 
 #### User Stories
-
-*Steven L.*<br/>
-_30, Male_<br/>
-_Administrative Assistant_
-
-Steven is a new hire at his company. As a user, he wants to use Increadible to learn some trivia, which he can use when making small talk around the water cooler and build relationships with his colleagues.
-
-*Graham R.*<br/>
-_24, Male_<br/>
-_Software Engineer_
-
-Graham is working with a new language at his company.
-As a user, he wants to use the reflection feature of Increadible to note his understanding of concepts and the what/how/why aspects of his solution to issues and bugs for future reference so he can track his growth and is more aware of his development and progress.
-
-*Karen Y.*<br/>
-_19, Female_<br/>
-_College Student_
-
-Karen is curious about everything. As a user, Karen wants to use Increadible to research and learn more about various random topics so that she can become a Jeopardy College Tournament contestant.
-
+- As a User, I want to be able to log in and view my reflections so that I can track my personal growth and learning over time.
+- As a User, I want to be able to search topics on my mind, so that I can have something to bring up in small talk conversations and am continually learning.
+- As a User, I want to create a goal and view my goal on my reflections page, so that I am able to acknowledge my efforts toward accomplishing my personal or professional goal and hold myself accountable for my progress and growth.
+- As a User, I want to be able to learn random cat facts, so that I can impress cat lovers everywhere. 
 ---
 
 #### Day to Day Development
