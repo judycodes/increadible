@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 //custom components
+import Navbar from './Navbar';
 import ContentCard from './ContentCard';
 
 class About extends Component{
@@ -27,7 +28,7 @@ class About extends Component{
   render(){
     return(
       <div id="about_container">
-
+        <Navbar />
         <ContentCard />
 
       </div>

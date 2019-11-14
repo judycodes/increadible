@@ -189,7 +189,7 @@ button:focus, button:active, button:hover {
 
 }
 
-.fa-random, .fa-readme, .fa-window-close {
+.fa-random, .fa-readme, .fa-window-close, #log_out_btn {
   font-size: 25px;
 }
 

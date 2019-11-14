@@ -28,6 +28,10 @@ const Navbar = () => {
               <i className="far fa-question-circle"></i>
             </Link></li>
 
+          <li>
+            <a href="/" id="log_out_btn"><i class="fas fa-door-open"></i></a>
+          </li>
+
         </ul>
       </div>
     )
