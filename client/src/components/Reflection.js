@@ -45,12 +45,24 @@ class Reflection extends Component {
 
     e.preventDefault();
 
-    this.setState({
-      updatedReflection: {
-        subject: e.target.value.trim(),
-        tidbit: this.state.updatedReflection.tidbit
-      }
-    })
+    if(e.target.value.trim() !== ''){
+      this.setState({
+        updatedReflection: {
+          subject: e.target.value.trim(),
+          tidbit: this.state.updatedReflection.tidbit
+        }
+      })
+    } else {
+      alert("Please give your reflection a title.");
+
+      this.setState({
+        updatedReflection: {
+          subject: this.props.subject,
+          tidbit: this.props.tidbit
+        }
+      })
+    }
+
 
   }
 
@@ -59,13 +71,23 @@ class Reflection extends Component {
 
     e.preventDefault();
 
+    if(e.target.value.trim() !== ''){
       this.setState({
         updatedReflection: {
           subject: this.state.updatedReflection.subject,
           tidbit: e.target.value.trim()
         }
       })
+    } else {
+      alert("Please do not leave your reflection empty.");
 
+      this.setState({
+        updatedReflection: {
+          subject: this.props.subject,
+          tidbit: this.props.tidbit
+        }
+    })
+  }
   }
 
   render(){
@@ -86,6 +108,7 @@ class Reflection extends Component {
             <textarea
                 id = "edit_tidbit"
                 rows="10" cols="20"
+                maxLength="250"
                 name = "tidbit"
                 type = "text"
                 placeholder = {this.props.tidbit}
@@ -93,8 +116,8 @@ class Reflection extends Component {
                 onChange = {this.handleTidbitInputChange}/>
 
             <div className="btns_sidebyside">
-              <button className="save_btn" type="submit"><i className="far fa-save"></i></button>
-              <button className="cancel_btn" onClick={this.editModeActivated}><i className="far fa-window-close"></i></button>
+              <button className="blue_btn" onClick={this.editModeActivated} type="button">cancel</button>
+              <button className="white_btn" type="submit">update</button>
             </div>
 
         </form>
@@ -113,8 +136,8 @@ class Reflection extends Component {
 
           <div className="btns_stacked">
 
-            <button className="edit_btn" onClick={this.editModeActivated}><i className="far fa-edit"></i></button>
-            <button className="delete_btn" onClick={this.props.delete}><i className="fas fa-trash-alt"></i></button>
+            <button className="edit_btn" onClick={this.editModeActivated} type="submit"><i className="far fa-edit"></i></button>
+            <button className="delete_btn" onClick={this.props.delete} type="button"><i className="fas fa-trash-alt"></i></button>
 
           </div>
 

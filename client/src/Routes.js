@@ -7,6 +7,7 @@ import {Route, Switch} from 'react-router-dom';
 import Landing from './components/Landing';
 import Home from './components/Home';
 import Search from './components/Search';
+import About from './components/About';
 
 
 const Routes = () => {
@@ -17,6 +18,7 @@ const Routes = () => {
       <Route exact path="/" component={Landing} />
       <Route path="/home" component={Home} />
       <Route path="/search" component={Search} />
+      <Route path="/about" component={About} />
 
       </Switch>
   )
@@ -25,6 +27,5 @@ const Routes = () => {
 
 export default Routes;
 
-// <Route path="/about" component={About} />
-//
+
 // <Route path="/*" component={NotFound} />

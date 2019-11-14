@@ -13,17 +13,18 @@ Full Stack Application Focused on Learning & Reflection
 - Being inspired by my peers' progress and work
 - When the parts of the application runs and works as expected
 - Implementing more exceptions
+- Learning new fact tidbits about different topics while discussing this project with my peers and throughout the development of this application
 
 #### _Challenges_
-- Microservices with Docker : Experienced errors with EntityFactoryManager when Eureka was added to my API
-
-#### _Leadership_
+- Microservices with Docker : Experienced errors with EntityFactoryManager when Eureka was added to my API 
 
 #### _Mistakes/Failures_
-
-#### _Conflicts_
+- Spending too long trying to figure out setting up Docker with Microservices, rather than on other parts of the project, so early in the development process
 
 #### _What would you do differently?_
+- Allotted more time for research and exploring new tools for the development of this project
+
+- Planned for breaking out my React code into more components
 
 ---
 
@@ -32,18 +33,20 @@ _Tools_
 - Docker
 - Postman
 - DBeaver
+- LucidChart
 - Figma
 - Trello
 
 _Frontend_
 - React.js
+- 3rd Party APIs - Catfact.ninja, Wikipedia
 
 _Backend_
 - Java (Spring Boot)
 - PostgreSQL
 
 #### incREADible Entity Relationship Diagram
-<img alt = "increadible ERD" src = "increadible_ERD.png" />
+<img alt = "increadible ERD" src = "./incREADible_erd.png" />
 
 #### incREADible Database Structure
 - Increadible's database has two data models: User & Reflection
@@ -70,25 +73,10 @@ _About Page Design_ <br/>
    <img alt = "Increadible About Page" src=""/>
 
 #### User Stories
-
-*Steven L.*<br/>
-_30, Male_<br/>
-_Administrative Assistant_
-
-Steven is a new hire at his company. As a user, he wants to use Increadible to learn some trivia, which he can use when making small talk around the water cooler and build relationships with his colleagues.
-
-*Graham R.*<br/>
-_24, Male_<br/>
-_Software Engineer_
-
-Graham is working with a new language at his company.
-As a user, he wants to use the reflection feature of Increadible to note his understanding of concepts and the what/how/why aspects of his solution to issues and bugs for future reference so he can track his growth and is more aware of his development and progress.
-
-*Karen Y.*<br/>
-_19, Female_<br/>
-_College Student_
-
-Karen is curious about everything. As a user, Karen wants to use Increadible to research and learn more about various random topics so that she can become a Jeopardy College Tournament contestant.
+- As a User, I want to be able to log in and view my reflections so that I can devise a strategy for my personal growth and learning over time.
+- As a User, I want to be able to search topics on my mind, so that I can have something to bring up when making small talk conversations and to ensure that I am continually learning.
+- As a User, I want to create a goal and view my goal, so that I am able to notice and acknowledge my efforts toward accomplishing my stated personal or professional goal, as well as to hold myself accountable for my progress and growth.
+- As a User, I want to be able to learn random cat facts, so that I can impress cat lovers everywhere. 
 
 ---
 

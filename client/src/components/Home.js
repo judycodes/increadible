@@ -30,12 +30,15 @@ class Home extends Component {
 
       userGoal: '',
       goalFetchSuccess: false,
-      goalFetchError: false
+      goalFetchError: false,
+
+      showReflections: false
 
     }
   }
 
 componentDidMount(){
+  this.reflectionsFetch();
   //GET REQUEST FOR USER GOAL STORED IN STATE
   try{
 
@@ -149,9 +152,19 @@ componentDidMount(){
           this.setState({
             reflectionsDisplay: updatedReflectionsDisplayList,
             newReflectionSubmitSuccess: !this.state.newReflectionSubmitSuccess,
-            updatedReflectionsDisplay: true
+            updatedReflectionsDisplay: true,
+            newReflectionSubject: '',
+            newReflectionTidbit: ''
         })
 
+        })
+
+        .then(res => {
+
+          this.renderAllReflections();
+          this.setState({
+            showReflections: true
+          })
         })
 
       } catch(error) {
@@ -174,6 +187,11 @@ componentDidMount(){
   handleReflectionsListFetch = (e) => {
     e.preventDefault();
 
+    this.reflectionsFetch();
+
+  }
+
+  reflectionsFetch = () => {
     try{
       fetch('http://localhost:8081/reflection/listUserReflections', {
       headers: {
@@ -190,7 +208,7 @@ componentDidMount(){
 
         this.setState({
           reflectionsDisplay: res,
-          reflectionsFetchSuccess: !this.state.reflectionsFetchSuccess
+          reflectionsFetchSuccess: true
         })
 
       })
@@ -312,6 +330,12 @@ componentDidMount(){
     })
   }
 
+  toggleReflectionsDisplay = () => {
+    this.setState({
+      showReflections: !this.state.showReflections
+    })
+  }
+
   render(){
 
     return(
@@ -320,18 +344,15 @@ componentDidMount(){
 
       <Navbar />
 
-      <div id="home_content">
-
-
-
         <div id="reflections_display">
 
-        <form id="new_reflection_form">
+        <form id="new_reflection_form" onSubmit={this.handleReflectionsListFetch}>
 
           <label htmlFor='newReflectionSubject'>
 
             <input
               id="new_reflection_subject"
+              maxLength="30"
               type="text"
               name="newReflectionSubject"
               value= {this.state.newReflectionSubject || ''}
@@ -343,8 +364,9 @@ componentDidMount(){
 
           <label htmlFor='newReflectionTidbit'>
             <textarea
+                maxLength="250"
                 id="new_reflection_tidbit"
-                rows="10" cols="23"
+                rows="12" cols="30"
                 type="text"
                 name="newReflectionTidbit"
                 value= {this.state.newReflectionTidbit || ''}
@@ -354,27 +376,27 @@ componentDidMount(){
           </label>
 
           <div className="btns_sidebyside">
-            <button className="create_btn" onClick={this.handleReflectionsListFetch}>{this.state.reflectionsFetchSuccess ? 'hide reflections' : 'show progress'}</button>
-            <button className="submit_btn" type="submit" onClick={this.handleNewReflectionSubmit} >submit</button>
+            <button className="blue_btn" type="button" onClick={this.toggleReflectionsDisplay}>{this.state.showReflections ? 'hide reflections' : 'show progress'}</button>
+            <button className="white_btn" type="submit" onClick={this.handleNewReflectionSubmit}>submit</button>
           </div>
 
         </form>
 
+        <div id="reflections_container" style={{ display: this.state.showReflections ? 'block' : 'none'}}>
+        <h2 id="growth_title">Growth in Progress</h2>
+        <div id="reflections_content">
 
-        <div id="reflections_container" style={{ display: this.state.reflectionsFetchSuccess ? 'block' : 'none'}}>
-        <h2 id="growth_title">Your Growth</h2>
-        <div id="reflections_content" className="scrollbar">
-          {this.state.reflectionsFetchSuccess ? this.renderAllReflections() : <p>No reflections yet? Start writing one now!</p>}
-        </div>
-        </div>
+          {this.state.reflectionsDisplay.length !== 0 ? this.renderAllReflections() : <p id="no_reflections_msg">No reflections yet. Begin tracking your growth.</p>}
 
         </div>
 
         </div>
-
         <Goal
           handleGoal={this.handleGoal}
           goal={this.state.userGoal}/>
+        </div>
+
+
 
       </div>
     )

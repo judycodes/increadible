@@ -15,11 +15,14 @@ class Goal extends Component{
 
     if(this.state.goalInput !== '') {
       this.props.handleGoal(this.state.goalInput);
-    }
 
-    this.setState({
-      updateGoalStatus: !this.state.updateGoalStatus
-    })
+
+      this.setState({
+        updateGoalStatus: !this.state.updateGoalStatus
+      })
+    } else {
+      alert('Create a Specific, Measurable, Achievable, Realistic, and Timely goal.')
+    }
 
   }
 
@@ -31,7 +34,7 @@ class Goal extends Component{
         goalInput: e.target.value.trim()
       })
     } else {
-      alert('Identify what you want accomplish and begin accomplishing it!');
+      alert('Take the first step in reaching your goal!');
     }
 
   }
@@ -50,25 +53,29 @@ class Goal extends Component{
 
       goal = (
         <form id="goal_form" onSubmit={this.handleGoal}>
+          <h3 id="goal_form_title">What do you want to accomplish?</h3>
           <input
+            maxLength="250"
+            id="goal_input"
             defaultValue={this.props.goal}
             name="currentGoal"
             type="text"
             onChange={this.handleInputChange}
             placeholder='Set a SMART goal' />
             <div className="btns_sidebyside">
-              <button className="save_btn" type="submit" onClick={this.handleGoal}><i className="far fa-save"></i></button>
-              <button className="cancel_btn" onClick={this.updateGoalActive}><i className="far fa-window-close"></i></button>
+              <button className="blue_btn" onClick={this.updateGoalActive} type="button">cancel</button>
+              <button className="white_btn" onClick={this.handleGoal} type="submit">save</button>
+
             </div>
         </form>
       )
     } else {
 
       goal = (
-        <div>
+        <div id="goal_display">
         <h3 id="user_goal">{`GOAL: ${this.props.goal}`}</h3>
 
-        <button className="submit_btn" onClick={this.updateGoalActive} type="submit">Update</button>
+        <button className="edit_btn" onClick={this.updateGoalActive} type="submit"><i className="far fa-edit"></i></button>
 
         </div>
       )
