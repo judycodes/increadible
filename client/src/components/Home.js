@@ -329,6 +329,7 @@ componentDidMount(){
 
             <input
               id="new_reflection_subject"
+              maxLength="30"
               type="text"
               name="newReflectionSubject"
               value= {this.state.newReflectionSubject || ''}

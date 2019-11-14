@@ -186,6 +186,7 @@ button:focus, button:active, button:hover {
   max-width: 70px;
   padding: 10px;
   border: none;
+
 }
 
 /* -NAV- */
@@ -377,7 +378,7 @@ button:focus, button:active, button:hover {
 
   width: 100%;
   margin-bottom: 15px;
-  padding: 10px;
+  padding: 10px 10px 10px 30px;
   border: 1px solid #000;
   border-radius: 5px;
 
@@ -387,6 +388,12 @@ button:focus, button:active, button:hover {
 
 .reflection_subject, .reflection_tidbit {
   margin: 0;
+
+}
+
+.reflection_text {
+  max-width: 85%;
+  overflow-wrap: break-word;
 }
 
 .reflection_subject {
@@ -398,6 +405,7 @@ button:focus, button:active, button:hover {
   padding: 0 0 0 5px;
   color: rgba(255, 255, 255, 0.6);
 }
+
 
 #goal_display {
   display: flex;
