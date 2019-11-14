@@ -36,6 +36,7 @@ class Home extends Component {
   }
 
 componentDidMount(){
+
   //GET REQUEST FOR USER GOAL STORED IN STATE
   try{
 
@@ -360,7 +361,7 @@ componentDidMount(){
         <h2 id="growth_title">Growth in Progress</h2>
         <div id="reflections_content">
 
-          {this.state.reflectionsDisplay === [] ? this.renderAllReflections() : <p id="no_reflections_msg">No reflections yet. Begin tracking your growth.</p>}
+          {this.state.reflectionsDisplay.length !== 0 ? this.renderAllReflections() : this.state.reflectionsDisplay.length === 0 ? <p id="no_reflections_msg">No reflections yet. Begin tracking your growth.</p> : ''}
 
         </div>
 
