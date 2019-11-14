@@ -610,6 +610,11 @@ button:focus, button:active, button:hover {
   margin-top: 30px;
 }
 
+/* ABOUT */
+#about_container {
+  height: 100vh;
+}
+
 /* -QUOTE STYLING- */
 /* .quotation{
   font-family: 'Muli', sans-serif;
