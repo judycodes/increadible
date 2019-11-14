@@ -359,7 +359,7 @@ button:focus, button:active, button:hover {
   height: 75vh;
 
   position: absolute;
-  top: 100px;
+  top: 90px;
   left: 700px;
 }
 
@@ -427,7 +427,7 @@ button:focus, button:active, button:hover {
 
 #goal_display, #goal_form {
   position: absolute;
-  top: 650px;
+  top: 675px;
   left: 200px;
 }
 

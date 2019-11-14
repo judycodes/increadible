@@ -364,8 +364,9 @@ componentDidMount(){
 
           <label htmlFor='newReflectionTidbit'>
             <textarea
+                maxLength="250"
                 id="new_reflection_tidbit"
-                rows="10" cols="30"
+                rows="12" cols="30"
                 type="text"
                 name="newReflectionTidbit"
                 value= {this.state.newReflectionTidbit || ''}
