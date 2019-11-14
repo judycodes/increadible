@@ -30,7 +30,9 @@ class Home extends Component {
 
       userGoal: '',
       goalFetchSuccess: false,
-      goalFetchError: false
+      goalFetchError: false,
+
+      showReflections: false
 
     }
   }
@@ -154,14 +156,14 @@ componentDidMount(){
             newReflectionSubject: '',
             newReflectionTidbit: ''
         })
-        
+
         })
 
         .then(res => {
 
           this.renderAllReflections();
           this.setState({
-            reflectionsFetchSuccess: true
+            showReflections: true
           })
         })
 
@@ -206,7 +208,7 @@ componentDidMount(){
 
         this.setState({
           reflectionsDisplay: res,
-          reflectionsFetchSuccess: !this.state.reflectionsFetchSuccess
+          reflectionsFetchSuccess: true
         })
 
       })
@@ -328,6 +330,12 @@ componentDidMount(){
     })
   }
 
+  toggleReflectionsDisplay = () => {
+    this.setState({
+      showReflections: !this.state.showReflections
+    })
+  }
+
   render(){
 
     return(
@@ -367,13 +375,13 @@ componentDidMount(){
           </label>
 
           <div className="btns_sidebyside">
-            <button className="blue_btn">{this.state.reflectionsFetchSuccess ? 'hide reflections' : 'show progress'}</button>
+            <button className="blue_btn" type="button" onClick={this.toggleReflectionsDisplay}>{this.state.showReflections ? 'hide reflections' : 'show progress'}</button>
             <button className="white_btn" type="submit" onClick={this.handleNewReflectionSubmit}>submit</button>
           </div>
 
         </form>
 
-        <div id="reflections_container" style={{ display: this.state.reflectionsFetchSuccess ? 'block' : 'none'}}>
+        <div id="reflections_container" style={{ display: this.state.showReflections ? 'block' : 'none'}}>
         <h2 id="growth_title">Growth in Progress</h2>
         <div id="reflections_content">
 

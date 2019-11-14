@@ -189,6 +189,10 @@ button:focus, button:active, button:hover {
 
 }
 
+.fa-random, .fa-readme, .fa-window-close {
+  font-size: 25px;
+}
+
 /* -NAV- */
 #brand {
   font-size: 30px;

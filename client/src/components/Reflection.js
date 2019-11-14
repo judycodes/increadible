@@ -94,7 +94,7 @@ class Reflection extends Component {
                 onChange = {this.handleTidbitInputChange}/>
 
             <div className="btns_sidebyside">
-              <button className="blue_btn" onClick={this.editModeActivated}>cancel</button>
+              <button className="blue_btn" onClick={this.editModeActivated} type="button">cancel</button>
               <button className="white_btn" type="submit">update</button>
             </div>
 

@@ -13,14 +13,18 @@ Full Stack Application Focused on Learning & Reflection
 - Being inspired by my peers' progress and work
 - When the parts of the application runs and works as expected
 - Implementing more exceptions
+- Learning new fact tidbits about different topics while discussing this project with my peers and throughout the development of this application
 
 #### _Challenges_
-- Microservices with Docker : Experienced errors with EntityFactoryManager when Eureka was added to my API
+- Microservices with Docker : Experienced errors with EntityFactoryManager when Eureka was added to my API 
 
 #### _Mistakes/Failures_
 - Spending too long trying to figure out setting up Docker with Microservices, rather than on other parts of the project, so early in the development process
 
 #### _What would you do differently?_
+- Allotted more time for research and exploring new tools for the development of this project
+
+- Planned for breaking out my React code into more components
 
 ---
 
