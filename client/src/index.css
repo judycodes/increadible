@@ -612,18 +612,30 @@ button:focus, button:active, button:hover {
 
 /* ABOUT */
 #about_container {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("./assets/about_bg.jpg");
+  background-size: cover;
+  background-position: bottom center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   height: 100vh;
 }
 
+#content_card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
 /* -QUOTE STYLING- */
-/* .quotation{
+.quotation{
   font-family: 'Muli', sans-serif;
   font-size: 50px;
   quotes: "\201C""\201D""\2018""\2019";
   padding: 50px;
   margin-bottom: 20px;
   line-height: 1.4;
-  width: 780px;
+  width: 900px;
   text-align: center;
 }
 
@@ -659,6 +671,6 @@ button:focus, button:active, button:hover {
 }
 
 #quote-author {
-  font-size: 16px;
+  font-size: 25px;
   text-align: right;
-} */
+}

@@ -73,10 +73,11 @@ _About Page Design_ <br/>
    <img alt = "Increadible About Page" src=""/>
 
 #### User Stories
-- As a User, I want to be able to log in and view my reflections so that I can track my personal growth and learning over time.
-- As a User, I want to be able to search topics on my mind, so that I can have something to bring up in small talk conversations and am continually learning.
-- As a User, I want to create a goal and view my goal on my reflections page, so that I am able to acknowledge my efforts toward accomplishing my personal or professional goal and hold myself accountable for my progress and growth.
+- As a User, I want to be able to log in and view my reflections so that I can devise a strategy for my personal growth and learning over time.
+- As a User, I want to be able to search topics on my mind, so that I can have something to bring up when making small talk conversations and to ensure that I am continually learning.
+- As a User, I want to create a goal and view my goal, so that I am able to notice and acknowledge my efforts toward accomplishing my stated personal or professional goal, as well as to hold myself accountable for my progress and growth.
 - As a User, I want to be able to learn random cat facts, so that I can impress cat lovers everywhere. 
+
 ---
 
 #### Day to Day Development

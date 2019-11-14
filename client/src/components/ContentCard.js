@@ -2,7 +2,7 @@ import React from 'react';
 
 const ContentCard = (props) => {
   return (
-    <div>
+    <div id="content_card">
 
     <blockquote>
     <h1 className="quotation">we do not learn from experience ... we learn from reflecting on experience.
@@ -16,6 +16,6 @@ const ContentCard = (props) => {
 
 export default ContentCard;
 
-
+//TO DO: Create multiple cards
 // <h2>{props.title}</h2>
 // <p>{props.content}</p>
