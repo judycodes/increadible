@@ -57,8 +57,8 @@ class Goal extends Component{
             onChange={this.handleInputChange}
             placeholder='Set a SMART goal' />
             <div className="btns_sidebyside">
-              <button className="submit_btn" type="submit" onClick={this.handleGoal}><i className="far fa-save"></i></button>
-              <button className="back_btn" onClick={this.updateGoalActive}><i className="far fa-window-close"></i></button>
+              <button className="save_btn" type="submit" onClick={this.handleGoal}><i className="far fa-save"></i></button>
+              <button className="cancel_btn" onClick={this.updateGoalActive}><i className="far fa-window-close"></i></button>
             </div>
         </form>
       )

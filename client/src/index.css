@@ -8,6 +8,7 @@ font-family: 'Muli', sans-serif;
 /* yellow - #fbc93d	(251,201,61)
 blue - #6cc0e5	(108,192,229)
 red - #fb4f4f	(251,79,79) */
+/* color: rgb(1,110,207); */
 
 * {
   box-sizing: border-box;
@@ -23,20 +24,23 @@ body {
 h1, h2, h3 {
   font-family: 'Quicksand', sans-serif;
   font-variant: small-caps;
-  /* color: rgb(1,110,207); */
   color: #fff;
 }
 
 p, a, label, ::placeholder, input, textarea {
   font-family: 'Muli', sans-serif;
   margin: 3px;
-  padding: 3px;
+  padding: 5px;
   font-size: 20px;
-  color: rgba(255, 255, 255, 0.7);
+}
+
+::placeholder {
+  color: rgba(0,0,0,0.5);
 }
 
 textarea {
   border: 1px solid lightgrey;
+  padding: 5px;
 }
 
 /* -GLOBAL IMAGES- */
@@ -45,10 +49,6 @@ textarea {
   border-radius: 2px;
   margin: 0;
   padding: 0;
-}
-
-.far, .fab {
-  font-size: 21px;
 }
 
 .fa-question-circle {
@@ -122,16 +122,16 @@ button:focus, button:active, button:hover {
   border: 1px solid #fff;
   color: #fff;
   font-weight: bold;
+  background-color: rgba(0,0,0,0.4);
 }
 
-.create_btn, .back_btn {
+.create_btn {
+  background-color: rgba(0,0,0,0.4);
   color: rgb(140,178,217);
   border: 1px solid rgb(140,178,217);
 }
 
 .delete_btn {
-  /* border: 1px solid rgb(251,79,79); */
-
   color: rgb(251,79,79);
 }
 
@@ -151,6 +151,25 @@ button:focus, button:active, button:hover {
   padding: 10px;
   border: none;
 }
+
+.save_btn, .cancel_btn {
+  border:none;
+  font-size: 30px;
+  color: #fff;
+  padding: 5px 10px;
+}
+
+.save_btn:hover, .cancel_btn:hover, .save_btn:focus, .cancel_btn:focus {
+  border: none;
+}
+
+.goal_save_btn:focus, .goal_save_btn:hover, .goal_cancel_btn:focus, .goal_cancel_btn:hover {
+  color: rgb(251,201,61);
+  outline: none;
+  border: none;
+}
+
+
 /* -NAV- */
 #brand {
   font-size: 30px;
@@ -301,12 +320,12 @@ button:focus, button:active, button:hover {
   align-items: center;
 }
 
-#new_reflection_subject {
+#new_reflection_subject, #new_reflection_tidbit {
   width: 285px;
 }
 
-#new_reflection_tidbit {
-  padding: 5px;
+#edit_subject, #edit_tidbit {
+  width: 285px;
 }
 
 #home_container {
@@ -338,7 +357,6 @@ button:focus, button:active, button:hover {
   flex-direction: column;
   align-items: center;
   overflow: scroll;
-
 }
 
 #reflections_content {
@@ -377,6 +395,11 @@ button:focus, button:active, button:hover {
 
 .reflection_tidbit {
   padding: 0 0 0 5px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+#user_goal {
+  font-size: 30px;
 }
 
 /* =====SEARCH===== */
@@ -439,7 +462,7 @@ button:focus, button:active, button:hover {
   font-size: 20px;
   line-height: 40px;
   border: none;
-  background-color: rgba(246,246,246, 0.8);
+  background-color: rgba(246,246,246, 0.9);
   padding: 0 20px;
   border-radius: 0 20px 20px 0;
   cursor: pointer;

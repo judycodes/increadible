@@ -18,6 +18,7 @@ class Reflection extends Component {
     e.preventDefault();
 
     if(this.state.updatedReflection.subject !== '' || this.state.updatedReflection.tidbit !== '') {
+
     this.props.edit(this.state.updatedReflection, this.props.id);
 
     this.setState({
@@ -76,12 +77,14 @@ class Reflection extends Component {
         <div>
         <form id="edit_reflection_form" onSubmit = {this.handleEdit}>
             <input
+                id = "edit_subject"
                 name = "subject"
                 type = "text"
                 placeholder = {this.props.subject}
                 defaultValue = {this.props.subject}
                 onChange = {this.handleSubjectInputChange}/>
             <textarea
+                id = "edit_tidbit"
                 rows="10" cols="20"
                 name = "tidbit"
                 type = "text"
@@ -90,8 +93,8 @@ class Reflection extends Component {
                 onChange = {this.handleTidbitInputChange}/>
 
             <div className="btns_sidebyside">
-              <button className="submit_btn" type="submit"><i className="far fa-save"></i></button>
-              <button className="back_btn" onClick={this.editModeActivated}><i className="far fa-window-close"></i></button>
+              <button className="save_btn" type="submit"><i className="far fa-save"></i></button>
+              <button className="cancel_btn" onClick={this.editModeActivated}><i className="far fa-window-close"></i></button>
             </div>
 
         </form>
