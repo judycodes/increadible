@@ -144,7 +144,7 @@ componentDidMount(){
         .then(res => {
 
           let updatedReflectionsDisplayList = [...this.state.reflectionsDisplay];
-          console.log(updatedReflectionsDisplayList, "updated list");
+
           updatedReflectionsDisplayList.push(res);
 
           this.setState({
@@ -154,8 +154,7 @@ componentDidMount(){
             newReflectionSubject: '',
             newReflectionTidbit: ''
         })
-        console.log(updatedReflectionsDisplayList, "updated list");
-        console.log(this.state.reflectionsDisplay, "reflection display");
+        
         })
 
         .then(res => {
@@ -187,7 +186,7 @@ componentDidMount(){
     e.preventDefault();
 
     this.reflectionsFetch();
-    
+
   }
 
   reflectionsFetch = () => {
