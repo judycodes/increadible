@@ -86,7 +86,7 @@ class Reflection extends Component {
             <textarea
                 id = "edit_tidbit"
                 rows="10" cols="20"
-                maxlength="250"
+                maxLength="250"
                 name = "tidbit"
                 type = "text"
                 placeholder = {this.props.tidbit}

@@ -339,6 +339,11 @@ button:focus, button:active, button:hover {
   display: flex;
 }
 
+#no_reflections_msg {
+  color: #fff;
+  font-size: 20px;
+}
+
 #reflections_container {
   display: flex;
   flex-direction: column;

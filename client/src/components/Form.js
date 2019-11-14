@@ -41,6 +41,7 @@ class Form extends Component {
             <label htmlFor={this.props.formType + '-username'}>
               <i className="fa fa-user"></i>
               <input type="text"
+                     maxLength="250"
                      name="username"
                      placeholder="username"
                      onChange={this.handleInputChange}
@@ -51,6 +52,7 @@ class Form extends Component {
                <i className="fa fa-key"></i>
                <input type="password"
                       name="password"
+                      maxLength="250"
                       placeholder="password"
                       onChange={this.handleInputChange}
                       />

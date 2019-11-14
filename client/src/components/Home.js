@@ -360,7 +360,7 @@ componentDidMount(){
         <h2 id="growth_title">Growth in Progress</h2>
         <div id="reflections_content">
 
-          {this.state.reflectionsFetchSuccess ? this.renderAllReflections() : <p>No reflections yet? Start writing one now!</p>}
+          {this.state.reflectionsDisplay === [] ? this.renderAllReflections() : <p id="no_reflections_msg">No reflections yet. Begin tracking your growth.</p>}
 
         </div>
 

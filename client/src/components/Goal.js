@@ -55,7 +55,7 @@ class Goal extends Component{
         <form id="goal_form" onSubmit={this.handleGoal}>
           <h3 id="goal_form_title">What do you want to accomplish?</h3>
           <input
-            maxlength="250"
+            maxLength="250"
             id="goal_input"
             defaultValue={this.props.goal}
             name="currentGoal"
