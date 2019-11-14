@@ -86,6 +86,7 @@ class Reflection extends Component {
             <textarea
                 id = "edit_tidbit"
                 rows="10" cols="20"
+                maxlength="250"
                 name = "tidbit"
                 type = "text"
                 placeholder = {this.props.tidbit}
@@ -93,8 +94,8 @@ class Reflection extends Component {
                 onChange = {this.handleTidbitInputChange}/>
 
             <div className="btns_sidebyside">
-              <button className="save_btn" type="submit"><i className="far fa-save"></i></button>
-              <button className="cancel_btn" onClick={this.editModeActivated}><i className="far fa-window-close"></i></button>
+              <button className="blue_btn" onClick={this.editModeActivated}>cancel</button>
+              <button className="white_btn" type="submit">update</button>
             </div>
 
         </form>

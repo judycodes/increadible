@@ -17,11 +17,8 @@ Full Stack Application Focused on Learning & Reflection
 #### _Challenges_
 - Microservices with Docker : Experienced errors with EntityFactoryManager when Eureka was added to my API
 
-#### _Leadership_
-
 #### _Mistakes/Failures_
-
-#### _Conflicts_
+- Spending too long trying to figure out setting up Docker with Microservices, rather than on other parts of the project, so early in the development process
 
 #### _What would you do differently?_
 
@@ -32,18 +29,20 @@ _Tools_
 - Docker
 - Postman
 - DBeaver
+- LucidChart
 - Figma
 - Trello
 
 _Frontend_
 - React.js
+- 3rd Party APIs - Catfact.ninja, Wikipedia
 
 _Backend_
 - Java (Spring Boot)
 - PostgreSQL
 
 #### incREADible Entity Relationship Diagram
-<img alt = "increadible ERD" src = "increadible_ERD.png" />
+<img alt = "increadible ERD" src = "./incREADible_erd.png" />
 
 #### incREADible Database Structure
 - Increadible's database has two data models: User & Reflection

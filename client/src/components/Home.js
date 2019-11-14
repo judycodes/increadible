@@ -320,10 +320,6 @@ componentDidMount(){
 
       <Navbar />
 
-      <div id="home_content">
-
-
-
         <div id="reflections_display">
 
         <form id="new_reflection_form">
@@ -344,7 +340,7 @@ componentDidMount(){
           <label htmlFor='newReflectionTidbit'>
             <textarea
                 id="new_reflection_tidbit"
-                rows="10" cols="23"
+                rows="10" cols="30"
                 type="text"
                 name="newReflectionTidbit"
                 value= {this.state.newReflectionTidbit || ''}
@@ -354,27 +350,27 @@ componentDidMount(){
           </label>
 
           <div className="btns_sidebyside">
-            <button className="create_btn" onClick={this.handleReflectionsListFetch}>{this.state.reflectionsFetchSuccess ? 'hide reflections' : 'show progress'}</button>
-            <button className="submit_btn" type="submit" onClick={this.handleNewReflectionSubmit} >submit</button>
+            <button className="blue_btn" onClick={this.handleReflectionsListFetch}>{this.state.reflectionsFetchSuccess ? 'hide reflections' : 'show progress'}</button>
+            <button className="white_btn" type="submit" onClick={this.handleNewReflectionSubmit} >submit</button>
           </div>
 
         </form>
 
-
         <div id="reflections_container" style={{ display: this.state.reflectionsFetchSuccess ? 'block' : 'none'}}>
-        <h2 id="growth_title">Your Growth</h2>
-        <div id="reflections_content" className="scrollbar">
+        <h2 id="growth_title">Growth in Progress</h2>
+        <div id="reflections_content">
+
           {this.state.reflectionsFetchSuccess ? this.renderAllReflections() : <p>No reflections yet? Start writing one now!</p>}
-        </div>
-        </div>
 
         </div>
 
         </div>
-
         <Goal
           handleGoal={this.handleGoal}
           goal={this.state.userGoal}/>
+        </div>
+
+
 
       </div>
     )
