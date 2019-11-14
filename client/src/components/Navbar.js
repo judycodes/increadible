@@ -1,20 +1,32 @@
 import React from 'react'
 import {Link} from 'react-router-dom';
-import logo from '../assets/increadible_logo_black.png';
+
+//icons and images
+import logo from '../assets/increadible_logo_white.png';
 
 const Navbar = () => {
     return (
       <div id="navbar">
         <div id="brand_div">
-          <img src={logo} className = "logo" alt="increadible logo"/>
-          <Link id="brand" to="/home">INCREADIBLE</Link>
+          <Link id="brand" to="/home">
+            <img src={logo} className = "logo" alt="increadible logo"/>
+          </Link>
         </div>
 
         <ul id="nav_links" className="fade">
 
-          <li><Link className="nav_link" to="/search">search</Link></li>
-          <li><Link className="nav_link" to="/home">reflections</Link></li>
-          <li><Link className="nav_link" to="/about">about</Link></li>
+          <li>
+            <Link className="nav_link" to="/search">
+              <i className="fas fa-search"></i>
+            </Link></li>
+          <li>
+            <Link className="nav_link" to="/home">
+              <i className="fas fa-book"></i>
+            </Link></li>
+          <li>
+            <Link className="nav_link" to="/about">
+              <i className="far fa-question-circle"></i>
+            </Link></li>
 
         </ul>
       </div>

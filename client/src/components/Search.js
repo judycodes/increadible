@@ -4,6 +4,7 @@ import wiki from '../assets/Wikipedia.png';
 //import custom Component
 import Navbar from './Navbar';
 import SearchResult from './SearchResult';
+import RandomFact from './RandomFact';
 
 class Search extends Component{
   constructor(props){
@@ -15,9 +16,47 @@ class Search extends Component{
 
       //error handling
       searchResFetchSuccess: false,
-      searchResFetchError: false
+      searchResFetchError: false,
+
+      randomFactFetchSuccess: false,
+      randomFactFetchError: false,
+      randomFact: 'A cat\'s brain is more similar to a man\'s brain than that of a dog.',
+      showFactStatus: false
+
+
     }
   }
+
+
+  //Cat Fact Generator/GET FACT API REQUEST
+    generateRandomFact = () => {
+
+      try{
+
+       fetch('https://catfact.ninja/fact?max_length=80')
+
+       .then(res => {
+         return res.json();
+       })
+
+       .then(res => {
+         if(res.fact !== ''){
+           this.setState({
+             randomFactFetchSuccess: !this.state.randomFactFetchSuccess,
+             randomFact: res.fact
+           })
+         }
+       })
+
+      } catch(error) {
+
+        console.log(`Random Fact Fetch error: ${error}`);
+
+        this.setState({
+          randomFactFetchError: !this.state.randomFactFetchError
+        })
+    }
+    }
 
 //onClick of search submit that triggers api call
 handleSearchSubmit = (e) => {
@@ -132,6 +171,14 @@ handleSearchInput = (e) => {
 
 }
 
+showFact = () => {
+
+    this.setState({
+      showFactStatus: !this.state.showFactStatus
+    })
+
+}
+
   render(){
 
     //stores search results - api response
@@ -144,7 +191,6 @@ handleSearchInput = (e) => {
               title={specificResult.pageTitle}
               snippet={specificResult.pageSnippet}
               />;
-
     });
 
     return(
@@ -155,19 +201,19 @@ handleSearchInput = (e) => {
         <img id="wiki_logo" src={wiki} alt="wikipedia logo"/>
         <h1 id="search_title">Search For Knowledge</h1>
 
-        <div id="search_random">
-      <form id="search_form">
+      <div id="search_random">
+        <form id="search_form">
 
-        <input
-          id="search_input"
-          type="text"
-          onChange={this.handleSearchInput}
-          placeholder='Curious about ...' />
+          <input
+            id="search_input"
+            type="text"
+            onChange={this.handleSearchInput}
+            placeholder='Curious about ...' />
 
-        <button
-          id="search_btn"
-          type='submit'
-          onClick={this.handleSearchSubmit}>enlighten me</button>
+          <button
+            id="search_btn"
+            type='submit'
+            onClick={this.handleSearchSubmit}>enlighten me</button>
 
       </form>
 
@@ -175,8 +221,19 @@ handleSearchInput = (e) => {
         href="https://en.wikipedia.org/wiki/Special:Random"
         id="random_search"
         target="_blank"
-        rel="noopener noreferrer">random</a>
-        </div>
+        rel="noopener noreferrer"><i className="fas fa-random"></i></a>
+
+      <i id="fact_display_toggle" className={this.state.showFactStatus ? "far fa-window-close" : "fab fa-readme"} onClick={this.showFact}></i>
+
+    </div>
+
+    <div id="fact_card" style={{display: this.state.showFactStatus ? 'block' : 'none'}}>
+      <h2 id="fact_card_title">Random Fact:</h2>
+      {this.state.randomFact ?
+        <RandomFact fact={this.state.randomFact} generateRandomFact={this.generateRandomFact}/> :
+        'Random Fact Loading...Why don\'t you reflect in the meantime?'}
+    </div>
+
       <div id="searchResults_container">
         {searchResultsContent}
       </div>

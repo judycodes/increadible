@@ -27,7 +27,6 @@ class Landing extends Component {
   }
 
 //SIGN UP METHODS
-
   //RENDERS SIGNUP FORM
   handleSignupClick = () => {
 
@@ -41,58 +40,57 @@ class Landing extends Component {
   signup = (user) => {
     try{
 
-          this.setState({
-            userInfo: {
-              username: user.username,
-              password: user.password
-            }
+      this.setState({
+        userInfo: {
+          username: user.username,
+          password: user.password
+        }
+      })
+
+      fetch('http://localhost:8081/signup', {
+      method: 'POST',
+      headers: {
+        'Content-Type' : 'application/json'
+      },
+      body: JSON.stringify({
+        username: user.username,
+        password: user.password
+      })
+    })
+
+    .then((res) => {
+      return res.json();
+    })
+
+    .then((res) => {
+
+        this.setState({
+          userInfo: { ...this.state.userInfo, res},
+          signupSuccess: !this.state.signupSuccess
           })
 
-          fetch('http://localhost:8081/signup', {
-          method: 'POST',
-          headers: {
-            'Content-Type' : 'application/json'
-          },
-          body: JSON.stringify({
-            username: user.username,
-            password: user.password
-          })
-        })
+        this.handleActiveUser();
 
-        .then((res) => {
-          return res.json();
-        })
-
-        .then((res) => {
-
-            this.setState({
-              userInfo: { ...this.state.userInfo, res},
-              signupSuccess: !this.state.signupSuccess
-              })
-
-            this.handleActiveUser();
-
-        })
+    })
 
     } catch(error) {
 
-          console.log(`Error in signup: ${error}`);
+        console.log(`Error in signup: ${error}`);
 
-          this.setState({
-            signupError: !this.state.signupError
-          })
+        this.setState({
+          signupError: !this.state.signupError
+        })
 
       }
 }
 
 //LOG IN METHODS
-
   //RENDERS LOG IN FORM
   handleLoginClick = () => {
 
-        this.setState({
-        loginFormActive: !this.state.loginFormActive
-        })
+    this.setState({
+    loginFormActive: !this.state.loginFormActive
+    })
 
   }
 
@@ -123,7 +121,6 @@ class Landing extends Component {
     })
 
     .then((res) => {
-        console.log(res, "res from login");
 
         this.setState({
           userInfo: { ...this.state.userInfo, res},
@@ -136,22 +133,19 @@ class Landing extends Component {
 
     } catch(error) {
 
-        console.log(`Error in login: ${error}`);
+      console.log(`Error in login: ${error}`);
 
-        this.setState({
-          loginError: !this.state.loginError
-        })
+      this.setState({
+        loginError: !this.state.loginError
+      })
 
       }
   }
 
-//LOGGED IN USER REDIRECT AND SAVES TOKEN
+//LOGGED IN USER REDIRECT AND SAVES TOKEN, ERROR HANDLES IF USERNAME ALREADY EXISTS ON SIGNUP
  handleActiveUser = () => {
 
-  if(this.state.userInfo.res.token !== null && (this.state.userInfo.res.error !== 'IM Used' || this.state.userInfo.res.status !== '500')) {
-    console.log("handleActiveUser accessed");
-
-    console.log(this.state, "state of landing after fetch call");
+  if((this.state.userInfo.res.token !== null && this.state.userInfo.res.error !== 'IM Used') && this.state.userInfo.res.status !== '500') {
 
     this.setState({
        userActiveSuccess : !this.state.userActiveSuccess
@@ -165,13 +159,19 @@ class Landing extends Component {
    this.props.history.push('/home');
 
    } else {
+
      this.setState({
        userActiveError : !this.state.userActiveError
      })
 
-     console.log("Error in handling active user");
-   }
+     if(this.state.userInfo.res.error === 'IM Used'){
+      alert('Username is already taken. Please choose another.');
+    } else {
+      alert('Check your credentials and try again.');
+    }
 
+
+   }
  }
 
   render(){
@@ -185,24 +185,25 @@ class Landing extends Component {
             onClick={this.handleLoginClick}
             style={{ display: this.state.signupFormActive ? 'none' : 'block'}}>
             {this.state.loginFormActive ?
-              <p className="cancel_btn" onClick={this.handleLoginClick}>Back</p> :
+              'Back' :
               'Sign In'}
           </button>
         </div>
 
         <div id="landing_content">
-
+          <div id="landing_center">
           <h1 id="landing_title">INCREADIBLE</h1>
-          <h3 id="landing-tagline">the place to remember those useful tidbits and discover some of your own</h3>
+          <h2 id="landing_tagline">the place to remember those useful tidbits and discover some of your own</h2>
 
           <button
             id="get_started_btn"
             onClick={this.handleSignupClick}
             style={{ display: this.state.loginFormActive ? 'none' : 'block'}}>
             {this.state.signupFormActive ?
-              <p className="cancel_btn" onClick={this.handleSignupClick}>Back</p> :
+              'Back' :
               'Get Started'}
           </button>
+          </div>
 
           {this.state.signupFormActive ?
             <Form

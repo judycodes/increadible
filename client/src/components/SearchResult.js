@@ -9,7 +9,7 @@ const SearchResult = (props) => {
       target="_blank"
       rel="noopener noreferrer">
 
-    <h2>{props.title}</h2>
+    <h2 className="result_title">{props.title}</h2>
     <p className="ellipses" dangerouslySetInnerHTML={{__html: props.snippet}}></p>
 
 

@@ -104,4 +104,20 @@ public class ReflectionController {
             throw new ResponseStatusException(HttpStatus.valueOf(405), "Error when updating reflection tidbit content.", e);
         }
     }
+
+    /**
+     * PUT REQUEST: Update full reflection content
+     * @param updatedReflection
+     * @return updated reflection if user created that reflection
+     */
+    @PutMapping("/update-{reflection_id}")
+    public ResponseEntity updateReflection(@RequestBody Reflection updatedReflection, @PathVariable long reflection_id) {
+        try {
+            return reflectionService.updateReflection(updatedReflection, reflection_id);
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.valueOf(405), "Error when updating reflection.", e);
+        }
+    }
+
+
 }

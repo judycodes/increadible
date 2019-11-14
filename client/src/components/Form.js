@@ -10,39 +10,33 @@ class Form extends Component {
     }
   }
 
-    handleInputChange = (e) => {
+  //INPUT ONCHANGE FRIM SIGNUP/LOGIN FORM
+  handleInputChange = (e) => {
+      this.setState({
+        [e.target.name] : e.target.value.trim()
+      })
+  }
 
-        this.setState({
-          [e.target.name] : e.target.value.trim()
-        })
+  //FORM SUBMISSION
+  handleSubmit = (e) => {
+    e.preventDefault();
 
+    if(this.state.username === '' || this.state.password === '') {
+      alert("Please provide valid inputs.");
+    } else {
+      this.props.submitType(this.state);
     }
-
-    handleSubmit = (e) => {
-      e.preventDefault();
-
-      if(this.state.username === '' || this.state.password === '') {
-        alert("Please provide valid inputs.");
-        console.log(this.state.username, "username input");
-        console.log(this.state.password, "password input");
-
-      } else {
-
-        this.props.submitType(this.state);
-        console.log(this.state, "state object passed");
-        console.log(this.props.submitType, "submitType");
-      }
-
-    }
+  }
 
   render(){
     return (
       <form
+        className="landing_form"
         id={this.props.formType}
         method="post"
         onSubmit={this.handleSubmit}>
 
-            <h1>{this.props.formGreeting}</h1>
+            <h1 className="form_greeting">{this.props.formGreeting}</h1>
 
             <label htmlFor={this.props.formType + '-username'}>
               <i className="fa fa-user"></i>
@@ -62,7 +56,7 @@ class Form extends Component {
                       />
             </label>
 
-             <button type="submit">submit</button>
+             <button className="submit_btn" type="submit">submit</button>
 
         </form>
     )
