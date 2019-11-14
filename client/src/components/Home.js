@@ -36,7 +36,7 @@ class Home extends Component {
   }
 
 componentDidMount(){
-
+  this.reflectionsFetch();
   //GET REQUEST FOR USER GOAL STORED IN STATE
   try{
 
@@ -144,15 +144,26 @@ componentDidMount(){
         .then(res => {
 
           let updatedReflectionsDisplayList = [...this.state.reflectionsDisplay];
-
+          console.log(updatedReflectionsDisplayList, "updated list");
           updatedReflectionsDisplayList.push(res);
 
           this.setState({
             reflectionsDisplay: updatedReflectionsDisplayList,
             newReflectionSubmitSuccess: !this.state.newReflectionSubmitSuccess,
-            updatedReflectionsDisplay: true
+            updatedReflectionsDisplay: true,
+            newReflectionSubject: '',
+            newReflectionTidbit: ''
+        })
+        console.log(updatedReflectionsDisplayList, "updated list");
+        console.log(this.state.reflectionsDisplay, "reflection display");
         })
 
+        .then(res => {
+
+          this.renderAllReflections();
+          this.setState({
+            reflectionsFetchSuccess: true
+          })
         })
 
       } catch(error) {
@@ -175,6 +186,11 @@ componentDidMount(){
   handleReflectionsListFetch = (e) => {
     e.preventDefault();
 
+    this.reflectionsFetch();
+    
+  }
+
+  reflectionsFetch = () => {
     try{
       fetch('http://localhost:8081/reflection/listUserReflections', {
       headers: {
@@ -323,7 +339,7 @@ componentDidMount(){
 
         <div id="reflections_display">
 
-        <form id="new_reflection_form">
+        <form id="new_reflection_form" onSubmit={this.handleReflectionsListFetch}>
 
           <label htmlFor='newReflectionSubject'>
 
@@ -352,8 +368,8 @@ componentDidMount(){
           </label>
 
           <div className="btns_sidebyside">
-            <button className="blue_btn" onClick={this.handleReflectionsListFetch}>{this.state.reflectionsFetchSuccess ? 'hide reflections' : 'show progress'}</button>
-            <button className="white_btn" type="submit" onClick={this.handleNewReflectionSubmit} >submit</button>
+            <button className="blue_btn">{this.state.reflectionsFetchSuccess ? 'hide reflections' : 'show progress'}</button>
+            <button className="white_btn" type="submit" onClick={this.handleNewReflectionSubmit}>submit</button>
           </div>
 
         </form>
