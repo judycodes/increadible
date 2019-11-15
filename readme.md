@@ -10,8 +10,8 @@ Full Stack Application Focused on Learning & Reflection
 ### [ incREADible Manual ]
 
 #### _Enjoyed_
-- Being inspired by my peers' progress and work
-- When the parts of the application runs and works as expected
+- Being inspired by and supporting my peers' progress
+- Resolving unexpected bugs like delayed updates of the goal component and toggling of components
 - Implementing more exceptions
 - Learning new fact tidbits about different topics while discussing this project with my peers and throughout the development of this application
 
@@ -24,7 +24,17 @@ Full Stack Application Focused on Learning & Reflection
 #### _What would you do differently?_
 - Allotted more time for research and exploring new tools for the development of this project
 
-- Planned for breaking out my React code into more components
+- Break out my React code into more components
+
+#### _What would you add to improve this application?_
+
+- Tags and or notebooks to categorize lists of reflections
+
+- Allow users to upload files, images, and other media related to their reflection 
+
+- Allow users to make their reflections private or public
+
+- Add more frontend styling, like animations
 
 ---
 
@@ -34,7 +44,6 @@ _Tools_
 - Postman
 - DBeaver
 - LucidChart
-- Figma
 - Trello
 
 _Frontend_
