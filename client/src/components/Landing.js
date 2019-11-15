@@ -47,7 +47,7 @@ class Landing extends Component {
         }
       })
 
-      fetch('http://localhost:8081/signup', {
+      fetch('http://54.90.117.44:8081/signup', {
       method: 'POST',
       headers: {
         'Content-Type' : 'application/json'
@@ -105,7 +105,7 @@ class Landing extends Component {
         }
       })
 
-      fetch('http://localhost:8081/login', {
+      fetch('http://54.90.117.44:8081/login', {
       method: 'POST',
       headers: {
         'Content-Type' : 'application/json'

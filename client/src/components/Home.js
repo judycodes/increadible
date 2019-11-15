@@ -42,7 +42,7 @@ componentDidMount(){
   //GET REQUEST FOR USER GOAL STORED IN STATE
   try{
 
-      fetch('http://localhost:8081/goal', {
+      fetch('http://54.90.117.44:8081/goal', {
         method: 'GET',
         headers: {
           "Authorization": "Bearer " + localStorage.getItem('user'),
@@ -84,7 +84,7 @@ componentDidMount(){
   //PUT REQUEST TO CREATE/UPDATE USER GOAL
   handleGoal = goalInput => {
 
-    fetch('http://localhost:8081/goal', {
+    fetch('http://54.90.117.44:8081/goal', {
         method: 'PUT',
         headers: {
           "Authorization": "Bearer " + localStorage.getItem('user'),
@@ -127,7 +127,7 @@ componentDidMount(){
 
       try{
 
-        fetch('http://localhost:8081/reflection/create', {
+        fetch('http://54.90.117.44:8081/reflection/create', {
         method: 'POST',
         headers: {
           "Authorization": "Bearer " + localStorage.getItem('user'),
@@ -193,7 +193,7 @@ componentDidMount(){
 
   reflectionsFetch = () => {
     try{
-      fetch('http://localhost:8081/reflection/listUserReflections', {
+      fetch('http://54.90.117.44:8081/reflection/listUserReflections', {
       headers: {
         "Authorization": "Bearer " + localStorage.getItem('user'),
         'Content-Type' : 'application/json'
@@ -226,7 +226,7 @@ componentDidMount(){
   //PUT REQUEST TO UPDATE REFLECTION
   handleEdit = (reflection, reflection_id) => {
 
-  fetch(`http://localhost:8081/reflection/update-${reflection_id}`, {
+  fetch(`http://54.90.117.44:8081/reflection/update-${reflection_id}`, {
       method: 'PUT',
       headers: {
         "Authorization": "Bearer " + localStorage.getItem('user'),
@@ -287,7 +287,7 @@ componentDidMount(){
   handleDelete = (reflection, index) => {
     try{
 
-      fetch(`http://localhost:8081/reflection/delete-${reflection.id}`, {
+      fetch(`http://54.90.117.44:8081/reflection/delete-${reflection.id}`, {
           method: 'DELETE',
           headers: {
             "Authorization": "Bearer " + localStorage.getItem('user'),

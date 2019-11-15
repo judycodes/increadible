@@ -29,7 +29,7 @@ const Navbar = () => {
             </Link></li>
 
           <li>
-            <a href="/" id="log_out_btn"><i className="fas fa-door-open"></i></a>
+            <a href="http://54.90.117.44:8081/" id="log_out_btn"><i className="fas fa-door-open"></i></a>
           </li>
 
         </ul>
