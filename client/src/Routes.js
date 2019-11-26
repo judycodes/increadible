@@ -27,5 +27,5 @@ const Routes = () => {
 
 export default Routes;
 
-
+// TODO: Make NotFound Component and Route functional
 // <Route path="/*" component={NotFound} />

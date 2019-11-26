@@ -47,7 +47,7 @@ class Landing extends Component {
         }
       })
 
-      fetch('http://54.90.117.44:8081/signup', {
+      fetch('http://localhost:8081/signup', {
       method: 'POST',
       headers: {
         'Content-Type' : 'application/json'
@@ -105,7 +105,7 @@ class Landing extends Component {
         }
       })
 
-      fetch('http://54.90.117.44:8081/login', {
+      fetch('http://localhost:8081/login', {
       method: 'POST',
       headers: {
         'Content-Type' : 'application/json'
@@ -227,3 +227,11 @@ class Landing extends Component {
 }
 
 export default Landing;
+
+//If deployment of this application is live on AWS, the endpoints are as follows (instead of localhost): 
+
+//Signup 
+// fetch('http://54.90.117.44:8081/signup', {
+
+//Login
+// fetch('http://54.90.117.44:8081/login', {

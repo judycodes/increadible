@@ -29,7 +29,7 @@ const Navbar = () => {
             </Link></li>
 
           <li>
-            <a href="http://increadible-aws.s3-website-us-east-1.amazonaws.com/" id="log_out_btn"><i className="fas fa-door-open"></i></a>
+            <a href="/" id="log_out_btn"><i className="fas fa-door-open"></i></a>            
           </li>
 
         </ul>
@@ -38,3 +38,7 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+//If deployment of this application is active on AWS, the href should be changed for below
+//TODO: Implement truly functional logout, currently a workaround do to time constraints
+// <a href="http://increadible-aws.s3-website-us-east-1.amazonaws.com/" id="log_out_btn"><i className="fas fa-door-open"></i></a>
