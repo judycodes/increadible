@@ -97,6 +97,8 @@ npm run start
 
 ### [ incREADible - The Development Experience ]
 
+_If you like to read a brief overview about Increadible, check out my <a href="https://docs.google.com/presentation/d/17MYmLqn8C4CkY8HKSa3buh2rMSVI--CDCjqBP8JGwew/edit?usp=sharing">presentation deck.</a>_
+
 #### _Enjoyed_
 - Being inspired by and supporting my peers' progress
 - Resolving unexpected bugs like delayed updates of the goal component and toggling of components
